@@ -1,0 +1,36 @@
+{
+	"name": "hap",
+	"version": "1.0.0",
+	"private": true,
+	"scripts": {
+		"start": "node ./bin/www",
+		"dev": "nodemon"
+	},
+	"dependencies": {
+		"body-parser": "^1.19.0",
+		"cookie-parser": "~1.4.4",
+		"debug": "~2.6.9",
+		"ejs": "~2.6.1",
+		"express": "~4.16.1",
+		"http-errors": "~1.6.3",
+		"mongoose": "^5.11.6",
+		"morgan": "~1.9.1"
+	},
+	"description": "Health Assistant Program",
+	"main": "bin/www",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Kaizen306/HAP.git"
+	},
+	"author": "Team24",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/Kaizen306/HAP/issues"
+	},
+	"homepage": "https://github.com/Kaizen306/HAP#readme",
+	"devDependencies": {
+		"dotenv": "^8.2.0",
+		"locus": "^2.0.4",
+		"nodemon": "^2.0.6"
+	}
+}
