@@ -45,7 +45,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 //express session configuration
 app.use(
 	session({
-		secret: 'qualsiasi stringa lolol',
+		secret: 'team23 secret',
 		resave: false,
 		saveUninitialized: true //,cookie: { secure: true }
 	})

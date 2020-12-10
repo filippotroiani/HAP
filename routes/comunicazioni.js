@@ -1,10 +1,13 @@
 const express = require('express');
 const router = express.Router();
+const {
+	getComunicazioni,
+	createComunicazione
+} = require('../controllers/comunicazioni');
+const { errorHandler } = require('../middleware');
 
 /* GET index /comunicazioni */
-router.get('/', (req, res, next) => {
-	res.send('GET /comunicazioni');
-});
+router.get('/', errorHandler(getComunicazioni));
 
 /* GET new /comunicazioni/new */
 router.get('/new', (req, res, next) => {
@@ -12,9 +15,7 @@ router.get('/new', (req, res, next) => {
 });
 
 /* POST create /comunicazioni */
-router.post('/', (req, res, next) => {
-	res.send('CREATE /comunicazioni');
-});
+router.post('/', errorHandler(createComunicazione));
 
 /* GET show /comunicazioni/:id_comunicazione */
 router.get('/:id_comunicazione', (req, res, next) => {

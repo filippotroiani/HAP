@@ -7,14 +7,14 @@ Comunicazione
 - parole chiave: [string]
  */
 
-const mongoose = require(mongoose);
+const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const ComunicazioneSchema = new Schema({
 	titolo: String,
 	testo: String,
 	immagine: String,
-	dataCreazione: Date,
+	dataCreazione: { type: Date, deafault: Date.now },
 	paroleChiave: [String]
 });
 
