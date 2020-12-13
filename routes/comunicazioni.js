@@ -1,40 +1,39 @@
 const express = require('express');
 const router = express.Router();
 const {
-	getComunicazioni,
-	createComunicazione
+	indexComunicazione,
+	newComunicazione,
+	createComunicazione,
+	showComunicazione,
+	editComunicazione,
+	updateComunicazione,
+	deleteComunicazione,
+	loadComunicazione
 } = require('../controllers/comunicazioni');
-const { errorHandler } = require('../middleware');
+const { asyncErrorHandler } = require('../middleware');
 
 /* GET index /comunicazioni */
-router.get('/', errorHandler(getComunicazioni));
+router.get('/', asyncErrorHandler(indexComunicazione));
+
+/* GET more comunicazioni /comunicazioni */
+router.get('/loadComunicazioni', asyncErrorHandler(loadComunicazione));
 
 /* GET new /comunicazioni/new */
-router.get('/new', (req, res, next) => {
-	res.send('GET /comunicazioni/new');
-});
+router.get('/new', newComunicazione);
 
 /* POST create /comunicazioni */
-router.post('/', errorHandler(createComunicazione));
+router.post('/', asyncErrorHandler(createComunicazione));
 
 /* GET show /comunicazioni/:id_comunicazione */
-router.get('/:id_comunicazione', (req, res, next) => {
-	res.send('SHOW /comunicazioni/:id_comunicazione');
-});
+router.get('/:id_comunicazione', asyncErrorHandler(showComunicazione));
 
 /* GET edit /comunicazioni/:id_comunicazione */
-router.get('/:id_comunicazione/edit', (req, res, next) => {
-	res.send('EDIT /comunicazioni/:id_comunicazione/edit');
-});
+router.get('/:id_comunicazione/edit', asyncErrorHandler(editComunicazione));
 
 /* PUT update /comunicazioni/:id_comunicazione */
-router.put('/:id_comunicazione', (req, res, next) => {
-	res.send('EDIT /comunicazioni/:id_comunicazione');
-});
+router.put('/:id_comunicazione', asyncErrorHandler(updateComunicazione));
 
 /* DELETE destroy /comunicazioni/:id_comunicazione */
-router.delete('/:id_comunicazione', (req, res, next) => {
-	res.send('DELETE /comunicazioni');
-});
+router.delete('/:id_comunicazione', asyncErrorHandler(deleteComunicazione));
 
 module.exports = router;

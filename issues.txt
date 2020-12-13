@@ -1,2 +1,3 @@
 [ ] nome collezioni: Comunicazioni invece di comunicaziones
-[ ] 
+[ ] load Comunicazioni valore total
+[ ] Comunicazioni views

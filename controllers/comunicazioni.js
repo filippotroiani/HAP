@@ -1,7 +1,12 @@
+const comunicazione = require('../models/comunicazione');
 const Comunicazione = require('../models/comunicazione');
 
 module.exports = {
-	async getComunicazioni(req, res, next) {
+	async indexComunicazione(req, res, next) {
+		res.render('comunicazioni/index');
+	},
+	async loadComunicazione(req, res, next) {
+		console.log(`query ${res.query}`);
 		let { search = '', skip = 0, limit = 5, sort = 'desc' } = req.query; //acquisisto i valori passati come parametri tramite res.query
 		const regex = new RegExp(search); //(escapeRegex(search), "gi");
 		skip = parseInt(skip) || 0;
@@ -9,20 +14,18 @@ module.exports = {
 
 		skip = skip < 0 ? 0 : skip;
 		limit = Math.min(50, Math.max(1, limit)); // se limit<1 imposta a 1, se limit>50 imposta a 50
-		var comunicazioni = await Comunicazione.find({
-			/*{
-                $or: [{ titolo: regex }, { testo: regex }]
-            },
-            {
-                skip,
-                limit, 
-                sort: {
-                data: sort === "desc" ? -1 : 1
-                }
-            } */
-		});
-		console.log(comunicazioni);
-		const total = comunicazioni.length;
+		var query = {
+			$or: [{ titolo: regex }, { testo: regex }]
+		};
+		var options = {
+			skip,
+			limit,
+			sort: {
+				data: sort === 'desc' ? -1 : 1
+			}
+		};
+		var comunicazioni = await Comunicazione.find(query, null, options);
+		const total = await Comunicazione.count(query);
 		res.json({
 			//risposta al server
 			comunicazioni,
@@ -34,9 +37,35 @@ module.exports = {
 			}
 		});
 	},
+	newComunicazione(req, res, next) {
+		res.render('comunicazioni/new');
+	},
 	async createComunicazione(req, res, next) {
 		//crea una nuova comunicazione e la inserisce nel database
 		var comunicazione = await Comunicazione.create(req.body);
 		res.redirect(`/comunicazioni/${comunicazione.id}`);
+	},
+	async showComunicazione(req, res, next) {
+		var comunicazione = await Comunicazione.findById(
+			req.params.id_comunicazione
+		);
+		res.render('comunicazioni/show', { comunicazione });
+	},
+	async editComunicazione(req, res, next) {
+		var comunicazione = await Comunicazione.findById(
+			req.params.id_comunicazione
+		);
+		res.render('comunicazioni/edit', { comunicazione });
+	},
+	async updateComunicazione(req, res, next) {
+		await Comunicazione.findByIdAndUpdate(
+			req.params.id_comunicazione,
+			req.body.comunicazione
+		);
+		res.redirect(`/comunicazioni/${req.params.id_comunicazione}`);
+	},
+	async deleteComunicazione(req, res, next) {
+		await Comunicazione.findByIdAndDelete(req.params.id_comunicazione);
+		res.redirect('/comunicazioni');
 	}
 };
