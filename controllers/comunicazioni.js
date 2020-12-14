@@ -3,7 +3,8 @@ const Comunicazione = require('../models/comunicazione');
 
 module.exports = {
 	async indexComunicazione(req, res, next) {
-		res.render('comunicazioni/index');
+		const { parolaChiave } = req.query;
+		res.render('comunicazioni/index', { parolaChiave });
 	},
 	async loadComunicazione(req, res, next) {
 		let { search = '', skip = 0, limit = 5, sort = 'desc' } = req.query; //acquisisto i valori passati come parametri tramite res.query
@@ -14,7 +15,7 @@ module.exports = {
 		skip = skip < 0 ? 0 : skip;
 		limit = Math.min(50, Math.max(1, limit)); // se limit<1 imposta a 1, se limit>50 imposta a 50
 		var query = {
-			$or: [{ titolo: regex }, { testo: regex }]
+			$or: [{ titolo: regex }, { testo: regex }, { paroleChiave: regex }]
 		};
 		var options = {
 			skip,

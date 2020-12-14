@@ -2,5 +2,5 @@
 [ ] load Comunicazioni valore total nelle query
 [x] Comunicazioni views
 [ ] sanificare gli input dei form
-[ ] Data modulo in newsPaziente
+[ ] funzione convertDate in newsPaziente e show.ejs
 [ ] Immagini nelle comunicazioni

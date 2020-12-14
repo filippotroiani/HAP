@@ -1,8 +1,16 @@
 <h1><%= comunicazione.titolo %></h1>
+<div><%= convertDate(comunicazione.dataCreazione) %></div>
 <div><%= comunicazione.price %></div>
 <div><%= comunicazione.testo %></div>
-<div><%= comunicazione.dataCreazione %></div>
-<div>Parole chiave: <%= comunicazione.paroleChiave %></div>
+<div>
+	Parole chiave: <%
+	comunicazione.paroleChiave.split(',').forEach((parola)=>{parola=parola.trim();
+	%>
+	<a href="/comunicazioni?parolaChiave=<%= parola %>"
+		><button><%= parola %></button></a
+	>
+	<%}); %>
+</div>
 <div>
 	<a href="/comunicazioni/<%= comunicazione.id%>/edit"
 		><button>Modifica</button></a
@@ -16,3 +24,8 @@
 		<input type="submit" value="Delete" />
 	</form>
 </div>
+<% function convertDate(d) { const data = new Date(d); return `${(data.getDate()
+< 10 ? '0' : '') + data.getDate()}-${ (data.getMonth() < 10 ? '0' : '') +
+(data.getMonth() + 1) }-${data.getFullYear()} ${ (data.getHours() < 10 ? '0' :
+'') + data.getHours() }:${(data.getMinutes() < 10 ? '0' : '') +
+data.getMinutes()}`; } %>
