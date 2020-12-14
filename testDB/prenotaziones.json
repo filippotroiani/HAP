@@ -1,0 +1,101 @@
+[{
+  "_id": {
+    "$oid": "5fd60d7b21b90f338003296e"
+  },
+  "immagine": "/images/defaultComunicazione.png",
+  "titolo": "Edizione straordinaria",
+  "testo": "prova prova prova",
+  "paroleChiave": "prova, straordinaria",
+  "dataCreazione": {
+    "$date": "2020-12-13T12:47:55.906Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fbc3022c93a9ea4caf08573"
+  },
+  "titolo": "Bollettino epidemiologico Regione Puglia - 12/12/2020",
+  "testo": "Il presidente della Regione Puglia, Michele Emiliano sulla base delle informazioni del direttore del dipartimento Promozione della Salute Vito Montanaro, informa che oggi venerdì 11 dicembre 2020 in Puglia, sono stati registrati 11.223 test per l'infezione da Covid-19 coronavirus e sono stati registrati 1.813 casi positivi: 667 in provincia di Bari, 215 in provincia di Brindisi, 332 nella provincia BAT, 258 in provincia di Foggia, 103 in provincia di Lecce, 219 in provincia di Taranto, 7 residenti fuori regione, 12 casi di residenza non nota.  Sono stati registrati 34 decessi: 12 in provincia di Bari, 1 in provincia di Brindisi, 9 in provincia di Foggia, 2 in provincia di Lecce, 10 in provincia di Taranto.  Dall'inizio dell'emergenza sono stati effettuati 878.289 test.  18.460 sono i pazienti guariti.  49.991 sono i casi attualmente positivi.  Il totale dei casi positivi Covid in Puglia è di 70.319, così suddivisi:  26.917 nella Provincia di Bari;  8.111 nella Provincia di Bat;  5.271 nella Provincia di Brindisi;  15.767 nella Provincia di Foggia;  5.421 nella Provincia di Lecce;  8.352 nella Provincia di Taranto;  435 attribuiti a residenti fuori regione;  45 provincia di residenza non nota.",
+  "dataCreazione": {
+    "$date": "2020-11-15T21:56:50.511Z"
+  },
+  "immagine": "/images/defaultComunicazione.png",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fbc302fc93a9ea4caf08574"
+  },
+  "titolo": "Nuovi orari di apertura",
+  "testo": "Lunedì 15:00 – 19:00 Martedì 15:00 – 19:00 Mercoledì 15:00 – 19:00 Giovedì 15:00 – 19:00 Venerdì 15:00 – 19:00 Sabato Chiuso Domenica Chiuso",
+  "dataCreazione": {
+    "$date": "2020-11-16T21:57:03.475Z"
+  },
+  "immagine": "/images/defaultComunicazione.png",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fbcf5b30be282bc847113b6"
+  },
+  "titolo": "Visite disponibili",
+  "testo": "Visita Reumatologica Visita Senologica Visita Coloproctologica Visita Urologica Visita Urologica Pediatrica Visita di Medicina Interna Visita Endocrinologica Visita di Ginecologia Visita Vascolare Visita Oncologica Visita Ematologica Visita Neurochirurgica Visita Octorinolaringoiatra Visita Oculistica Visita Ortopedica del ginocchio Visita Psichiatrica Visita Nutrizionistica",
+  "dataCreazione": {
+    "$date": "2020-11-17T11:59:47.072Z"
+  },
+  "immagine": "/images/defaultComunicazione.png",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fbcf5dc4c8416bce6fb683b"
+  },
+  "titolo": "Comunicazioni ai pazienti",
+  "testo": " Chiama prima di presentarti in ambulatorio: consentirai agli operatori sanitari di indirizzarti rapidamente alla struttura sanitaria adeguata. Questa precauzione garantisce maggiore protezione per te e consente di evitare la diffusione di virus e altre infezioni.",
+  "dataCreazione": {
+    "$date": "2020-11-18T12:00:28.387Z"
+  },
+  "immagine": "/images/defaultComunicazione.png",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fbcf62a4c8416bce6fb683c"
+  },
+  "titolo": "L’esercizio fisico puo’ essere piu’ efficace degli antidolorifici",
+  "testo": "Secondo uno studio del National Research Center for the Working Environment di Copenhagen, pubblicato dal Journal of Strength and Conditioning Research, l'esercizio leggero e' efficace quanto i farmaci nell'alleviare l'indolenzimento ai muscoli dovuto ad una attivita' fisica maggiore del solito. La ricerca ha coinvolto 20 donne a cui e' stato chiesto di fare un esercizio di resistenza molto pesante che coinvolgeva i muscoli delle spalle. Due giorni dopo le donne sono tornate in laboratorio lamentando un indolenzimento del trapezio, giudicato di entita' 5 su una scala da 0 a 10. Le donne hanno ricevuto un massaggio di 10 minuti a una spalla mentre l'altra e' stata sottoposta per lo stesso tempo a un esercizio leggero. In media il dolore e' sceso a 0,8 per le spalle massaggiate, e a 0,7 per quelle che avevano fatto l'esercizio. \"Non e' una grande differenza - scrivono gli autori - ma un atleta professionista potrebbe riuscire a percepirla\".   (fonte Sanità News)",
+  "dataCreazione": {
+    "$date": "2020-11-19T12:01:46.645Z"
+  },
+  "immagine": "/images/defaultComunicazione.png",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fbcf67b4c8416bce6fb683d"
+  },
+  "titolo": "Raddoppiato il personale infermieristico",
+  "testo": "Due nuovi infermieri si aggiungono al personale. Il dottor Bianchi è fiero di annunciarlo.",
+  "dataCreazione": {
+    "$date": "2020-11-20T12:03:07.132Z"
+  },
+  "immagine": "/images/defaultComunicazione.png",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fbcf6874c8416bce6fb683e"
+  },
+  "titolo": "6 Nuovi casi a Rutigliano",
+  "testo": "Il sindaco ha annunciato il bollettino epidemiologico del giorno durante la diretta sulla sua pagina Facebook.",
+  "dataCreazione": {
+    "$date": "2020-11-22T12:14:19.379Z"
+  },
+  "immagine": "/images/defaultComunicazione.png",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fbd6d33a48a87ef72796515"
+  },
+  "titolo": "Visite a domicilio sospese dal 24/11/20 al 30/11/20",
+  "testo": "Si avvisano i pazienti che il dottore non effettuerà visite dal 24 al 30 di Novembre.",
+  "dataCreazione": {
+    "$date": "2020-11-23T20:10:39.940Z"
+  },
+  "immagine": "/images/defaultComunicazione.png",
+  "__v": 0
+}]

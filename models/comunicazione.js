@@ -13,9 +13,9 @@ const Schema = mongoose.Schema;
 const ComunicazioneSchema = new Schema({
 	titolo: String,
 	testo: String,
-	immagine: String,
-	dataCreazione: { type: Date, deafault: Date.now },
-	paroleChiave: [String]
+	immagine: { type: String, default: '/images/defaultComunicazione.jpg' },
+	dataCreazione: { type: Date, default: Date.now },
+	paroleChiave: String
 });
 
 module.exports = mongoose.model('Comunicazione', ComunicazioneSchema);

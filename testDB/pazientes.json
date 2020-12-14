@@ -1,0 +1,73 @@
+[{
+  "_id": {
+    "$oid": "5fd4eda5ec75f51a68110ef9"
+  },
+  "CF": "FRNRLA02P21F205Y",
+  "cognome": "Franceschini",
+  "nome": "Aurelio",
+  "dataNascita": {
+    "$date": "1990-11-20T23:00:00Z"
+  },
+  "residenza": "Bari",
+  "email": "aurelio.franceschini@gmail.com",
+  "numTelefono": "3315675643",
+  "medico": null
+},{
+  "_id": {
+    "$oid": "5fd4f192020b610304942fbb"
+  },
+  "CF": "PCCLRC07S03A662G",
+  "cognome": "Piccoli",
+  "nome": "Mario",
+  "dataNascita": {
+    "$date": "1987-01-01T23:00:00Z"
+  },
+  "residenza": "Foggia",
+  "email": "mario.piccoli@gmail.com",
+  "numTelefono": "3315678773",
+  "medico": null
+},{
+  "_id": {
+    "$oid": "5fd4f23b020b610304942fbc"
+  },
+  "CF": "TRPRND09L16D969Z",
+  "cognome": "Trapani",
+  "nome": "Armando",
+  "dataNascita": {
+    "$date": {
+      "$numberLong": "-72838800000"
+    }
+  },
+  "residenza": "Canosa di Puglia",
+  "email": "armando.trapani@gmail.com",
+  "numTelefono": "3314478273",
+  "medico": null
+},{
+  "_id": {
+    "$oid": "5fd4f2dc020b610304942fbd"
+  },
+  "CF": "MZZRMO05H11L219V",
+  "cognome": "Mazzini",
+  "nome": "Romeo",
+  "dataNascita": {
+    "$date": "1970-12-28T23:00:00Z"
+  },
+  "residenza": "Taranto",
+  "email": "romeo.mazzini@gmail.com",
+  "numTelefono": "3354988273",
+  "medico": null
+},{
+  "_id": {
+    "$oid": "5fd4f369020b610304942fbe"
+  },
+  "CF": "DNGFVN03S65A662U",
+  "cognome": "De Angelis",
+  "nome": "Flavia",
+  "dataNascita": {
+    "$date": "1989-10-28T23:00:00Z"
+  },
+  "residenza": "Lecce",
+  "email": "flavia.deangelis@gmail.com",
+  "numTelefono": "3324987673",
+  "medico": null
+}]

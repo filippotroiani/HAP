@@ -1,3 +1,6 @@
 [ ] nome collezioni: Comunicazioni invece di comunicaziones
-[ ] load Comunicazioni valore total
-[ ] Comunicazioni views
+[ ] load Comunicazioni valore total nelle query
+[x] Comunicazioni views
+[ ] sanificare gli input dei form
+[ ] Data modulo in newsPaziente
+[ ] Immagini nelle comunicazioni

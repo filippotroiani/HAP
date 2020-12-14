@@ -6,7 +6,6 @@ module.exports = {
 		res.render('comunicazioni/index');
 	},
 	async loadComunicazione(req, res, next) {
-		console.log(`query ${res.query}`);
 		let { search = '', skip = 0, limit = 5, sort = 'desc' } = req.query; //acquisisto i valori passati come parametri tramite res.query
 		const regex = new RegExp(search); //(escapeRegex(search), "gi");
 		skip = parseInt(skip) || 0;
@@ -21,11 +20,11 @@ module.exports = {
 			skip,
 			limit,
 			sort: {
-				data: sort === 'desc' ? -1 : 1
+				dataCreazione: sort === 'desc' ? -1 : 1
 			}
 		};
 		var comunicazioni = await Comunicazione.find(query, null, options);
-		const total = await Comunicazione.count(query);
+		const total = await Comunicazione.countDocuments(query);
 		res.json({
 			//risposta al server
 			comunicazioni,
@@ -42,7 +41,8 @@ module.exports = {
 	},
 	async createComunicazione(req, res, next) {
 		//crea una nuova comunicazione e la inserisce nel database
-		var comunicazione = await Comunicazione.create(req.body);
+		console.log(req.body);
+		var comunicazione = await Comunicazione.create(req.body.comunicazione);
 		res.redirect(`/comunicazioni/${comunicazione.id}`);
 	},
 	async showComunicazione(req, res, next) {

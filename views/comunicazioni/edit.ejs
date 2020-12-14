@@ -1,0 +1,29 @@
+<h1>Modifica Comunicazione</h1>
+<form
+	id="aggiungiNews"
+	action="/comunicazioni/<%= comunicazione.id %>?_method=PUT"
+	method="POST"
+>
+	<div class="error-message"></div>
+	<div>
+		<input
+			name="comunicazioni[titolo]"
+			placeholder="Titolo"
+			value="<%= comunicazione.titolo  %>"
+		/>
+	</div>
+	<div>
+		<textarea name="comunicazioni[testo]" placeholder="Testo">
+<%= comunicazione.testo %></textarea
+		>
+	</div>
+	<div>
+		<input
+			name="comunicazioni[paroleChiave]"
+			placeholder="Parole chiave"
+			value="<%= comunicazione.paroleChiave %>"
+		/>
+		Inserisci parole chiave separate da una virgola
+	</div>
+	<input type="submit" />
+</form>

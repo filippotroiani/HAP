@@ -1,0 +1,51 @@
+[{
+  "_id": {
+    "$oid": "5fd5088395c44780e7645bd7"
+  },
+  "CF": "CNTCLL04H22A662A",
+  "cognome": "Contini",
+  "nome": "Achille",
+  "email": "achille.Contini@studio.it",
+  "numTelefono": "080 778543",
+  "ruolo": "Medico di base"
+},{
+  "_id": {
+    "$oid": "5fd509d3a7fee242147f1d7e"
+  },
+  "CF": "RSOBDT09E60G273L",
+  "cognome": "Benedetta",
+  "nome": "Rosa",
+  "email": "rosa.contini@studio.it",
+  "numTelefono": "080 568740",
+  "ruolo": "Infermiere"
+},{
+  "_id": {
+    "$oid": "5fd50a5ba7fee242147f1d7f"
+  },
+  "CF": "LLACST03P46A662X",
+  "cognome": "Aiello",
+  "nome": "Cristina",
+  "email": "cristina.aiello@studio.it",
+  "numTelefono": "080 986538",
+  "ruolo": "Segretaria"
+},{
+  "_id": {
+    "$oid": "5fd50ae0a7fee242147f1d80"
+  },
+  "CF": "MCCSVN10L28F205K",
+  "cognome": "Macchi",
+  "nome": "Savino",
+  "email": "savino.macchi@studio.it",
+  "numTelefono": "080 9112357",
+  "ruolo": "Infermiere"
+},{
+  "_id": {
+    "$oid": "5fd50b47a7fee242147f1d81"
+  },
+  "CF": "NRDVNI09P45H501N",
+  "cognome": "Nardi",
+  "nome": "Ivana",
+  "email": "ivana.nardi@studio.it",
+  "numTelefono": "080 9110754",
+  "ruolo": "Dottoressa"
+}]
