@@ -1,4 +1,3 @@
-const comunicazione = require('../models/comunicazione');
 const Comunicazione = require('../models/comunicazione');
 
 module.exports = {
