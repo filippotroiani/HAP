@@ -4,9 +4,9 @@ const {
 	postRegister,
 	postLogin,
 	getLogout,
-	mostralink
+	getLink
 } = require('../controllers'); // /index è sottinteso
-const { errorHandler } = require('../middleware'); // /index è sottinteso
+const { asyncErrorHandler } = require('../middleware'); // /index è sottinteso
 
 /* GET home page. */
 router.get('/', (req, res, next) => {
@@ -61,5 +61,7 @@ router.get('/reset/:token', (req, res, next) => {
 router.put('/reset/:token', (req, res, next) => {
 	res.send('RESET /reset/:token');
 });
+/* GET /linkUtili */
+router.get('/link-utili', asyncErrorHandler(getLink));
 
 module.exports = router;
