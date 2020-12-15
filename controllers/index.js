@@ -15,7 +15,7 @@ module.exports = {
 	postLogin(req, res, next) {
 		passport.authenticate('local', {
 			successRedirect: '/',
-			failureRedirect: '/login',
+			failureRedirect: '/login'
 		})(req, res, next);
 	},
 	getLogout(req, res, next) {
@@ -24,7 +24,6 @@ module.exports = {
 	},
 	async getLink(req, res, next) {
 		const elencoLink = await linkUtili.find({});
-		console.log(elencoLink);
 		res.render('linkUtili', { elencoLink });
-	},
+	}
 };

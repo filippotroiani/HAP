@@ -9,8 +9,8 @@ const Schema = mongoose.Schema;
 
 const LinkSchema = new Schema({
 	titolo: String,
-	link: String,
-	descrizione: String,
+	indirizzo: String,
+	descrizione: String
 });
 
 module.exports = mongoose.model('linkUtili', LinkSchema);
