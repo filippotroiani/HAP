@@ -10,12 +10,14 @@ const session = require('express-session');
 const methodOverride = require('method-override');
 const mongoose = require('mongoose');
 mongoose.set('useCreateIndex', true);
+
 const User = require('./models/paziente');
 
 const indexRouter = require('./routes/index');
 //const usersRouter = require('./routes/users');
 const comunicazioniRouter = require('./routes/comunicazioni');
 const prenotazioniRouter = require('./routes/prenotazioni');
+const adminRouter = require('./routes/admin');
 
 const app = express();
 
@@ -76,6 +78,7 @@ app.use('/', indexRouter);
 //app.use('/users', usersRouter);
 app.use('/comunicazioni', comunicazioniRouter);
 app.use('/prenotazioni', prenotazioniRouter);
+app.use('/admin', adminRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
