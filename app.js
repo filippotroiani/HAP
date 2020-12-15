@@ -13,7 +13,7 @@ mongoose.set('useCreateIndex', true);
 const User = require('./models/paziente');
 
 const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
+//const usersRouter = require('./routes/users');
 const comunicazioniRouter = require('./routes/comunicazioni');
 const prenotazioniRouter = require('./routes/prenotazioni');
 
@@ -30,7 +30,7 @@ mongoose.connect(
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', () => {
-	console.log("we're connected!");
+	console.log('Server connected to db.');
 });
 
 // view engine setup
@@ -63,9 +63,17 @@ passport.use(User.createStrategy());
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
+app.use((req, res, next) => {
+	//utente di default per evitare di fare il login ogni volta in fare di sviluppo
+	req.user = { _id: '5fd4eda5ec75f51a68110ef9', CF: 'FRNRLA02P21F205Y' };
+	req.medico = { _id: '5fd5088395c44780e7645bd7', cognome: 'Contini' };
+	res.locals.currentUser = req.user;
+	next();
+});
+
 //routes
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+//app.use('/users', usersRouter);
 app.use('/comunicazioni', comunicazioniRouter);
 app.use('/prenotazioni', prenotazioniRouter);
 

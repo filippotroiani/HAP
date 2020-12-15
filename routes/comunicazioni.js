@@ -13,7 +13,7 @@ const {
 const { asyncErrorHandler } = require('../middleware');
 
 /* GET index /comunicazioni */
-router.get('/', asyncErrorHandler(indexComunicazione));
+router.get('/', indexComunicazione);
 
 /* GET more comunicazioni /comunicazioni */
 router.get('/loadComunicazioni', asyncErrorHandler(loadComunicazione));

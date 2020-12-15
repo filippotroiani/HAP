@@ -1,8 +1,7 @@
-const comunicazione = require('../models/comunicazione');
 const Comunicazione = require('../models/comunicazione');
 
 module.exports = {
-	async indexComunicazione(req, res, next) {
+	indexComunicazione(req, res, next) {
 		const { parolaChiave } = req.query;
 		res.render('comunicazioni/index', { parolaChiave });
 	},
@@ -42,7 +41,6 @@ module.exports = {
 	},
 	async createComunicazione(req, res, next) {
 		//crea una nuova comunicazione e la inserisce nel database
-		console.log(req.body);
 		var comunicazione = await Comunicazione.create(req.body.comunicazione);
 		res.redirect(`/comunicazioni/${comunicazione.id}`);
 	},

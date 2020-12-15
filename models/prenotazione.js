@@ -15,10 +15,8 @@ const PrenotazioneSchema = new Schema({
 		type: Schema.Types.ObjectId,
 		ref: 'Paziente'
 	},
-	servizio: {
-		type: Schema.Types.ObjectId,
-		ref: 'Servizio'
-	},
+	servizio: 
+	,
 	dataPrenotazione: Date,
 	dataCreazione: Date,
 	motivazione: String

@@ -13,8 +13,7 @@ const Schema = mongoose.Schema;
 const ServizioSchema = new Schema({
 	nome: String,
 	descrizione: String,
-	tipo: String,
-	chiEroga: String,
+	//chiEroga: String,
 	prezzo: Number
 });
 

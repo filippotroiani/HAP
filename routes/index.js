@@ -1,6 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const { postRegister, postLogin, getLogout } = require('../controllers'); // /index è sottinteso
+const {
+	postRegister,
+	postLogin,
+	getLogout,
+	mostralink
+} = require('../controllers'); // /index è sottinteso
 const { errorHandler } = require('../middleware'); // /index è sottinteso
 
 /* GET home page. */
