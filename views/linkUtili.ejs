@@ -1,0 +1,8 @@
+<h1>LinkUtili</h1>
+<div>
+	<% elencoLink.forEach((link)=>{ %>
+	<div>
+		<a href="<%= link.link %>"><%= link.titolo %></a> - <%= link.descrizione %>
+	</div>
+	<%}); %>
+</div>

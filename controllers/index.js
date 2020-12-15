@@ -1,6 +1,6 @@
 const User = require('../models/paziente');
 const passport = require('passport');
-
+const linkUtili = require('../models/linkUtili');
 module.exports = {
 	/* async postRegister(req, res, next) {
 		const newUser = new User({
@@ -21,5 +21,9 @@ module.exports = {
 	getLogout(req, res, next) {
 		req.logout();
 		res.redirect('/');
+	},
+	async getLink(req, res, next) {
+		const elencoLink = await linkUtili.find({});
+		res.render('linkUtili', { elencoLink });
 	}
 };
