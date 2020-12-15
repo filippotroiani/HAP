@@ -1,26 +1,8 @@
-<h1><%= comunicazione.titolo %></h1>
-<div><%= convertDate(comunicazione.dataCreazione) %></div>
-<div><%= comunicazione.price %></div>
-<div><%= comunicazione.testo %></div>
+<h1>LinkUtili</h1>
 <div>
-	Parole chiave: <%
-	comunicazione.paroleChiave.split(',').forEach((parola)=>{parola=parola.trim();
-	%>
-	<a href="/comunicazioni?parolaChiave=<%= parola %>"
-		><button><%= parola %></button></a
-	>
+	<% elencoLink.forEach((link)=>{ %>
+	<div>
+		<a href="<%= link.link %>"><%= link.titolo %></a> - <%= link.descrizione %>
+	</div>
 	<%}); %>
-</div>
-<div>
-	<a href="/comunicazioni/<%= comunicazione.id%>/edit"
-		><button>Modifica</button></a
-	>
-</div>
-<div>
-	<form
-		action="/comunicazioni/<%= comunicazione.id%>?_method=DELETE"
-		method="POST"
-	>
-		<input type="submit" value="Delete" />
-	</form>
 </div>

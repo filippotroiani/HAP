@@ -5,7 +5,6 @@ Link Utili
 - link: string
  */
 const mongoose = require('mongoose');
-const passportLocalMongoose = require('passport-local-mongoose');
 const Schema = mongoose.Schema;
 
 const LinkSchema = new Schema({
@@ -13,5 +12,5 @@ const LinkSchema = new Schema({
 	link: String,
 	descrizione: String,
 });
-UserSchema.plugin(passportLocalMongoose);
-module.exports = mongoose.model('LinkUtili', UserSchema);
+
+module.exports = mongoose.model('linkUtili', LinkSchema);

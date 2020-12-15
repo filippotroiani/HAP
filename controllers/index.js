@@ -23,7 +23,8 @@ module.exports = {
 		res.redirect('/');
 	},
 	async getLink(req, res, next) {
-		const link = await linkUtili.find();
-		res.render('linkUtili', { link });
+		const elencoLink = await linkUtili.find({});
+		console.log(elencoLink);
+		res.render('linkUtili', { elencoLink });
 	},
 };
