@@ -7,10 +7,13 @@ Link Utili
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const LinkSchema = new Schema({
-	titolo: String,
-	indirizzo: String,
-	descrizione: String
-});
+const LinkSchema = new Schema(
+	{
+		titolo: String,
+		indirizzo: String,
+		descrizione: String
+	},
+	{ collection: 'LinkUtili' }
+);
 
 module.exports = mongoose.model('linkUtili', LinkSchema);

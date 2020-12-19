@@ -1,0 +1,37 @@
+[{
+  "_id": {
+    "$oid": "5fde4c4322ab894cdcffcaf1"
+  },
+  "immagine": "images/defaultUserImage.png",
+  "CF": "CNTCLL04H22A662A",
+  "cognome": "Contini",
+  "nome": "Achille",
+  "email": "achille.Contini@studio.it",
+  "numTelefono": "080 778543",
+  "ruolo": "medico",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fde4d0122ab894cdcffcaf3"
+  },
+  "immagine": "images/defaultUserImage.png",
+  "CF": "NRDVNI09P45H501N",
+  "cognome": "Nardi",
+  "nome": "Ivana",
+  "email": "ivana.nardi@studio.it",
+  "numTelefono": "080 9110754",
+  "ruolo": "Medico",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fde4d3122ab894cdcffcaf5"
+  },
+  "immagine": "images/defaultUserImage.png",
+  "CF": "LLACST03P46A662X",
+  "cognome": "Aiello",
+  "nome": "Cristina",
+  "email": "cristina.aiello@studio.it",
+  "numTelefono": "080 986538",
+  "ruolo": "Segreteria",
+  "__v": 0
+}]

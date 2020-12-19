@@ -5,8 +5,8 @@ Paziente
 - nome: string
 - dataNascita: date
 - residenza: string
-- email: string
 - numTelefono: string
+- immagine: String,
 - medico: Object ref Staff
 */
 
@@ -14,18 +14,21 @@ const mongoose = require('mongoose');
 const passportLocalMongoose = require('passport-local-mongoose');
 const Schema = mongoose.Schema;
 
-const UserSchema = new Schema({
-	CF: String,
-	cognome: String,
-	nome: String,
-	dataNascita: Date,
-	residenza: String,
-	numTelefono: String,
-	email: String,
-	medico: {
-		type: Schema.Types.ObjectId,
-		ref: 'Staff'
-	}
-});
-UserSchema.plugin(passportLocalMongoose);
-module.exports = mongoose.model('Paziente', UserSchema);
+const PazienteSchema = new Schema(
+	{
+		CF: String,
+		cognome: String,
+		nome: String,
+		dataNascita: Date,
+		residenza: String,
+		numTelefono: String,
+		immagine: { type: String, default: 'images/defaultUserImage.png' },
+		medico: {
+			type: Schema.Types.ObjectId,
+			ref: 'Staff'
+		}
+	},
+	{ collection: 'Pazienti' }
+);
+//PazienteSchema.plugin(passportLocalMongoose);
+module.exports = mongoose.model('Paziente', PazienteSchema);

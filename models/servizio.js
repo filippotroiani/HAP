@@ -10,11 +10,14 @@ Servizio
 const monngoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const ServizioSchema = new Schema({
-	nome: String,
-	descrizione: String,
-	//chiEroga: String,
-	prezzo: Number
-});
+const ServizioSchema = new Schema(
+	{
+		nome: String,
+		descrizione: String,
+		//chiEroga: String,
+		prezzo: Number
+	},
+	{ collection: 'Servizi' }
+);
 
 module.exports = mongoose.model('Servizio', ServizioSchema);

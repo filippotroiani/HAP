@@ -1,0 +1,41 @@
+[{
+  "_id": {
+    "$oid": "5fd92a2bb181ec3bc491cef4"
+  },
+  "titolo": "Regione Puglia",
+  "descrizione": "Sito ufficiale della Regione Puglia",
+  "indirizzo": "www.regione.puglia.it",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fd92b75764d012060192fae"
+  },
+  "titolo": "CNR",
+  "descrizione": "Sito ufficiale del consiglio nazionale delle ricerche",
+  "indirizzo": "www.cnr.it",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fd92b75764d012060192faf"
+  },
+  "titolo": "ISS",
+  "descrizione": "Sito ufficiale dell'Istituto superiore di sanità",
+  "indirizzo": "www.iss.it",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fd92b75764d012060192fb0"
+  },
+  "titolo": "CDC",
+  "descrizione": "Sito ufficiale del National Center for Health Statistics",
+  "indirizzo": "www.cdc.gov",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fd92b75764d012060192fb1"
+  },
+  "titolo": "GIMBE",
+  "descrizione": "Gruppo Italiano Medicina Basata sull'Evidenza",
+  "indirizzo": "www.gimbe.org",
+  "__v": 0
+}]

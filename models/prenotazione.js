@@ -10,16 +10,18 @@ Prenotazione
 const monngoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const PrenotazioneSchema = new Schema({
-	paziente: {
-		type: Schema.Types.ObjectId,
-		ref: 'Paziente'
+const PrenotazioneSchema = new Schema(
+	{
+		paziente: {
+			type: Schema.Types.ObjectId,
+			ref: 'Paziente'
+		},
+		servizio: String,
+		dataPrenotazione: Date,
+		dataCreazione: Date,
+		motivazione: String
 	},
-	servizio: 
-	,
-	dataPrenotazione: Date,
-	dataCreazione: Date,
-	motivazione: String
-});
+	{ collection: 'Prenotazioni' }
+);
 
 module.exports = mongoose.model('Prenotazione', PrenotazioneSchema);

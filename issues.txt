@@ -4,3 +4,5 @@
 [ ] sanificare gli input dei form
 [ ] funzione convertDate in newsPaziente e show.ejs
 [ ] Immagini nelle comunicazioni
+[ ] immagini utente
+[ ] postRegister User

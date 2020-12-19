@@ -1,32 +1,32 @@
+require('dotenv').config();
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
-//const bodyParser = require('body-parser'); //non richiesto, c'è il bodyparser incluso in express
+// const bodyParser = require('body-parser'); //non richiesto, c'è il bodyparser incluso in express
 const logger = require('morgan');
 const passport = require('passport');
 const session = require('express-session');
-//const passportLocalMongoose = require('passport-local-mongoose');
+// const passportLocalMongoose = require('passport-local-mongoose');
 const methodOverride = require('method-override');
 const mongoose = require('mongoose');
 mongoose.set('useCreateIndex', true);
-const User = require('./models/paziente');
+const User = require('./models/user');
 
 const indexRouter = require('./routes/index');
-//const usersRouter = require('./routes/users');
+const usersRouter = require('./routes/users');
+//const staffRouter = require('./routes/staff');
+//const adminRouter = require('./routes/admin');
 const comunicazioniRouter = require('./routes/comunicazioni');
 const prenotazioniRouter = require('./routes/prenotazioni');
 
 const app = express();
 
-//database connection
-mongoose.connect(
-	'mongodb+srv://admin:admin@cluster0.k1jgs.mongodb.net/HAP?retryWrites=true&w=majority',
-	{
-		useNewUrlParser: true,
-		useUnifiedTopology: true
-	}
-);
+// database connection
+mongoose.connect(process.env.DB_URL, {
+	useNewUrlParser: true,
+	useUnifiedTopology: true
+});
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', () => {
@@ -44,36 +44,38 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(methodOverride('_method'));
 
-//express session configuration
+// express session configuration
 app.use(
 	session({
-		secret: 'team23 secret',
+		secret: process.env.SESSION_SECRET,
 		resave: false,
 		saveUninitialized: true //,cookie: { secure: true }
 	})
 );
 
-//passport and session configuration
+// passport and session configuration
 app.use(passport.initialize());
 app.use(passport.session());
 
-//metodo semplificato, controlla la documentazione di passport-local-mongoose
+// metodo semplificato, controlla la documentazione di passport-local-mongoose
 // CHANGE: USE "createStrategy" INSTEAD OF "authenticate"
 passport.use(User.createStrategy());
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-app.use((req, res, next) => {
-	//utente di default per evitare di fare il login ogni volta in fare di sviluppo
+/* app.use((req, res, next) => {
+	//utente di default per evitare di fare il login ogni volta in fase di sviluppo
 	req.user = { _id: '5fd4eda5ec75f51a68110ef9', CF: 'FRNRLA02P21F205Y' };
 	req.medico = { _id: '5fd5088395c44780e7645bd7', cognome: 'Contini' };
 	res.locals.currentUser = req.user;
 	next();
-});
+}); */
 
 //routes
 app.use('/', indexRouter);
-//app.use('/users', usersRouter);
+app.use('/users', usersRouter);
+//app.use('/admin', adminRouter);
+//app, use('/area-riservata', staffRouter);
 app.use('/comunicazioni', comunicazioniRouter);
 app.use('/prenotazioni', prenotazioniRouter);
 
