@@ -1,4 +1,4 @@
-[ ] nome collezioni: Comunicazioni invece di comunicaziones
+[x] nome collezioni: Comunicazioni invece di comunicaziones
 [ ] load Comunicazioni valore total nelle query
 [x] Comunicazioni views
 [ ] sanificare gli input dei form
@@ -6,3 +6,7 @@
 [ ] Immagini nelle comunicazioni
 [ ] immagini utente
 [ ] postRegister User
+[x] post login redirect
+[ ] fail login redirect
+[ ] flash messages
+[ ] elenco orari disponibili - prenotazioni

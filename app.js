@@ -63,13 +63,19 @@ passport.use(User.createStrategy());
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-/* app.use((req, res, next) => {
+app.use((req, res, next) => {
 	//utente di default per evitare di fare il login ogni volta in fase di sviluppo
-	req.user = { _id: '5fd4eda5ec75f51a68110ef9', CF: 'FRNRLA02P21F205Y' };
-	req.medico = { _id: '5fd5088395c44780e7645bd7', cognome: 'Contini' };
+	req.user = {
+		_id: '5fde4f06daaf85411806aa35',
+		username: 'FRNRLA02P21F205Y',
+		email: 'aurelio.franceschini@gmail.com',
+		tipo: 'Paziente',
+		idRef: '5fde4f05daaf85411806aa34',
+		medico: '5fde4c4322ab894cdcffcaf1'
+	};
 	res.locals.currentUser = req.user;
 	next();
-}); */
+});
 
 //routes
 app.use('/', indexRouter);

@@ -7,7 +7,7 @@ Prenotazione
 - motivazione: String 
 */
 
-const monngoose = require('mongoose');
+const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const PrenotazioneSchema = new Schema(
@@ -16,9 +16,10 @@ const PrenotazioneSchema = new Schema(
 			type: Schema.Types.ObjectId,
 			ref: 'Paziente'
 		},
+		medico: { type: Schema.Types.ObjectId, ref: 'Medico' },
 		servizio: String,
 		dataPrenotazione: Date,
-		dataCreazione: Date,
+		dataCreazione: { type: Date, default: Date.now },
 		motivazione: String
 	},
 	{ collection: 'Prenotazioni' }

@@ -2,6 +2,7 @@ const User = require('../models/user');
 const Paziente = require('../models/paziente');
 const Staff = require('../models/staff');
 const passport = require('passport');
+const user = require('../models/user');
 
 module.exports = {
 	async usersIndex(req, res, next) {
@@ -10,14 +11,31 @@ module.exports = {
 		res.redirect('/');
 	},
 	postLogin(req, res, next) {
-		passport.authenticate('local', {
-			successRedirect: '/',
-			failureRedirect: '/users/login'
-		})(req, res, next);
-		console.log(req.user);
+		passport.authenticate(
+			'local',
+			/* {
+				//successRedirect: '/',
+				failureRedirect: '/users/login'
+			}, */
+			(err, user, info) => {
+				if (err) return next(err);
+				if (!user) return res.redirect('/users/login');
+				req.logIn(user, function (err) {
+					if (err) return next(err);
+					return user.tipo === 'Staff'
+						? res.redirect('/users/profile') //staff redirect
+						: res.redirect('/'); //paziente redirect
+				});
+			}
+		)(req, res, next);
+		/* if (user.tipo === 'Staff') res.send('STAFFF');
+				else res.send('pazienteee'); */
+	},
+	postLoginSuccessRedirect(req, res, next) {
+		if ('Staff' === 'Staff') res.send('STAFFF');
+		else res.send('pazienteee');
 	},
 	getLogout(req, res, next) {
-		console.log(req.user);
 		req.logout();
 		res.redirect('/');
 	},

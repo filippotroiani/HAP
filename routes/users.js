@@ -3,6 +3,7 @@ var router = express.Router();
 const {
 	usersIndex,
 	postLogin,
+	postLoginSuccessRedirect,
 	getLogout,
 	postRegister,
 	postRegisterStaff
@@ -17,7 +18,7 @@ router.get('/login', (req, res, next) => {
 });
 
 /* POST /login */
-router.post('/login', postLogin);
+router.post('/login', postLogin /* , postLoginSuccessRedirect */);
 
 /* GET /register */
 router.get('/register', (req, res, next) => {

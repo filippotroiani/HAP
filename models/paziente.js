@@ -19,6 +19,7 @@ const PazienteSchema = new Schema(
 		CF: String,
 		cognome: String,
 		nome: String,
+		sesso: String,
 		dataNascita: Date,
 		residenza: String,
 		numTelefono: String,

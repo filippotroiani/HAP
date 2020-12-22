@@ -1,0 +1,24 @@
+[unselectable] {
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	user-select: none;
+}
+.mx-button input {
+	display: none;
+}
+.mx-button label {
+	background: #ccc;
+	border: 1px solid #888;
+	color: #666;
+	padding: 5px 10px;
+}
+.mx-button label:hover {
+	background: #ddd;
+}
+.mx-button label:active,
+.mx-button input:focus + label {
+	background: #aaa;
+}
+.mx-button input:checked + label {
+	background: #b4b4b4;
+}

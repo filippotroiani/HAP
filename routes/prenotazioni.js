@@ -1,20 +1,20 @@
 const express = require('express');
 const router = express.Router();
+const {
+	newPrenotazioni,
+	createPrenotazioni,
+	indexPrenotazioni
+} = require('../controllers/prenotazioni');
+const { asyncErrorHandler } = require('../middleware');
 
 /* GET index /prenotazioni */
-router.get('/', (req, res, next) => {
-	res.send('GET /prenotazioni');
-});
+router.get('/', indexPrenotazioni);
 
 /* GET new /prenotazioni/new */
-router.get('/new', (req, res, next) => {
-	res.send('GET /prenotazioni/new');
-});
+router.get('/new', asyncErrorHandler(newPrenotazioni));
 
 /* POST create /prenotazioni */
-router.post('/', (req, res, next) => {
-	res.send('CREATE /prenotazioni');
-});
+router.post('/', asyncErrorHandler(createPrenotazioni));
 
 /* GET show /prenotazioni/:id_prenotazione */
 router.get('/:id_prenotazione', (req, res, next) => {
