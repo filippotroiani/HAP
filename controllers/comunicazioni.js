@@ -1,13 +1,18 @@
 const Comunicazione = require('../models/comunicazione');
+const { convertDate } = require('../middleware/date');
 
 module.exports = {
 	indexComunicazione(req, res, next) {
 		const { parolaChiave } = req.query;
-		res.render('comunicazioni/index', { parolaChiave });
+		const title =
+			parolaChiave === '' || !parolaChiave
+				? 'Comunicazioni - HAP'
+				: `${parolaChiave} - Comunicazioni - HAP`;
+		res.render('comunicazioni/index', { title, parolaChiave });
 	},
 	async loadComunicazione(req, res, next) {
 		let { search = '', skip = 0, limit = 5, sort = 'desc' } = req.query; //acquisisto i valori passati come parametri tramite res.query
-		const regex = new RegExp(search); //(escapeRegex(search), "gi");
+		const regex = new RegExp(search, 'i'); //(escapeRegex(search), "gi");
 		skip = parseInt(skip) || 0;
 		limit = parseInt(limit) || 5;
 
@@ -37,24 +42,32 @@ module.exports = {
 		});
 	},
 	newComunicazione(req, res, next) {
-		res.render('comunicazioni/new');
+		res.render('comunicazioni/new', { title: 'Nuova comunicazione - HAP' });
 	},
 	async createComunicazione(req, res, next) {
 		//crea una nuova comunicazione e la inserisce nel database
 		var comunicazione = await Comunicazione.create(req.body.comunicazione);
+		req.session.success = 'Comunicazione creata con successo.';
 		res.redirect(`/comunicazioni/${comunicazione.id}`);
 	},
 	async showComunicazione(req, res, next) {
 		var comunicazione = await Comunicazione.findById(
 			req.params.id_comunicazione
 		);
-		res.render('comunicazioni/show', { comunicazione });
+		comunicazione.data = convertDate(comunicazione.dataCreazione);
+		res.render('comunicazioni/show', {
+			title: `${comunicazione.titolo} - HAP`,
+			comunicazione
+		});
 	},
 	async editComunicazione(req, res, next) {
 		var comunicazione = await Comunicazione.findById(
 			req.params.id_comunicazione
 		);
-		res.render('comunicazioni/edit', { comunicazione });
+		res.render('comunicazioni/edit', {
+			title: 'Modifica comunicazione',
+			comunicazione
+		});
 	},
 	async updateComunicazione(req, res, next) {
 		await Comunicazione.findByIdAndUpdate(

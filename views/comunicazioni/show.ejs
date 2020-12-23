@@ -1,5 +1,6 @@
+<% layout('layouts/comunicazioni-show-layout') -%>
 <h1><%= comunicazione.titolo %></h1>
-<div><%= convertDate(comunicazione.dataCreazione) %></div>
+<div><%= comunicazione.data %></div>
 <div><%= comunicazione.price %></div>
 <div><%= comunicazione.testo %></div>
 <div>
@@ -12,9 +13,9 @@
 	<%}); %>
 </div>
 <div>
-	<a href="/comunicazioni/<%= comunicazione.id%>/edit"
-		><button>Modifica</button></a
-	>
+	<a href="/comunicazioni/<%= comunicazione.id%>/edit">
+		<button>Modifica</button>
+	</a>
 </div>
 <div>
 	<form
@@ -24,8 +25,3 @@
 		<input type="submit" value="Delete" />
 	</form>
 </div>
-<% function convertDate(d) { const data = new Date(d); return `${(data.getDate()
-< 10 ? '0' : '') + data.getDate()}-${ (data.getMonth() < 10 ? '0' : '') +
-(data.getMonth() + 1) }-${data.getFullYear()} ${ (data.getHours() < 10 ? '0' :
-'') + data.getHours() }:${(data.getMinutes() < 10 ? '0' : '') +
-data.getMinutes()}`; } %>

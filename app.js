@@ -1,6 +1,7 @@
 require('dotenv').config();
 const createError = require('http-errors');
 const express = require('express');
+const engine = require('ejs-mate');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 // const bodyParser = require('body-parser'); //non richiesto, c'è il bodyparser incluso in express
@@ -23,16 +24,22 @@ const prenotazioniRouter = require('./routes/prenotazioni');
 const app = express();
 
 // database connection
-mongoose.connect(process.env.DB_URL, {
-	useNewUrlParser: true,
-	useUnifiedTopology: true
-});
+mongoose.connect(
+	process.env.DB_URL ||
+		'mongodb+srv://admin:admin@cluster0.k1jgs.mongodb.net/HAP?retryWrites=true&w=majority',
+	{
+		useNewUrlParser: true,
+		useUnifiedTopology: true
+	}
+);
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', () => {
 	console.log('Server connected to db.');
 });
 
+// set ejs-locals for all ejs templates:
+app.engine('ejs', engine);
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -47,7 +54,7 @@ app.use(methodOverride('_method'));
 // express session configuration
 app.use(
 	session({
-		secret: process.env.SESSION_SECRET,
+		secret: process.env.SESSION_SECRET || 'team23 secret',
 		resave: false,
 		saveUninitialized: true //,cookie: { secure: true }
 	})
@@ -77,6 +84,21 @@ app.use((req, res, next) => {
 	next();
 });
 
+// set local variables middleware
+app.use(function (req, res, next) {
+	// default page title
+	res.locals.title = 'HAP';
+
+	// set success flash message
+	res.locals.success = req.session.success || '';
+	delete req.session.success;
+	// set error flash message
+	res.locals.error = req.session.error || '';
+	delete req.session.error;
+
+	next();
+});
+
 //routes
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
@@ -92,13 +114,16 @@ app.use(function (req, res, next) {
 
 // error handler
 app.use(function (err, req, res, next) {
-	// set locals, only providing error in development
+	/* // set locals, only providing error in development
 	res.locals.message = err.message;
 	res.locals.error = req.app.get('env') === 'development' ? err : {};
 
 	// render the error page
 	res.status(err.status || 500);
-	res.render('error');
+	res.render('error'); */
+	console.log(err);
+	req.session.error = err.message;
+	res.redirect('back');
 });
 
 module.exports = app;

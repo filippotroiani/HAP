@@ -1,3 +1,4 @@
+<% layout('layouts/boilerplate') -%>
 <h1>Modifica Comunicazione</h1>
 <form
 	id="aggiungiNews"
@@ -25,5 +26,7 @@
 		/>
 		Inserisci parole chiave separate da una virgola
 	</div>
-	<input type="submit" />
+	<a href="/comunicazioni/<%= comunicazione._id %>">indietro</a>
+	<input type="reset" value="Annulla cambiamenti" />
+	<input type="submit" value="Conferma modifiche" />
 </form>

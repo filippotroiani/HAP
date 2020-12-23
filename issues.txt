@@ -1,5 +1,7 @@
 [x] nome collezioni: Comunicazioni invece di comunicaziones
-[ ] load Comunicazioni valore total nelle query
+[ ] load Comunicazioni valore total nelle query, titolo dopo ricerca
+[ ] load Comunicazioni titolo dopo ricerca
+[ ] load Comunicazioni vista smartphone
 [x] Comunicazioni views
 [ ] sanificare gli input dei form
 [ ] funzione convertDate in newsPaziente e show.ejs
@@ -9,4 +11,4 @@
 [x] post login redirect
 [ ] fail login redirect
 [ ] flash messages
-[ ] elenco orari disponibili - prenotazioni
+[ ] elenco orari disponibili - prenotazioni745445

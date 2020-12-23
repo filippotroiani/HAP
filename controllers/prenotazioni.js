@@ -2,7 +2,7 @@ const Prenotazione = require('../models/prenotazione');
 const Paziente = require('../models/paziente');
 module.exports = {
 	indexPrenotazioni(req, res, next) {
-		res.render('prenotazioni/index');
+		res.render('prenotazioni/index', { title: 'Prenotazioni index - HAP' });
 	},
 	async newPrenotazioni(req, res, next) {
 		const prenotazioni = await Prenotazione.find({
@@ -10,7 +10,10 @@ module.exports = {
 			dataPrenotazione: { $gt: new Date() }
 		});
 		console.log(prenotazioni);
-		res.render('prenotazioni/new', { prenotazioni });
+		res.render('prenotazioni/new', {
+			title: 'Nuova prenotazione - HAP',
+			prenotazioni
+		});
 	},
 	async createPrenotazioni(req, res, next) {
 		if (!req.body) res.redirect('/prenotazioni');

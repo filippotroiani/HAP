@@ -1,35 +1,22 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Healt Assistant Program - News</title>
-		<link rel="icon" type="image/png" href="/images/favicon.ico" />
-		<link rel="stylesheet" href="/stylesheets/comunicazionipage.css" />
-	</head>
-
-	<body>
-		<header>
-			<h1 class="title">HAP - News</h1>
-			<form id="cercaNewsForm">
-				<div class="error-message"></div>
-				<input
-					type="text"
-					id="cercaInput"
-					placeholder="Cerca notizia"
-					name="cerca"
-					value="<%=(!parolaChiave)?'':parolaChiave%>"
-				/>
-				<button type="submit" id="cercaButton">Cerca</button>
-			</form>
-		</header>
-		<main>
-			<div class="newsContainer"></div>
-			<div class="button-container">
-				<p id="loadMore">Loading...</p>
-			</div>
-		</main>
-		<!--<script src="/javascripts/convertDate.js"></script>-->
-		<script src="/javascripts/newsPaziente.js"></script>
-	</body>
-</html>
+<% layout('layouts/comunicazioni-index-layout') -%>
+<header>
+	<h1 class="title">HAP - News</h1>
+	<form id="cercaNewsForm">
+		<div class="error-message"></div>
+		<input
+			type="text"
+			id="cercaInput"
+			placeholder="Cerca notizia"
+			name="cerca"
+			value="<%=(!parolaChiave)?'':parolaChiave%>"
+		/>
+		<button type="submit" id="cercaButton">Cerca</button>
+	</form>
+</header>
+<main>
+	<div class="newsContainer"></div>
+	<div class="button-container">
+		<p id="loadMore">Loading...</p>
+	</div>
+</main>
+<!--<script src="/javascripts/convertDate.js"></script>-->

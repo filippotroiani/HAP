@@ -1,3 +1,4 @@
+<% layout('layouts/boilerplate') -%>
 <h1>Nuova Comunicazione</h1>
 <form id="aggiungiNews" action="/comunicazioni" method="POST">
 	<div class="error-message"></div>
@@ -9,5 +10,5 @@
 		<input name="comunicazione[paroleChiave]" placeholder="Parole chiave" />
 		Inserisci parole chiave separate da una virgola
 	</div>
-	<input type="submit" />
+	<input type="submit" value="Pubblica" />
 </form>

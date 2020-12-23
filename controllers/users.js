@@ -10,6 +10,9 @@ module.exports = {
 		console.log(utenti);
 		res.redirect('/');
 	},
+	getLogin(req, res, next) {
+		res.render('/users/login', { title: 'Login - HAP' });
+	},
 	postLogin(req, res, next) {
 		passport.authenticate(
 			'local',
@@ -38,6 +41,9 @@ module.exports = {
 	getLogout(req, res, next) {
 		req.logout();
 		res.redirect('/');
+	},
+	getRegister(req, res, next) {
+		res.render('/users/register', { title: 'Registra nuovo paziente - HAP' });
 	},
 	async postRegister(req, res, next) {
 		const newPaziente = {
