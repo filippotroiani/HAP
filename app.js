@@ -76,7 +76,7 @@ app.use((req, res, next) => {
 		_id: '5fde4f06daaf85411806aa35',
 		username: 'FRNRLA02P21F205Y',
 		email: 'aurelio.franceschini@gmail.com',
-		tipo: 'Paziente',
+		tipo: 'Staff',
 		idRef: '5fde4f05daaf85411806aa34',
 		medico: '5fde4c4322ab894cdcffcaf1'
 	};
@@ -121,7 +121,9 @@ app.use(function (err, req, res, next) {
 	// render the error page
 	res.status(err.status || 500);
 	res.render('error'); */
-	console.log(err);
+
+	res.status(err.status || 500);
+	if (err.status != 404) console.log(err);
 	req.session.error = err.message;
 	res.redirect('back');
 });

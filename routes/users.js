@@ -10,7 +10,7 @@ const {
 	postRegister,
 	postRegisterStaff
 } = require('../controllers/users'); // /index è sottinteso
-const { asyncErrorHandler } = require('../middleware'); // /index è sottinteso
+const { asyncErrorHandler, isStaffMember, isAdmin } = require('../middleware'); // /index è sottinteso
 
 router.get('/', asyncErrorHandler(usersIndex));
 
@@ -21,10 +21,10 @@ router.get('/login', getLogin);
 router.post('/login', postLogin /* , postLoginSuccessRedirect */);
 
 /* GET /users/register */
-router.get('/register', getRegister);
+router.get('/register', isStaffMember, getRegister);
 
 /* POST /users/register */
-router.post('/register', asyncErrorHandler(postRegister));
+router.post('/register', isStaffMember, asyncErrorHandler(postRegister));
 
 /* GET /users/logout */
 router.get('/logout', getLogout);
@@ -60,11 +60,11 @@ router.put('/profile/:user_id', (req, res, next) => {
 });
 
 /* GET /users/registerstaff */
-router.get('/registerstaff', (req, res, next) => {
+router.get('/registerstaff', isAdmin, (req, res, next) => {
 	res.send('GET /registerStaff');
 });
 
 /* POST /users/registerstaff */
-router.post('/registerstaff', asyncErrorHandler(postRegisterStaff));
+router.post('/registerstaff', isAdmin, asyncErrorHandler(postRegisterStaff));
 
 module.exports = router;

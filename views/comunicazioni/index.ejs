@@ -1,8 +1,6 @@
 <% layout('layouts/comunicazioni-index-layout') -%>
 <header>
-	<h1 class="title">HAP - News</h1>
 	<form id="cercaNewsForm">
-		<div class="error-message"></div>
 		<input
 			type="text"
 			id="cercaInput"
@@ -13,6 +11,7 @@
 		<button type="submit" id="cercaButton">Cerca</button>
 	</form>
 </header>
+<div class="error-message"></div>
 <main>
 	<div class="newsContainer"></div>
 	<div class="button-container">

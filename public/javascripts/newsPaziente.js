@@ -1,4 +1,3 @@
-//import Data from './Data';
 const newsContainerElement = document.querySelector('.newsContainer');
 const form = document.querySelector('#cercaNewsForm');
 const searchInput = document.querySelector('#cercaInput');
@@ -62,7 +61,7 @@ function listAllNews(reset = true) {
 					contents.textContent = comunicazione.testo;
 
 					const date = document.createElement('small');
-					date.textContent = convertDate(comunicazione.dataCreazione);
+					date.textContent = comunicazione.data;
 
 					const link = document.createElement('p');
 					link.innerHTML = `<a href="/comunicazioni/${comunicazione._id}">view more</a>`;
@@ -84,11 +83,11 @@ function listAllNews(reset = true) {
 			});
 }
 
-function convertDate(d) {
+/* function convertDate(d) {
 	const data = new Date(d);
 	return `${(data.getDate() < 10 ? '0' : '') + data.getDate()}-${
 		(data.getMonth() < 10 ? '0' : '') + (data.getMonth() + 1)
 	}-${data.getFullYear()} ${
 		(data.getHours() < 10 ? '0' : '') + data.getHours()
 	}:${(data.getMinutes() < 10 ? '0' : '') + data.getMinutes()}`;
-}
+} */

@@ -1,6 +1,5 @@
 module.exports = {
-	convertDate: (d) => {
-		const data = new Date(d);
+	convertDate: (data) => {
 		return `${(data.getDate() < 10 ? '0' : '') + data.getDate()}-${
 			(data.getMonth() < 10 ? '0' : '') + (data.getMonth() + 1)
 		}-${data.getFullYear()} ${

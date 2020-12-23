@@ -28,8 +28,14 @@ module.exports = {
 				dataCreazione: sort === 'desc' ? -1 : 1
 			}
 		};
-		var comunicazioni = await Comunicazione.find(query, null, options);
+		const comunicazioni = await Comunicazione.find(query, null, options);
 		const total = await Comunicazione.countDocuments(query);
+		comunicazioni.forEach((comunicazione) => {
+			comunicazione.data = convertDate(comunicazione.dataCreazione);
+			console.log(comunicazione);
+			console.log(comunicazione.data);
+		});
+
 		res.json({
 			//risposta al server
 			comunicazioni,
