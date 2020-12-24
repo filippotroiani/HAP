@@ -1,21 +1,23 @@
 <% layout('layouts/comunicazioni-index-layout') -%>
 <header>
-	<form id="cercaNewsForm">
-		<input
-			type="text"
-			id="cercaInput"
-			placeholder="Cerca notizia"
-			name="cerca"
-			value="<%=(!parolaChiave)?'':parolaChiave%>"
-		/>
-		<button type="submit" id="cercaButton">Cerca</button>
-	</form>
+  <div class="topbar">
+    <form id="cercaNewsForm">
+      <input
+        type="text"
+        id="cercaInput"
+        placeholder="Cerca notizia"
+        name="cerca"
+        value="<%=(!parolaChiave)?'':parolaChiave%>"
+      />
+      <div id="cercaButton"><button>Cerca</button></div>
+    </form>
+  </div>
 </header>
 <div class="error-message"></div>
 <main>
-	<div class="newsContainer"></div>
-	<div class="button-container">
-		<p id="loadMore">Loading...</p>
-	</div>
+  <div class="newsContainer"></div>
+  <div class="button-container">
+    <p id="loadMore">Loading...</p>
+  </div>
 </main>
 <!--<script src="/javascripts/convertDate.js"></script>-->

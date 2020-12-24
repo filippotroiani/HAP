@@ -1,14 +1,14 @@
-<% layout('layouts/boilerplate') -%>
+<% layout('layouts/comunicazioni-index-layout') -%>
 <h1>Nuova Comunicazione</h1>
 <form id="aggiungiNews" action="/comunicazioni" method="POST">
-	<div class="error-message"></div>
-	<div><input name="comunicazione[titolo]" placeholder="Titolo" /></div>
-	<div>
-		<textarea name="comunicazione[testo]" placeholder="Testo"></textarea>
-	</div>
-	<div>
-		<input name="comunicazione[paroleChiave]" placeholder="Parole chiave" />
-		Inserisci parole chiave separate da una virgola
-	</div>
-	<input type="submit" value="Pubblica" />
+  <div class="error-message"></div>
+  <div><input name="comunicazione[titolo]" placeholder="Titolo" /></div>
+  <div>
+    <textarea name="comunicazione[testo]" placeholder="Testo"></textarea>
+  </div>
+  <div>
+    <input name="comunicazione[paroleChiave]" placeholder="Parole chiave" />
+    Inserisci parole chiave separate da una virgola
+  </div>
+  <input type="submit" value="Pubblica" />
 </form>
