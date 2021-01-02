@@ -29,7 +29,13 @@ module.exports = {
 				motivazione: req.body.prenotazione.motivazione || ''
 			};
 			const prenotazione = await Prenotazione.create(newPrenotazione);
+			req.session.success = 'Prenotazione creata con successo.';
 			res.redirect('/prenotazioni/new');
 		}
+	},
+	async deletePrenotazioni(req, res, next) {
+		await Prenotazione.findByIdAndDelete(req.params.id_prenotazione);
+		req.session.success = 'Prenotazione eliminata con successo.';
+		res.redirect('/prenotazioni');
 	}
 };
