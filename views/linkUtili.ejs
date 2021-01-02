@@ -3,8 +3,10 @@
 <div>
 	<% elencoLink.forEach((link)=>{ %>
 	<div>
-		<a href="<%= link.indirizzo %>"><%= link.titolo %></a> - <%=
-		link.descrizione %>
+		<a href="https://<%= link.indirizzo %>" target="_blank"
+			><%= link.titolo %></a
+		>
+		- <%= link.descrizione %>
 	</div>
 	<%}); %>
 </div>
