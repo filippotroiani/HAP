@@ -5,14 +5,17 @@ const passport = require('passport');
 const user = require('../models/user');
 
 module.exports = {
+	// GET /users
 	async usersIndex(req, res, next) {
 		const utenti = await User.find().populate({ path: 'idRef' });
 		console.log(utenti);
 		res.redirect('/');
 	},
+	// GET /users/login
 	getLogin(req, res, next) {
 		res.render('/users/login', { title: 'Login - HAP' });
 	},
+	// POST /users/login
 	postLogin(req, res, next) {
 		passport.authenticate(
 			'local',
@@ -38,13 +41,16 @@ module.exports = {
 		if ('Staff' === 'Staff') res.send('STAFFF');
 		else res.send('pazienteee');
 	},
+	// GET /users/logout
 	getLogout(req, res, next) {
 		req.logout();
 		res.redirect('/');
 	},
+	// GET /users/register
 	getRegister(req, res, next) {
 		res.render('/users/register', { title: 'Registra nuovo paziente - HAP' });
 	},
+	// POST /users/register
 	async postRegister(req, res, next) {
 		const newPaziente = {
 			CF: req.body.CF,
@@ -66,6 +72,13 @@ module.exports = {
 		await User.register(newUser, 'pazientepassword');
 		res.redirect('/');
 	},
+	// GET /users/register
+	getRegisterStaff(req, res, next) {
+		res.render('/users/registerStaff', {
+			title: 'Registra nuovo membro dello staff - HAP'
+		});
+	},
+	// POST /users/register-staff
 	async postRegisterStaff(req, res, next) {
 		const newStaff = {
 			CF: req.body.CF,

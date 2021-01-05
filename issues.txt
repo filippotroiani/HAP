@@ -1,4 +1,3 @@
-[x] nome collezioni: Comunicazioni invece di comunicaziones
 [ ] load Comunicazioni valore total nelle query, titolo dopo ricerca
 [ ] load Comunicazioni titolo dopo ricerca
 [ ] load Comunicazioni vista smartphone

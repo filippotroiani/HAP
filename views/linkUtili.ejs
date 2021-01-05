@@ -1,10 +1,12 @@
 <% layout('layouts/comunicazioni-index-layout') -%>
 <h1>Link utili</h1>
 <div>
-  <% elencoLink.forEach((link)=>{ %>
-  <div>
-    <a href="<%= link.indirizzo %>"><%= link.titolo %></a> - <%=
-    link.descrizione %>
-  </div>
-  <%}); %>
+	<% elencoLink.forEach((link)=>{ %>
+	<div>
+		<a href="https://<%= link.indirizzo %>" target="_blank"
+			><%= link.titolo %></a
+		>
+		- <%= link.descrizione %>
+	</div>
+	<%}); %>
 </div>

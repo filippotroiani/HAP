@@ -28,14 +28,19 @@ module.exports = {
 				dataCreazione: sort === 'desc' ? -1 : 1
 			}
 		};
-		const comunicazioni = await Comunicazione.find(query, null, options);
+		const tmpComunicazioni = await Comunicazione.find(query, null, options);
 		const total = await Comunicazione.countDocuments(query);
-		comunicazioni.forEach((comunicazione) => {
-			comunicazione.data = convertDate(comunicazione.dataCreazione);
-			console.log(comunicazione);
-			console.log(comunicazione.data);
+		// converto le date in un formato leggibile. ho bisogno di modificare gli oggetti nell'array restituito da find
+		var comunicazioni = tmpComunicazioni.map((comunicazione) => {
+			var tmpComunicazione = comunicazione.toObject();
+			tmpComunicazione.data = convertDate(comunicazione.dataCreazione);
+			return tmpComunicazione;
 		});
-
+		/* comunicazioni.forEach(() => {
+			comunicazione = comunicazione.toObject().data = convertDate(
+				comunicazione.dataCreazione
+			);
+		}); */
 		res.json({
 			//risposta al server
 			comunicazioni,
@@ -80,10 +85,12 @@ module.exports = {
 			req.params.id_comunicazione,
 			req.body.comunicazione
 		);
+		req.session.success = 'Comunicazione modificata con successo.';
 		res.redirect(`/comunicazioni/${req.params.id_comunicazione}`);
 	},
 	async deleteComunicazione(req, res, next) {
 		await Comunicazione.findByIdAndDelete(req.params.id_comunicazione);
+		req.session.success = 'Comunicazione eliminata con successo.';
 		res.redirect('/comunicazioni');
 	}
 };

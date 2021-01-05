@@ -16,8 +16,10 @@ module.exports = {
 		});
 	},
 	async createPrenotazioni(req, res, next) {
-		if (!req.body) res.redirect('/prenotazioni');
-		else {
+		if (!req.body) {
+			req.session.error = `Seleziona la data e l'orario che preferisci`;
+			res.redirect('/prenotazioni');
+		} else {
 			//const paziente = await Paziente.findById(req.user.idRef);
 			const newPrenotazione = {
 				paziente: req.user.idRef,
@@ -29,7 +31,13 @@ module.exports = {
 				motivazione: req.body.prenotazione.motivazione || ''
 			};
 			const prenotazione = await Prenotazione.create(newPrenotazione);
+			req.session.success = 'Prenotazione creata con successo.';
 			res.redirect('/prenotazioni/new');
 		}
+	},
+	async deletePrenotazioni(req, res, next) {
+		await Prenotazione.findByIdAndDelete(req.params.id_prenotazione);
+		req.session.success = 'Prenotazione eliminata con successo.';
+		res.redirect('/prenotazioni');
 	}
 };
