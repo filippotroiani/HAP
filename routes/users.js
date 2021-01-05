@@ -8,7 +8,8 @@ const {
 	getLogout,
 	getRegister,
 	postRegister,
-	postRegisterStaff
+	postRegisterStaff,
+	getRegisterStaff
 } = require('../controllers/users'); // /index è sottinteso
 const { asyncErrorHandler, isStaffMember, isAdmin } = require('../middleware'); // /index è sottinteso
 
@@ -59,12 +60,10 @@ router.put('/profile/:user_id', (req, res, next) => {
 	res.send('UPDATE /profile/:user_id');
 });
 
-/* GET /users/registerstaff */
-router.get('/registerstaff', isAdmin, (req, res, next) => {
-	res.send('GET /registerStaff');
-});
+/* GET /users/register-staff */
+router.get('/register-staff', isAdmin, getRegisterStaff);
 
-/* POST /users/registerstaff */
-router.post('/registerstaff', isAdmin, asyncErrorHandler(postRegisterStaff));
+/* POST /users/register-staff */
+router.post('/register-staff', isAdmin, asyncErrorHandler(postRegisterStaff));
 
 module.exports = router;

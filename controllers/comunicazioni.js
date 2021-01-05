@@ -41,7 +41,6 @@ module.exports = {
 				comunicazione.dataCreazione
 			);
 		}); */
-		console.log(comunicazioni);
 		res.json({
 			//risposta al server
 			comunicazioni,
