@@ -1,12 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const { postLink, getLink } = require('../controllers'); // /index è sottinteso
+const { postLink, getLink, getHomePage } = require('../controllers'); // /index è sottinteso
 const { asyncErrorHandler } = require('../middleware'); // /index è sottinteso
 
 /* GET home page. */
-router.get('/', (req, res, next) => {
-	res.render('index', { title: 'Home Page' });
-});
+router.get('/', getHomePage);
 
 /* GET /linkUtili */
 router.get('/link-utili', asyncErrorHandler(getLink));

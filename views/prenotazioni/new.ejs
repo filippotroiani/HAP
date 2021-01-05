@@ -1,54 +1,50 @@
-<head>
-  <!--<link rel="stylesheet" href="/stylesheets/prenota.css" />-->
-  <link rel="stylesheet" href="/stylesheets/paziente.css" />
-</head>
 <% layout('layouts/comunicazioni-index-layout') -%>
 <body>
-  <div id="pop_up">
-    <form id="newPrenotazione" action="/prenotazioni" method="POST">
-      <div class="error-message"></div>
-      <div><input name="prenotazione[data]" type="date" /></div>
-      <div class="mx-button">
-        <input
-          type="radio"
-          name="prenotazione[ora]"
-          value="09:10"
-          id="button1"
-          checked
-        />
-        <label for="button1" unselectable>Button 1</label>
-      </div>
-      <div class="mx-button">
-        <input
-          type="radio"
-          name="prenotazione[ora]"
-          value="09:30"
-          id="button2"
-        />
-        <label for="button2" unselectable>Button 2</label>
-      </div>
-      <div class="mx-button">
-        <input
-          type="radio"
-          name="prenotazione[ora]"
-          value="09:50"
-          id="button3"
-        />
-        <label for="button3" unselectable>Button 3</label>
-      </div>
-      <div class="mx-button">
-        <input
-          type="radio"
-          name="prenotazione[ora]"
-          value="10:10"
-          id="button4"
-        />
-        <label for="button4" unselectable>Button 4</label>
-      </div>
-      <br />
-      Motivazione:
-      <input type="text" class="motivazione" /><br />
-      <input type="submit" />
-    </form>
-  </div>
+    <div id="pop_up">
+        <form id="newPrenotazione" action="/prenotazioni" method="POST">
+            <div class="error-message"></div>
+            <div><input name="prenotazione[data]" type="date" /></div>
+            <div class="mx-button">
+                <input
+                    type="radio"
+                    name="prenotazione[ora]"
+                    value="09:10"
+                    id="button1"
+                    checked
+                />
+                <label for="button1" unselectable>Button 1</label>
+            </div>
+            <div class="mx-button">
+                <input
+                    type="radio"
+                    name="prenotazione[ora]"
+                    value="09:30"
+                    id="button2"
+                />
+                <label for="button2" unselectable>Button 2</label>
+            </div>
+            <div class="mx-button">
+                <input
+                    type="radio"
+                    name="prenotazione[ora]"
+                    value="09:50"
+                    id="button3"
+                />
+                <label for="button3" unselectable>Button 3</label>
+            </div>
+            <div class="mx-button">
+                <input
+                    type="radio"
+                    name="prenotazione[ora]"
+                    value="10:10"
+                    id="button4"
+                />
+                <label for="button4" unselectable>Button 4</label>
+            </div>
+            <br />
+            Motivazione:
+            <input type="text" class="motivazione" /><br />
+            <input type="submit" />
+        </form>
+    </div>
 </body>
