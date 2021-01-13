@@ -1,0 +1,14 @@
+<% layout('layouts/comunicazioni-show-layout') -%>
+<h1><%= prenotazione.servizio %></h1>
+<div><%= prenotazione.dataPrenotazione %></div>
+<div><%= prenotazione.motivazione %></div>
+<div><%= prenotazione.dataCreazione %></div>
+
+<div>
+	<form
+		action="/prenotazioni/<%= prenotazione.id%>?_method=DELETE"
+		method="POST"
+	>
+		<input type="submit" value="Disdici prenotazione" />
+	</form>
+</div>

@@ -1,9 +1,11 @@
 const express = require('express');
+const Orario = require('../models/orario');
 const router = express.Router();
 const {
 	newPrenotazioni,
 	createPrenotazioni,
-	indexPrenotazioni
+	indexPrenotazioni,
+	deletePrenotazioni
 } = require('../controllers/prenotazioni');
 const { asyncErrorHandler } = require('../middleware');
 
@@ -32,8 +34,6 @@ router.put('/:id_prenotazione', (req, res, next) => {
 });
 
 /* DELETE destroy /prenotazioni/:id_prenotazione */
-router.delete('/:id_prenotazione', (req, res, next) => {
-	res.send('DELETE /prenotazioni');
-});
+router.delete('/:id_prenotazione', asyncErrorHandler(deletePrenotazioni));
 
 module.exports = router;
