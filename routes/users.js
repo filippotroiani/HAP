@@ -19,7 +19,10 @@ router.get('/', asyncErrorHandler(usersIndex));
 router.get('/login', getLogin);
 
 /* POST /users/login */
-router.post('/login', postLogin /* , postLoginSuccessRedirect */);
+router.post(
+	'/login',
+	asyncErrorHandler(postLogin) /* , postLoginSuccessRedirect */
+);
 
 /* GET /users/register */
 router.get('/register', isStaffMember, getRegister);
