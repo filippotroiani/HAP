@@ -60,5 +60,9 @@ module.exports = {
 		await Prenotazione.findByIdAndDelete(req.params.id_prenotazione);
 		req.session.success = 'Prenotazione eliminata con successo.';
 		res.redirect('/prenotazioni');
+	},
+	indexSegreteria(req,res,next){
+		const orari=[{ora:'9:00',nPazienti:10},{ora:'9:15',numPazienti:7}];
+		res.render('../views/segreteria/prenotazioni.ejs',{orari});
 	}
 };

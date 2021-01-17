@@ -1,0 +1,16 @@
+<form id="newPrenotazione" action="/prenotazioni" method="POST">
+		<div class="error-message"></div>
+        <%  const oggiData=new Date(); //data di oggi %>
+		<div>
+			<input
+				name="prenotazione[data]"
+                type="date"
+                value="<%= oggiData.toISOString().substring(0,10) %>"
+                <% oggiData.setDate(oggiData.getDate()-15); //imposto data a 15 giorni fa %>
+				min="<%= oggiData.toISOString().substring(0,10) %>"
+			/>
+        </div>
+</form>
+<% orari.forEach((orario)=>{ %>
+    <div><div><%= orario.ora%></div><div><%= orario.numPazienti %></div></div>
+<% }) %>

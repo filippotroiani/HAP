@@ -5,7 +5,8 @@ const {
 	newPrenotazioni,
 	createPrenotazioni,
 	indexPrenotazioni,
-	deletePrenotazioni
+	deletePrenotazioni,
+	indexSegreteria
 } = require('../controllers/prenotazioni');
 const { asyncErrorHandler } = require('../middleware');
 
@@ -14,6 +15,9 @@ router.get('/', indexPrenotazioni);
 
 /* GET new /prenotazioni/new */
 router.get('/new', asyncErrorHandler(newPrenotazioni));
+
+/* GET new /prenotazioni/segreteria */
+router.get('/segreteria', indexSegreteria);
 
 /* POST create /prenotazioni */
 router.post('/', asyncErrorHandler(createPrenotazioni));
