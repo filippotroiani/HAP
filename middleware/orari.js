@@ -23,12 +23,12 @@ const calcolaOrariVisite= (
 		var data=new Date(dataP);
 		console.log('giorno '+data.getDay()+' '+ data);
 		var orari = [];
-		if(data.getDay()==0){
+		const orariGiorno = orariLavoro.split(';')[data.getDay() - 1]; //orariGiorno sarà un vettore con due elementi stringa: orari mattina [0] e orari pomeriggio [1]
+		if(orariGiorno==='/'){
 			orari.push({ora:'CHIUSO',disponibile:false,numPazienti:0});
 			return orari;
 		}
-		const orariGiorno = orariLavoro.split(';')[data.getDay() - 1].split('/'); //orariGiorno sarà un vettore con due elementi stringa: orari mattina [0] e orari pomeriggio [1]
-		orariGiorno.forEach((range) => {
+		orariGiorno.split('/').forEach((range) => {
 			//questo ciclo si ripete quindi due volte, una volta per il range di orari della mattina ed una per quello del pomeriggio
 			if (range.indexOf('-') != -1) {
 				var [oraInizio, oraFine] = range.split('-');

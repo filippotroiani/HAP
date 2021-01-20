@@ -7,13 +7,11 @@ const user = require('../models/user');
 module.exports = {
 	// GET /users
 	async usersIndex(req, res, next) {
-		const utenti = await User.find().populate({ path: 'idRef' });
-		console.log(utenti);
 		res.redirect('/');
 	},
 	// GET /users/login
 	getLogin(req, res, next) {
-		res.render('users/Hap', { title: 'Login - HAP' });
+		res.render('users/login', { title: 'Login - HAP' });
 	},
 	// POST /users/login
 	async postLogin(req, res, next) {
@@ -24,6 +22,7 @@ module.exports = {
 				failureRedirect: '/users/login'
 			}, */
 			(err, user, info) => {
+				console.log(user);
 				if (err) return next(err);
 				if (!user) {
 					req.session.error = 'Codice fiscale o password errati.';
@@ -33,7 +32,7 @@ module.exports = {
 					if (err) return next(err);
 					req.session.success = 'Login effettuato con successo.';
 					return user.tipo === 'Staff'
-						? res.redirect('/users/profile') //staff redirect
+						? res.redirect('/area-riservata') //staff redirect
 						: res.redirect('/comunicazioni'); //paziente redirect
 				});
 			}

@@ -10,7 +10,7 @@
 [x] post login redirect
 [ ] fail login redirect
 [ ] flash messages
-[ ] elenco orari disponibili - prenotazioni745445
+[x] elenco orari disponibili - prenotazioni745445
 [ ] index middleware res.status('403') vedere se funziona, se va lì
-[ ] caricare dinamicamente gli orari delle prenotazioni in base alla data inserita
-[ ] escludere dagli orari selezionabili in una prenotazione quelli già prenotati
+[x] caricare dinamicamente gli orari delle prenotazioni in base alla data inserita
+[x] escludere dagli orari selezionabili in una prenotazione quelli già prenotati

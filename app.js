@@ -16,7 +16,7 @@ const User = require('./models/user');
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
-//const staffRouter = require('./routes/staff');
+const staffRouter = require('./routes/area-riservata');
 //const adminRouter = require('./routes/admin');
 const comunicazioniRouter = require('./routes/comunicazioni');
 const prenotazioniRouter = require('./routes/prenotazioni');
@@ -70,7 +70,7 @@ passport.use(User.createStrategy());
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-app.use((req, res, next) => {
+/* app.use((req, res, next) => {
 	//utente di default per evitare di fare il login ogni volta in fase di sviluppo
 	req.user = {
 		_id: '5fde4f06daaf85411806aa35',
@@ -82,7 +82,7 @@ app.use((req, res, next) => {
 	};
 	res.locals.currentUser = req.user;
 	next();
-});
+}); */
 
 // set local variables middleware
 app.use(function (req, res, next) {
@@ -103,7 +103,7 @@ app.use(function (req, res, next) {
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 //app.use('/admin', adminRouter);
-//app, use('/area-riservata', staffRouter);
+app.use('/area-riservata', staffRouter);
 app.use('/comunicazioni', comunicazioniRouter);
 app.use('/prenotazioni', prenotazioniRouter);
 

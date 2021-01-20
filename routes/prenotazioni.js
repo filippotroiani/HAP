@@ -10,28 +10,28 @@ const {
 	getOrariMedicoAPI,
 	provaQuery
 } = require('../controllers/prenotazioni');
-const { asyncErrorHandler } = require('../middleware');
+const { asyncErrorHandler, isUserLogged } = require('../middleware');
 
 /* GET index /prenotazioni */
-router.get('/', indexPrenotazioni);
+router.get('/', isUserLogged, indexPrenotazioni);
 
 /* GET new /prenotazioni/new */
-router.get('/new', asyncErrorHandler(newPrenotazioni));
+router.get('/new', isUserLogged, asyncErrorHandler(newPrenotazioni));
 
 /* GET new /prenotazioni/provaquery SOLO PER PROVARE QUERY ********* */
-router.get('/provaquery', asyncErrorHandler(provaQuery));
+router.get('/provaquery', isUserLogged, asyncErrorHandler(provaQuery));
 
 /* GET new /prenotazioni/segreteria */
-router.get('/segreteria', indexSegreteria);
+router.get('/segreteria', isUserLogged, indexSegreteria);
 
 /* GET new /prenotazioni/getOrariSegreteriaAPI */
-router.get('/getOrariSegreteriaAPI', asyncErrorHandler(getOrariSegreteriaAPI));
+router.get('/getOrariSegreteriaAPI', isUserLogged, asyncErrorHandler(getOrariSegreteriaAPI));
 
 /* GET new /prenotazioni/getOrariMedicoAPI */
-router.get('/getOrariMedicoAPI', asyncErrorHandler(getOrariMedicoAPI));
+router.get('/getOrariMedicoAPI', isUserLogged, asyncErrorHandler(getOrariMedicoAPI));
 
 /* POST create /prenotazioni */
-router.post('/', asyncErrorHandler(createPrenotazioni));
+router.post('/', isUserLogged, asyncErrorHandler(createPrenotazioni));
 
 /* GET show /prenotazioni/:id_prenotazione */
 router.get('/:id_prenotazione', (req, res, next) => {
@@ -49,6 +49,6 @@ router.put('/:id_prenotazione', (req, res, next) => {
 });
 
 /* DELETE destroy /prenotazioni/:id_prenotazione */
-router.delete('/:id_prenotazione', asyncErrorHandler(deletePrenotazioni));
+router.delete('/:id_prenotazione', isUserLogged, asyncErrorHandler(deletePrenotazioni));
 
 module.exports = router;
