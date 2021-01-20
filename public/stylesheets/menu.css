@@ -133,6 +133,25 @@ body {
 [type='submit'] {
     border-radius: 5px;
 }
+#rubrica {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    width: auto;
+}
+#utente {
+    position: absolute;
+    width: 87.5%;
+    height: 25px;
+    left: 10px;
+}
+#lettera {
+    position: absolute;
+    right: 10px;
+    width: 20px;
+    height: 20px;
+}
 .motivazione {
     width: 60%;
     height: 50%;
