@@ -2,15 +2,37 @@
 		<div class="error-message"></div>
         <%  const oggiData=new Date(); //data di oggi %>
 		<div>
-			<input
+            <input
+                id="dataInput"
 				name="prenotazione[data]"
                 type="date"
                 value="<%= oggiData.toISOString().substring(0,10) %>"
-                <% oggiData.setDate(oggiData.getDate()-15); //imposto data a 15 giorni fa %>
-				min="<%= oggiData.toISOString().substring(0,10) %>"
+                <% oggiData.setDate(oggiData.getDate()-15); //imposto data minima a 15 giorni prima %>
+                min="<%= oggiData.toISOString().substring(0,10) %>"
+                <% oggiData.setDate(oggiData.getDate()+15+3); //imposto data massima a 3 giorni dopo %>
+				max="<%= oggiData.toISOString().substring(0,10) %>"
 			/>
         </div>
-</form>
+</form><div id="orariContainer">
 <% orari.forEach((orario)=>{ %>
-    <div><div><%= orario.ora%></div><div><%= orario.numPazienti %></div></div>
+    <div><%= orario.ora%> -> <%= orario.numPazienti %> pazienti</div>
 <% }) %>
+</div>
+<script>
+    const getOrariAPI_URL="http://localhost:3000/prenotazioni/getOrariSegreteriaAPI"
+    const dataInput= document.querySelector('#dataInput');
+    const orariContainer=document.querySelector('#orariContainer');
+    dataInput.addEventListener('change',()=>{
+        const dataRicerca=dataInput.value.split('-');
+        const day=`${dataRicerca[2]}-${dataRicerca[1]}-${dataRicerca[0]}`
+        fetch(`${getOrariAPI_URL}?day=${day}`).then((response) => response.json())
+        .then((risposta) => {
+            orariContainer.innerHTML='';
+            risposta.orari.forEach(orario => {
+                const div = document.createElement("div");
+                div.textContent=`${orario.ora} -> ${orario.numPazienti} pazienti`;
+                orariContainer.appendChild(div);
+            });
+        });
+    });
+</script>
