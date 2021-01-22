@@ -1,8 +1,7 @@
 <% layout('layouts/comunicazioni-show-layout') -%>
 <h1><%= comunicazione.titolo %></h1>
-<div><%= comunicazione.data %></div>
-<div><%= comunicazione.testo %></div>
-<div>
+<div id="dataora"><%= comunicazione.data %></div><br>
+<div id="key">
 	Parole chiave: <%
 	comunicazione.paroleChiave.split(',').forEach((parola)=>{parola=parola.trim();
 	%>
@@ -10,8 +9,9 @@
 		><button><%= parola %></button></a
 	>
 	<%}); %>
-</div>
-<div>
+</div><br>
+<div id="descrizione"><%= comunicazione.testo %></div><br><br><br><br><br>
+<div id="modifica">
 	<a href="/comunicazioni/<%= comunicazione.id%>/edit">
 		<button>Modifica</button>
 	</a>
@@ -21,6 +21,6 @@
 		action="/comunicazioni/<%= comunicazione.id%>?_method=DELETE"
 		method="POST"
 	>
-		<input type="submit" value="Delete" />
+		<input type="submit" value="Delete" id="cancellazione"/>
 	</form>
 </div>
