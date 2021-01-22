@@ -14,7 +14,11 @@
         <div class="area_notifiche">
             <div id="bacheca"><%-body -%></div>
         </div>
-        <% include ../partials/menu-paziente %>
+        
+        <% if(typeof currentUser=='undefined'||currentUser.tipo==='Paziente'){ %>
+        <% include ../partials/menu-paziente %><%} else if(currentUser.tipo==='Staff'&&currentUser.idRef.ruolo==='Segreteria'){ %>
+        <% include ../partials/menu-segreteria %><% } else if(currentUser.tipo==='Staff'&&currentUser.idRef.ruolo==='Medico'){ %>
+            <% include ../partials/menu-medico %><% } %>
         <script src="/javascripts/newsPaziente.js"></script>
     </body>
 </html>

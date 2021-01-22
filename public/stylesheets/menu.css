@@ -1,198 +1,208 @@
 body {
-    background-size: cover;
-    background: rgba(0, 196, 204);
-    background-position: center;
-    background-repeat: no-repeat;
-    font-family: arial;
-    height: 100%;
-    width: 100%;
-    right: 0;
+	background-size: cover;
+	background: rgba(0, 196, 204);
+	background-position: center;
+	background-repeat: no-repeat;
+	font-family: arial;
+	height: 100%;
+	width: 100%;
+	right: 0;
 }
 #cercaInput {
-    border-top-right-radius: 15px;
-    border-bottom-right-radius: 15px;
-    border-top-left-radius: 15px;
-    border-color: rgba(192, 192, 192);
-    font-size: 17px;
-    width: 55%;
-    height: 30px;
+	border-top-right-radius: 15px;
+	border-bottom-right-radius: 15px;
+	border-top-left-radius: 15px;
+	border-color: rgba(192, 192, 192);
+	font-size: 17px;
+	width: 55%;
+	height: 30px;
 }
 #title {
-    position: absolute;
-    right: 3%;
-    margin-top: 1.5%;
-    font-size: 65px;
-    font-weight: bold;
-    color: rgba(255, 255, 255);
-    text-shadow: 0 0 10px rgba(0, 0, 0, 1);
+	position: absolute;
+	right: 3%;
+	margin-top: 1.5%;
+	font-size: 65px;
+	font-weight: bold;
+	color: rgba(255, 255, 255);
+	text-shadow: 0 0 10px rgba(0, 0, 0, 1);
 }
 .profilo {
-    position: absolute;
-    top: 1%;
-    width: 200px;
-    height: 130px;
+	position: absolute;
+	top: 1%;
+	width: 400px;
+	height: 130px;
 }
 
 .profilo img {
-    position: absolute;
-    top: 5%;
-    left: 28%;
-    width: 90px;
-    height: 90px;
-    border-radius: 50px;
+	position: absolute;
+	top: 5%;
+	left: 5%;
+	width: 90px;
+	height: 90px;
+	border-radius: 50px;
+}
+#info {
+	position: absolute;
+	top: 18%;
+	left: 30%;
+	font-size: 20px;
+	color: white;
 }
 .alto {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
 }
 #bottone_scrivi button {
-    background-color: white;
-    background-size: contain;
-    background-repeat: no-repeat;
-    position: absolute;
-    left: 3%;
-    top: 19%;
-    width: 24%;
-    border: none;
-    border-radius: 25px;
-    font-size: 40px;
-    font-weight: bold;
-    text-align: center;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 1);
+	background-color: white;
+	background-size: contain;
+	background-repeat: no-repeat;
+	position: absolute;
+	left: 3%;
+	top: 19%;
+	width: 24%;
+	border: none;
+	border-radius: 25px;
+	font-size: 40px;
+	font-weight: bold;
+	text-align: center;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 1);
 }
 #opzioni {
-    position: absolute;
-    top: 30%;
-    left: 3%;
-    width: 25%;
+	position: absolute;
+	top: 30%;
+	left: 3%;
+	width: 25%;
 }
 #opzioni button {
-    background-color: white;
-    position: absolute;
-    left: 4%;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 1);
-    border: none;
-    border-top-right-radius: 40px;
-    border-bottom-right-radius: 40px;
-    border-top-left-radius: 40px;
-    border-bottom-left-radius: 40px;
-    font-size: 28px;
-    font-weight: bold;
-    text-align: center;
+	background-color: white;
+	position: absolute;
+	left: 4%;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 1);
+	border: none;
+	border-top-right-radius: 40px;
+	border-bottom-right-radius: 40px;
+	border-top-left-radius: 40px;
+	border-bottom-left-radius: 40px;
+	font-size: 28px;
+	font-weight: bold;
+	text-align: center;
 }
 #bottone button {
-    border-style: none;
-    background: transparent;
+	border-style: none;
+	background: transparent;
 }
 
 #bottone button {
-    position: absolute;
-    bottom: 0.3%;
-    left: 4%;
-    font-size: 30px;
-    font-weight: bold;
-    color: white;
+	position: absolute;
+	bottom: 0.3%;
+	left: 4%;
+	font-size: 30px;
+	font-weight: bold;
+	color: white;
 }
 .area_notifiche {
-    position: absolute;
-    right: 0;
-    top: 110px;
-    width: 70%;
-    border-top-left-radius: 15px;
-    height: auto;
-    bottom: 0;
-    background: white;
+	position: absolute;
+	right: 0;
+	top: 110px;
+	width: 70%;
+	border-top-left-radius: 15px;
+	height: auto;
+	bottom: 0;
+	background: white;
 }
 #bacheca {
-    position: absolute;
-    overflow-y: scroll;
-    border-top-left-radius: 15px;
-    background: white;
-    top: 0;
-    left: 0;
-    width: 100%;
-    bottom: 0;
+	position: absolute;
+	overflow-y: scroll;
+	border-top-left-radius: 15px;
+	background: white;
+	top: 0;
+	left: 0;
+	width: 100%;
+	bottom: 0;
 }
 #pop_up {
-    position: absolute;
-    font-weight: bold;
-    margin-top: 20%;
-    margin-left: 45%;
+	position: absolute;
+	font-weight: bold;
+	margin-top: 20%;
+	margin-left: 45%;
 }
 #pop_up input[type='password'],
 [type='submit'] {
-    border-radius: 5px;
+	border-radius: 5px;
 }
 #rubrica {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    right: 10px;
-    width: auto;
+	position: absolute;
+	top: 10px;
+	left: 10px;
+	right: 10px;
+	width: auto;
 }
 #utente {
-    position: absolute;
-    width: 87.5%;
-    height: 25px;
-    left: 10px;
+	position: absolute;
+	width: 87.5%;
+	height: 25px;
+	left: 10px;
 }
 #lettera {
-    position: absolute;
-    right: 10px;
-    width: 20px;
-    height: 20px;
+	position: absolute;
+	right: 10px;
+	width: 20px;
+	height: 20px;
 }
 .motivazione {
-    width: 60%;
-    height: 50%;
+	width: 60%;
+	height: 50%;
 }
 #scorrimento {
-    height: 50px;
-    overflow-x: scroll;
+	height: 50px;
+	overflow-x: scroll;
 }
 #medico {
-    border: 1px ridge rgba(192, 192, 192);
-    border-radius: 15px;
-    width: 20%;
-    height: 50px;
-    position: absolute;
-    color: white;
-    background-color: rgba(0, 196, 204);
+	border: 1px ridge rgba(192, 192, 192);
+	border-radius: 15px;
+	width: 20%;
+	height: 50px;
+	position: absolute;
+	color: white;
+	background-color: rgba(0, 196, 204);
 }
 #lista {
-    position: absolute;
-    top: 2px;
-    left: 2px;
-    bottom: 2px;
-    right: 2px;
-    width: auto;
-    height: auto;
-    border: none;
+	position: absolute;
+	top: 2px;
+	left: 2px;
+	bottom: 2px;
+	right: 2px;
+	width: auto;
+	height: auto;
+	border: none;
 }
 @media only screen and (max-width: 730px) {
-    #bottone button {
-        font-size: 15px;
-    }
-    #opzioni button {
-        font-size: 12px;
-    }
-    #bottone_scrivi button {
-        font-size: 19px;
-    }
-    .profilo img {
-        width: 50px;
-        height: 50px;
-        left: 14%;
-    }
-    #title {
-        font-size: 40px;
-    }
-    #pop_up {
-        margin-left: 25%;
-    }
-    #cercaInput {
-        width: 40%;
-    }
+	#bottone button {
+		font-size: 15px;
+	}
+	#title {
+		right: 3%;
+	}
+	#opzioni button {
+		font-size: 12px;
+	}
+	#bottone_scrivi button {
+		font-size: 19px;
+	}
+	.profilo img {
+		width: 50px;
+		height: 50px;
+		left: 5%;
+	}
+	#title {
+		font-size: 40px;
+	}
+	#pop_up {
+		margin-left: 25%;
+	}
+	#cercaInput {
+		width: 40%;
+	}
 }

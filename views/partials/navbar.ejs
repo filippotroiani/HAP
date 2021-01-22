@@ -7,10 +7,12 @@
  -->
 <div class="alto">
   <div id="title">HAP</div>
-  <a href="Hap_Profilo.html">
+  <a href="/users/profilo">
     <div class="profilo">
       <img src="/images/avatar.png" />
-    </div>
+      <div id="info">
+    <% if(typeof currentUser!='undefined'){ %><%= currentUser.idRef.cognome %> <%= currentUser.idRef.nome %><% } %>
+    </div></div>
   </a>
   <!--  <center><input type="text" id="cerca" placeholder="Cerca news" /></center> -->
 </div>

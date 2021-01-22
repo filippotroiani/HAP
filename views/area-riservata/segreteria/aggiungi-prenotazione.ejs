@@ -15,7 +15,6 @@
         <div id="orariContainer">
             <% var primoDisponibile=true, i=1; orari.forEach((orario)=>{ if
             (orario.disponibile){ %>
-
             <div class="mx-button">
                 <input
                     type="radio"
@@ -24,14 +23,12 @@
                     id="button<%= i %>"
                     <%
                     if(orario.disponibile&&primoDisponibile){
-                    %
-                />
+                    %>
                 checked <% primoDisponibile=false;} %> />
-                <label for="button<%= i++ %>" unselectable
+                <label for="button<%= i %>" unselectable
                     ><%= orario.ora %></label
                 >
             </div>
-
             <% } else{ %>
             <div class="barrato">
                 <label><%= orario.ora %></label>
