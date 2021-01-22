@@ -148,6 +148,29 @@ body {
     width: 60%;
     height: 50%;
 }
+#scorrimento {
+    height: 50px;
+    overflow-x: scroll;
+}
+#medico {
+    border: 1px ridge rgba(192, 192, 192);
+    border-radius: 15px;
+    width: 20%;
+    height: 50px;
+    position: absolute;
+    color: white;
+    background-color: rgba(0, 196, 204);
+}
+#lista {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    bottom: 2px;
+    right: 2px;
+    width: auto;
+    height: auto;
+    border: none;
+}
 @media only screen and (max-width: 730px) {
     #bottone button {
         font-size: 15px;
@@ -172,24 +195,4 @@ body {
     #cercaInput {
         width: 40%;
     }
-}
-#paziente {
-    position: absolute;
-    right: 0;
-    width: 50%;
-    background-color: hotpink;
-    height: 100%;
-}
-#medico {
-    position: absolute;
-    left: 0;
-    width: 50%;
-    background-color: grey;
-    height: 100%;
-}
-#paziente,
-#medico p {
-    border-radius: 10px;
-    border: 1px ridge black;
-    background-color: rgb(218, 218, 218);
 }
