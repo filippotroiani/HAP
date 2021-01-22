@@ -10,7 +10,7 @@ const {
 	deleteComunicazione,
 	loadComunicazione
 } = require('../controllers/comunicazioni');
-const { asyncErrorHandler, isStaffMember } = require('../middleware');
+const { asyncErrorHandler, isStaffMember, isUserLogged } = require('../middleware');
 
 /* GET index /comunicazioni */
 router.get('/', indexComunicazione);
@@ -19,10 +19,10 @@ router.get('/', indexComunicazione);
 router.get('/loadComunicazioni', asyncErrorHandler(loadComunicazione));
 
 /* GET new /comunicazioni/new */
-router.get('/new', isStaffMember, newComunicazione);
+router.get('/new', isUserLogged, isStaffMember, newComunicazione);
 
 /* POST create /comunicazioni */
-router.post('/', isStaffMember, asyncErrorHandler(createComunicazione));
+router.post('/', isUserLogged, isStaffMember, asyncErrorHandler(createComunicazione));
 
 /* GET show /comunicazioni/:id_comunicazione */
 router.get('/:id_comunicazione', asyncErrorHandler(showComunicazione));
@@ -30,6 +30,7 @@ router.get('/:id_comunicazione', asyncErrorHandler(showComunicazione));
 /* GET edit /comunicazioni/:id_comunicazione */
 router.get(
 	'/:id_comunicazione/edit',
+	isUserLogged,
 	isStaffMember,
 	asyncErrorHandler(editComunicazione)
 );
@@ -37,6 +38,7 @@ router.get(
 /* PUT update /comunicazioni/:id_comunicazione */
 router.put(
 	'/:id_comunicazione',
+	isUserLogged,
 	isStaffMember,
 	asyncErrorHandler(updateComunicazione)
 );
@@ -44,6 +46,7 @@ router.put(
 /* DELETE destroy /comunicazioni/:id_comunicazione */
 router.delete(
 	'/:id_comunicazione',
+	isUserLogged,
 	isStaffMember,
 	asyncErrorHandler(deleteComunicazione)
 );
