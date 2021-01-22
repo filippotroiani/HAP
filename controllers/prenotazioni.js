@@ -46,16 +46,16 @@ module.exports = {
 		const oggi = new Date();
 		oggi.setHours(3, 0, 0);
 		const prenotazioni = await Prenotazione.find({
-			paziente: req.user.idRef,
+			paziente: req.user.idRef._id,
 			dataPrenotazione: { $gte: oggi }
 		});
-		const orariMedico = await Orario.find(
-			{ medico: req.user.medico },
+		const orariMedico = await Orario.findOne(
+			{ medico: req.user.idRef.medico },
 			'orari intervallo'
 		);
 		const orari = getOrariMedico(
-			orariMedico[0].orari,
-			orariMedico[0].intervallo
+			orariMedico.orari,
+			orariMedico.intervallo
 		);
 		res.render('prenotazioni/new', {
 			title: 'Nuova prenotazione - HAP',
@@ -66,18 +66,16 @@ module.exports = {
 	async getOrariMedicoAPI(req, res, next) {
 		const dataParamentro = req.query.day.split('-');
 		const dataRicerca =`${dataParamentro[2]}-${dataParamentro[1]}-${dataParamentro[0]}T00:00:00`;
-		const orariMedico = await Orario.find(
-			{ medico: req.user.medico },
+		const orariMedico = await Orario.findOne(
+			{ medico: req.user.idRef.medico },
 			'orari intervallo'
 		);
-		console.log(dataRicerca);
 		const orari = getOrariMedico(
-			orariMedico[0].orari,
-			orariMedico[0].intervallo,
+			orariMedico.orari,
+			orariMedico.intervallo,
 			dataRicerca,
 			await getPrenotazioniSegreteria(dataRicerca)
 		);
-		console.log(orari);
 		/* orari.forEach((orario) => {
 			orario.numPazienti = 3;
 		}); */
@@ -90,11 +88,11 @@ module.exports = {
 			req.session.error = `Seleziona la data e l'orario che preferisci`;
 			res.redirect('/prenotazioni');
 		} else {
-			//const paziente = await Paziente.findById(req.user.idRef);
+			//const paziente = await Paziente.findById(req.user.idRef._id);
 			const newPrenotazione = {
-				paziente: req.user.idRef,
+				paziente: req.user.idRef._id,
 				servizio: req.body.prenotazione.servizio,
-				medico: req.user.medico, //paziente.medico,
+				medico: req.user.idRef.medico, //paziente.medico,
 				dataPrenotazione: new Date(
 					req.body.prenotazione.data + 'T' + req.body.prenotazione.ora + ':00'
 				),
@@ -155,7 +153,7 @@ module.exports = {
 	async provaQuery(req, res, next) {
 		// **************** SOLO PER TESTARE QUERY
 		const newPrenotazione = {
-				paziente: req.user.idRef,
+				paziente: req.user.idRef._id,
 				servizio: 'Segreteria',
 				dataPrenotazione: new Date(
 					'2021-01-20T10:45:00'

@@ -77,8 +77,8 @@ passport.deserializeUser(User.deserializeUser());
 		username: 'FRNRLA02P21F205Y',
 		email: 'aurelio.franceschini@gmail.com',
 		tipo: 'Paziente',
-		idRef: '5fde4f05daaf85411806aa34',
-		medico: '5fde4c4322ab894cdcffcaf1'
+		idRef: {_id:'5fde4f05daaf85411806aa34',
+		medico: '5fde4c4322ab894cdcffcaf1'}
 	};
 	res.locals.currentUser = req.user;
 	next();

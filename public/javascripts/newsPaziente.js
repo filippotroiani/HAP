@@ -3,7 +3,7 @@ const form = document.querySelector("#cercaNewsForm");
 const searchInput = document.querySelector("#cercaInput");
 const errorElement = document.querySelector(".error-message");
 const loadMoreElement = document.querySelector("#loadMore");
-const getNewsAPI_URL = "http://localhost:3000/comunicazioni/loadComunicazioni";
+const getNewsAPI_URL = 'http://'+document.domain+":3000/comunicazioni/loadComunicazioni";
 
 let skip = 0;
 let limit = 5;

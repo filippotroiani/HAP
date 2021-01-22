@@ -19,7 +19,7 @@
 <% }) %>
 </div>
 <script>
-    const getOrariAPI_URL="http://localhost:3000/prenotazioni/getOrariSegreteriaAPI"
+    const getOrariAPI_URL='http://'+document.domain+":3000/prenotazioni/getOrariSegreteriaAPI"
     const dataInput= document.querySelector('#dataInput');
     const orariContainer=document.querySelector('#orariContainer');
     dataInput.addEventListener('change',()=>{
