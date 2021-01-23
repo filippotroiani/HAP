@@ -17,20 +17,17 @@
     </form>
 </div>
 <%= dataMostrata.toISOString().substring(0,10) %>
-<table id="prenotazione">
+
+
+<table id="lista">
     <tr>
+        <th>Orario visita</th>
         <th>Nome Paziente</th>
-        <th>Data&Ora Visita</th>
         <th>Motivazione</th>
     </tr>
     <tr>
-        <td>Rossi Giuseppe</td>
-        <td>17/01/2021 16:15:37</td>
-        <td>Mal di gola</td>
-    </tr>
-    <tr>
-        <td>Bianchi Michele</td>
-        <td>20/01/2021 19:27:41</td>
-        <td>Dolore al ginocchio destro</td>
+        <td><%=prenotazione.ora%></td>
+        <td><%=prenotazione.paziente.nome%> <%=prenotazione.paziente.nome%></td>
+        <td><%=prenotazione.motivazione%></td>
     </tr>
 </table>

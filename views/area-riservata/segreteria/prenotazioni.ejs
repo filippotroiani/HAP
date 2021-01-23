@@ -1,22 +1,18 @@
 <% layout('layouts/layout-segreteria') -%>
-<div id="scorrimento"><!-- funzione for per medici-->
-    <a href=""><div id="medico">
+<!-- funzione for per medici-->
+    <input type="text" id="medico"/>
        Filippo Troiani <!--Nome del medico-->
-    </div></a>
+    </div>
     <table id="lista">
         <tr>
-            <th>Nome</th>
-            <th>Cognome</th>
+            <th>Nome paziente</th>
             <th>Data prenotazione</th>
             <th>Motivazione</th>
         </tr>
         <!-- funzione for per pazienti-->
         <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td><%=prenotazione.paziente.nome%> <%=prenotazione.paziente.nome%></td>
+            <td><%=prenotazione.dataPrenotazione%></td>
+            <td><%=prenotazione.motivazione%></td>
         </tr>
-        
-    </div>
-</div>
+    </table>
