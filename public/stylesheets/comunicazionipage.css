@@ -33,14 +33,11 @@ main {
 #cercaButton button {
 	position: absolute;
 	margin-right: 0;
-	width: 15%;
+	width: 70px;
 	height: 35px;
 	border-radius: 10px;
 	font-weight: bold;
 }
-/*#cercaInput {
-  flex-grow: 1;
-}*/
 header {
 	border-top-left-radius: 15px;
 	position: fixed;
