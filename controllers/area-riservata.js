@@ -1,11 +1,12 @@
 const Prenotazione = require('../models/prenotazione');
+const Paziente = require('../models/paziente');
 module.exports={
     indexAreaRiservata(req,res,next){
         if(req.user.idRef.ruolo==='Medico') res.redirect('/area-riservata/medico/prenotazioni');
         else if(req.user.idRef.ruolo==='Segreteria') res.redirect('/area-riservata/segreteria/prenotazioni');
         else res.redirect('/');
     },
-    async getPrenotazioni(req,res,next){
+    async getPrenotazioniMedico(req,res,next){
         if(typeof req.query.data=='undefined') {
             var data=new Date();
             data.setHours(3);
@@ -26,5 +27,12 @@ module.exports={
 			return tmpPrenotazione;
         });
         res.render('area-riservata/medico/prenotazioni',{title:'Prenotazioni - HAP', prenotazioni,data});
-    }
+    },
+    async getPazientiMedico(req,res,next){
+        const pazienti =await Paziente.find({
+            medico: req.user.idRef._id,
+        });
+        res.render('area-riservata/medico/lista-pazienti',{title:'Lista pazienti - HAP', pazienti});
+    },
+
 };

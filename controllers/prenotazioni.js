@@ -196,7 +196,7 @@ module.exports = {
 			res.status(200).send('OK.');
 		} else {
 			console.log('find: ' + req.query.find);
-			res.status(404).send('Not found.');
+			res.status(404).send('Pagina non trovata.');
 		}
 	}
 };

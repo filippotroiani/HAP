@@ -25,9 +25,11 @@
         <th>Nome Paziente</th>
         <th>Motivazione</th>
     </tr>
+    <% prenotazioni.forEach((prenotazione)=>{ %>
     <tr>
-        <td><%=prenotazione.ora%></td>
-        <td><%=prenotazione.paziente.nome%> <%=prenotazione.paziente.nome%></td>
-        <td><%=prenotazione.motivazione%></td>
+        <td><%= prenotazione.ora %></td>
+        <td><%= prenotazione.paziente.cognome %> <%= prenotazione.paziente.nome %></td>
+        <td><%= prenotazione.motivazione %></td>
     </tr>
+<% }) %>
 </table>
