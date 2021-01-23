@@ -11,7 +11,7 @@
 	>
 	<%}); %>
 </div>
-<div>
+<% if(typeof currentUser!='undefined'&&currentUser.tipo==='Staff'&&currentUser.idRef.ruolo==='Segreteria'){ %><div>
 	<a href="/comunicazioni/<%= comunicazione.id%>/edit">
 		<button>Modifica</button>
 	</a>
@@ -22,5 +22,5 @@
 		method="POST"
 	>
 		<input type="submit" value="Delete" />
-	</form>
+	</form><% } %>
 </div>

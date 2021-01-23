@@ -65,7 +65,6 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // metodo semplificato, controlla la documentazione di passport-local-mongoose
-// CHANGE: USE "createStrategy" INSTEAD OF "authenticate"
 passport.use(User.createStrategy());
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
@@ -88,7 +87,8 @@ passport.deserializeUser(User.deserializeUser());
 app.use(function (req, res, next) {
 	/* // default page title
 	res.locals.title = 'HAP'; */
-
+	res.locals.currentUser = req.user;
+	
 	// set success flash message
 	res.locals.success = req.session.success || '';
 	delete req.session.success;
