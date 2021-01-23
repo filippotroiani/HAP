@@ -11,16 +11,18 @@
 	<%}); %>
 </div><br>
 <div id="descrizione"><%= comunicazione.testo %></div><br><br><br><br><br>
-<div id="modifica">
-	<a href="/comunicazioni/<%= comunicazione.id%>/edit">
+<% if(typeof currentUser!='undefined'&&currentUser.tipo==='Staff'&&currentUser.idRef.ruolo==='Segreteria'){ %>
+	<div id="modifica">
+		<a href="/comunicazioni/<%= comunicazione.id%>/edit">
 		<button>Modifica</button>
-	</a>
-</div>
-<div>
-	<form
-		action="/comunicazioni/<%= comunicazione.id%>?_method=DELETE"
-		method="POST"
-	>
+		</a>
+	</div>
+	<div>
+		<form
+			action="/comunicazioni/<%= comunicazione.id%>?_method=DELETE"
+			method="POST"
+		>
 		<input type="submit" value="Delete" id="cancellazione"/>
-	</form>
+	</form><% } %>
+
 </div>

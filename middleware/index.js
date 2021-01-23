@@ -3,7 +3,6 @@ module.exports = {
 		Promise.resolve(fn(req, res, next)).catch(next);
 	},
 	isUserLogged: (req, res, next) => {
-		console.log(req.user);
 		if (typeof req.user!='undefined') return next();
 		req.session.error = 'Non sei autorizzato ad accedere a questa pagina.';
 		res.status(403);
