@@ -7,7 +7,7 @@
         type="date"
         value="<%= data.toISOString().substring(0,10) %>"
         <% 
-        const dataMostrata=new Date(data);
+        const dataMostrata=data.toISOString().substring(0,10).split('-');
         data.setDate(data.getDate()-15); //imposto data minima a 15 giorni prima %>
         min="<%= data.toISOString().substring(0,10) %>"
         <% data.setDate(data.getDate()+15+15); //imposto data massima a 15 giorni dopo %>
@@ -16,9 +16,10 @@
         <input type="submit" value="Mostra">
     </form>
 </div>
-<label id="dataoggi"> Giorno: <%= dataMostrata.toISOString().substring(0,10) %></label>
-
-
+<% if(prenotazioni.length==0){ %>
+<label id="dataoggi"><%= `${dataMostrata[2]}-${dataMostrata[1]}-${dataMostrata[0]}` %> - Non ci sono prenotazioni da mostrare</label>
+    <% }else{ %>
+<label id="dataoggi">Prenotazioni del <%= `${dataMostrata[2]}-${dataMostrata[1]}-${dataMostrata[0]}` %></label>
 <table id="lista">
     <tr>
         <th>Orario visita</th>
@@ -33,3 +34,4 @@
     </tr>
 <% }) %>
 </table>
+<% } %>
