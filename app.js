@@ -29,7 +29,7 @@ mongoose.connect(
 		'mongodb+srv://admin:admin@cluster0.k1jgs.mongodb.net/HAP?retryWrites=true&w=majority',
 	{
 		useNewUrlParser: true,
-		useUnifiedTopology: true
+		useUnifiedTopology: true,
 	}
 );
 const db = mongoose.connection;
@@ -56,7 +56,7 @@ app.use(
 	session({
 		secret: process.env.SESSION_SECRET || 'team23 secret',
 		resave: false,
-		saveUninitialized: true //,cookie: { secure: true }
+		saveUninitialized: true, //,cookie: { secure: true }
 	})
 );
 
@@ -69,19 +69,19 @@ passport.use(User.createStrategy());
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-/* app.use((req, res, next) => {
+app.use((req, res, next) => {
 	//utente di default per evitare di fare il login ogni volta in fase di sviluppo
-	req.user = {
+	/* req.user = {
 		_id: '5fde4f06daaf85411806aa35',
 		username: 'FRNRLA02P21F205Y',
 		email: 'aurelio.franceschini@gmail.com',
 		tipo: 'Paziente',
 		idRef: {_id:'5fde4f05daaf85411806aa34',
 		medico: '5fde4c4322ab894cdcffcaf1'}
-	};
+	}; */
 	res.locals.currentUser = req.user;
 	next();
-}); */
+});
 
 // set local variables middleware
 app.use(function (req, res, next) {

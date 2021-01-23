@@ -1,0 +1,86 @@
+<% layout('layouts/layout-segreteria') -%>
+<div id="pop_up">
+    <form id="newPrenotazione" action="/prenotazioni" method="POST">
+        <div class="error-message"></div>
+        <% const oggiHTML= new Date().toISOString().substring(0,10); %>
+        <div>
+            <input
+                id="dataInput"
+                name="prenotazione[data]"
+                type="date"
+                min="<%= oggiHTML %>"
+                value="<%= oggiHTML %>"
+            />
+        </div>
+        <div id="orariContainer">
+            <% var primoDisponibile=true, i=1; orari.forEach((orario)=>{ if
+            (orario.disponibile){ %>
+            <div class="mx-button">
+                <input
+                    type="radio"
+                    name="prenotazione[ora]"
+                    value="<%= orario.ora %>"
+                    id="button<%= i %>"
+                    <%
+                    if(orario.disponibile&&primoDisponibile){
+                    %>
+                checked <% primoDisponibile=false;} %> />
+                <label for="button<%= i %>" unselectable
+                    ><%= orario.ora %></label
+                >
+            </div>
+            <% } else{ %>
+            <div class="barrato">
+                <label><%= orario.ora %></label>
+            </div>
+            <% } }) %>
+        </div>
+        <br />
+        Motivazione:
+        <input
+            type="text"
+            class="motivazione"
+            name="prenotazione[motivazione]"
+        /><br />
+        <input type="submit" />
+    </form>
+</div>
+<style>
+    .barrato {
+        text-decoration: line-through;
+    }
+</style>
+<script>
+    const getOrariAPI_URL =
+        'http://' + document.domain + ':3000/prenotazioni/getOrariMedicoAPI';
+    const dataInput = document.querySelector('#dataInput');
+    const orariContainer = document.querySelector('#orariContainer');
+    dataInput.addEventListener('change', () => {
+        const dataRicerca = dataInput.value.split('-');
+        const day = `${dataRicerca[2]}-${dataRicerca[1]}-${dataRicerca[0]}`;
+        fetch(`${getOrariAPI_URL}?day=${day}`)
+            .then((response) => response.json())
+            .then((risposta) => {
+                orariContainer.innerHTML = '';
+                var i = 0;
+                risposta.orari.forEach((orario) => {
+                    const div = document.createElement('div');
+                    if (orario.disponibile)
+                        div.innerHTML = `<div class="mx-button" >
+						<input
+							type="radio"
+							name="prenotazione[ora]"
+							value="${orario.ora}"
+							id="button${i}"
+							${i == 1 ? 'cheched' : ''} />
+						<label for="button${i++}" unselectable>${orario.ora}</label>
+						</div>`;
+                    else
+                        div.innerHTML = `<div class="barrato">
+						<label>${orario.ora}</label>
+						</div>`;
+                    orariContainer.appendChild(div);
+                });
+            });
+    });
+</script>

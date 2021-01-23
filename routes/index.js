@@ -4,7 +4,14 @@ const { postLink, getLink, getHomePage } = require('../controllers'); // /index 
 const { asyncErrorHandler } = require('../middleware'); // /index è sottinteso
 
 /* GET home page. */
-router.get('/', getHomePage);
+router.get(
+	'/',
+	(req, res, next) => {
+		console.log('user ' + res.locals.currentUser);
+		next();
+	},
+	getHomePage
+);
 
 /* GET /linkUtili */
 router.get('/link-utili', asyncErrorHandler(getLink));
