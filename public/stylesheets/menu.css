@@ -187,6 +187,9 @@ body {
 	font-size: 20px;
 	padding: 10px;
 }
+#lista td {
+	width: 80px;
+}
 h1 {
 	font-weight: bold;
 	text-align: center;
