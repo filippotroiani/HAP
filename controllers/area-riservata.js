@@ -20,7 +20,7 @@ module.exports={
         const prenotazioniRisultati =await Prenotazione.find({
             medico: req.user.idRef._id,
             dataPrenotazione:{$gte:data,$lt:data2}
-        }).populate('paziente');
+        },null,{sort:{ dataPrenotazione: 1 }}).populate('paziente');
         var prenotazioni = prenotazioniRisultati.map((prenotazione) => {
 			var tmpPrenotazione = prenotazione.toObject();
 			tmpPrenotazione.ora = `${(tmpPrenotazione.dataPrenotazione.getHours() < 10 ? '0' : '') + tmpPrenotazione.dataPrenotazione.getHours()}:${(tmpPrenotazione.dataPrenotazione.getMinutes() < 10 ? '0' : '') + tmpPrenotazione.dataPrenotazione.getMinutes()}`;
