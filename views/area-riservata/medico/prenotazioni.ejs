@@ -1,5 +1,22 @@
 <% layout('layouts/layout-medico') -%>
 
+<div>
+    <form action="/area-riservata/medico/prenotazioni" method="GET"><input
+        id="dataInput"
+        name="data"
+        type="date"
+        value="<%= data.toISOString().substring(0,10) %>"
+        <% 
+        const dataMostrata=new Date(data);
+        data.setDate(data.getDate()-15); //imposto data minima a 15 giorni prima %>
+        min="<%= data.toISOString().substring(0,10) %>"
+        <% data.setDate(data.getDate()+15+15); //imposto data massima a 15 giorni dopo %>
+        max="<%= data.toISOString().substring(0,10) %>"
+    />
+        <input type="submit" value="Mostra">
+    </form>
+</div>
+<%= dataMostrata.toISOString().substring(0,10) %>
 <table id="prenotazione">
     <tr>
         <th>Nome Paziente</th>
