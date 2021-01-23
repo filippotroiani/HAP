@@ -12,5 +12,8 @@
 </div>
 
 <div id="bottone">
-    <a href="/users/logout"><button>Esci</button></a>
+    <% if(typeof currentUser=='undefined'){%>
+        <a href="/users/login"><button>Login</button></a> 
+    <%} else { %><a href="/users/logout"><button>Esci</button></a> 
+    <%}%>
 </div>
