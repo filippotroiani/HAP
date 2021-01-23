@@ -170,17 +170,25 @@ body {
 	color: white;
 	background-color: rgba(0, 196, 204);
 }
+#dataoggi {
+	color: rgb(146, 146, 146);
+	position: absolute;
+	padding: 5px;
+}
 #lista {
 	position: absolute;
-	top: 2px;
+	top: 70px;
 	left: 2px;
 	bottom: 2px;
 	right: 2px;
 	width: auto;
 	height: auto;
 	border: none;
-	font-size: 20px;
+	font-size: 24px;
 	padding: 10px;
+}
+#lista td {
+	width: 80px;
 }
 h1 {
 	font-weight: bold;
