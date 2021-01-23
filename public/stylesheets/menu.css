@@ -171,8 +171,9 @@ body {
 	background-color: rgba(0, 196, 204);
 }
 #dataoggi {
-	color: rgb(146, 146, 146);
+	color: rgb(0, 0, 0);
 	position: absolute;
+	font-size: 24px;
 	padding: 5px;
 }
 #lista {
@@ -188,7 +189,7 @@ body {
 	padding: 10px;
 }
 #lista td {
-	width: 80px;
+	width: 100px;
 }
 h1 {
 	font-weight: bold;
