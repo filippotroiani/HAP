@@ -93,6 +93,8 @@ input[type='radio'] {
 #signin {
 	background-color: white;
 	font-size: 25;
+	position: absolute;
+	left: 80px;
 	color: rgba(0, 196, 204);
 	width: 240px;
 	height: 30px;
@@ -104,6 +106,8 @@ input[type='radio'] {
 	text-shadow: 0 0 3px rgba(0, 0, 0, 1);
 }
 #annulla {
+	margin-top: 20px;
+	right: 80px;
 	position: absolute;
 	bottom: 10px;
 	background-color: white;
