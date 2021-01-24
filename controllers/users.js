@@ -51,7 +51,7 @@ module.exports = {
 	},
 	// GET /users/register
 	getRegister(req, res, next) {
-		res.render('/users/register', {
+		res.render('area-riservata/segreteria/registra-paziente', {
 			title: 'Registra nuovo paziente - HAP'
 		});
 	},

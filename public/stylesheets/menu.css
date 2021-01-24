@@ -188,9 +188,8 @@ body {
 	font-size: 26px;
 	padding: 10px;
 }
-#lista tr {
-	width: 100px;
-	border-bottom: 2px black;
+tr td {
+	border-bottom: 1px solid black;
 }
 h1 {
 	font-weight: bold;
