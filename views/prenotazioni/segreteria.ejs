@@ -1,7 +1,8 @@
-<label id="infoIncazioni">
+<label id="infoIndicazioni">
     Per evitare code ed <b>assembramenti</b> indica l'orario in cui preferisci arrivare in segreteria. <br/>
     Accanto ad ogni orario puoi trovai il numero di pazienti che saranno lì in quell'orario.
 </label>
+
 <form id="newPrenotazione" action="/prenotazioni" method="POST">
 		<div class="error-message"></div>
         <%  const oggiData=new Date(); //data di oggi %>
@@ -18,20 +19,26 @@
 			/>
         </div>
 <div id="orariContainer">
-<% 
-var i=0,primoDisponibile=true;
-orari.forEach((orario)=>{%>
-    <tr class="<%
-        if(orario.numPazienti<4){ %>indicazioneVerde<% } else if(orario.numPazienti<7){ %>indicazioneGialla<% } else { %>indicazioneRossa<% }%>">
-        <td><input
-            type="radio"
-            name="prenotazione[ora]"
-            value="<%= orario.ora %>"
-            id="button<%= i %>"
-            <% if(primoDisponibile){ %>
-            checked <% primoDisponibile=false;} %> /></td>
-        <td><label for="button<%= i++ %>"><%= orario.ora%></label></td><td><%= orario.numPazienti %> pazienti</td></tr>
-<% }) %></div>
+    <table id="tabellaOrari">
+        <tr>
+            <th></th>
+            <th>Orario prenotazione</th>
+            <th>Pazienti prenotati</th>
+        </tr>
+    <% 
+    var i=0,primoDisponibile=true;
+    orari.forEach((orario)=>{%>
+        <tr class="<%
+            if(orario.numPazienti<4){ %>indicazioneVerde<% } else if(orario.numPazienti<7){ %>indicazioneGialla<% } else { %>indicazioneRossa<% }%>">
+            <td><input
+                type="radio"
+                name="prenotazione[ora]"
+                value="<%= orario.ora %>"
+                id="button<%= i %>"
+                <% if(primoDisponibile){ %>
+                checked <% primoDisponibile=false;} %> /></td>
+            <td><label for="button<%= i++ %>"><%= orario.ora%></label></td><td><%= orario.numPazienti %> pazienti</td></tr>
+<% }) %</table></div>
 <input type="submit" value="Conferma indicazione">
 </form>
 <script>
