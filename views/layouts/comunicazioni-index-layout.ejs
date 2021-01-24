@@ -9,16 +9,18 @@
         <link rel="stylesheet" href="/stylesheets/menu.css" />      
     </head>
     <body>
-        <% include ../partials/navbar %> <% include ../partials/flash-messages
-        %>
+        <% include ../partials/navbar %> <% include ../partials/flash-messages %>
         <div class="area_notifiche">
-            <div id="bacheca"><%-body -%></div>
+            <div id="bacheca">
+                <%- body -%>
+            </div>
         </div>
-        
         <% if(typeof currentUser=='undefined'||currentUser.tipo==='Paziente'){ %>
-        <% include ../partials/menu-paziente %><%} else if(currentUser.tipo==='Staff'&&currentUser.idRef.ruolo==='Segreteria'){ %>
-        <% include ../partials/menu-segreteria %><% } else if(currentUser.tipo==='Staff'&&currentUser.idRef.ruolo==='Medico'){ %>
-            <% include ../partials/menu-medico %><% } %>
-        <script src="/javascripts/newsPaziente.js"></script>
+            <% include ../partials/menu-paziente %>
+        <%} else if(currentUser.tipo==='Staff'&&currentUser.idRef.ruolo==='Segreteria'){ %>
+            <% include ../partials/menu-segreteria %>
+        <% } else if(currentUser.tipo==='Staff'&&currentUser.idRef.ruolo==='Medico'){ %>
+            <% include ../partials/menu-medico %>
+        <% } %>
     </body>
 </html>

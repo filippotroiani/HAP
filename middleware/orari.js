@@ -26,7 +26,7 @@ const calcolaOrariVisite= (
 		const giorno=data.getDay()==0?6:(data.getDay()-1)
 		const orariGiorno = orariLavoro.split(';')[giorno]; //orariGiorno sarà un vettore con due elementi stringa: orari mattina [0] e orari pomeriggio [1]
 		if(orariGiorno==='/'){
-			orari.push({ora:'CHIUSO',disponibile:false,numPazienti:0});
+			//orari.push({ora:'CHIUSO',disponibile:false,numPazienti:0});
 			return orari;
 		}
 		orariGiorno.split('/').forEach((range) => {

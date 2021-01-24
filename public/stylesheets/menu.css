@@ -247,13 +247,13 @@ h1 {
 	padding: 10px;
 	font-weight: bold;
 }
-#indicazioneVerde {
+.indicazioneVerde {
 	background-color: green;
 }
-#indicazioneGialla {
+.indicazioneGialla {
 	background-color: yellow;
 }
-#indicazioneRossa {
+.indicazioneRossa {
 	background-color: red;
 }
 #infoIndicazioni {

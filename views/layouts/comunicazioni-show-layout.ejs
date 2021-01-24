@@ -5,13 +5,14 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title><%= title %></title>
         <link rel="icon" type="image/png" href="/images/favicon.ico" />
+        <link rel="stylesheet" href="/stylesheets/comunicazionipage.css" />
         <link rel="stylesheet" href="/stylesheets/menu.css" />
     </head>
     <body>
-        <% include ../partials/navbar %> <% include ../partials/flash-messages
-        %>
+        <% include ../partials/navbar %>
+        <% include ../partials/flash-messages%>
         <div class="area_notifiche">
-            <div id="bacheca"><%-body -%></div>
+            <div id="bacheca"><%- body -%></div>
         </div>
         <% include ../partials/menu-paziente %>
         <!-- <script src="/javascripts/comunicazioni-show.js"></script> -->
