@@ -1,3 +1,4 @@
+<% layout('layouts/comunicazioni-show-layout') -%>
 <label id="infoIndicazioni">
     Per evitare code ed <b>assembramenti</b> indica l'orario in cui preferisci arrivare in segreteria. <br/>
     Accanto ad ogni orario puoi trovai il numero di pazienti che saranno lì in quell'orario.
@@ -12,13 +13,15 @@
 				name="prenotazione[data]"
                 type="date"
                 value="<%= oggiData.toISOString().substring(0,10) %>"
-                <% oggiData.setDate(oggiData.getDate()-15); //imposto data minima a 15 giorni prima %>
-                min="<%= oggiData.toISOString().substring(0,10) %>"
-                <% oggiData.setDate(oggiData.getDate()+15+3); //imposto data massima a 3 giorni dopo %>
-				max="<%= oggiData.toISOString().substring(0,10) %>"
+                <% const tmpdata=new Date(oggiData);
+                tmpdata.setDate(tmpdata.getDate()-15); //imposto data minima a 15 giorni prima %>
+                min="<%= tmpdata.toISOString().substring(0,10) %>"
+                <% tmpdata.setDate(tmpdata.getDate()+15+3); //imposto data massima a 3 giorni dopo %>
+				max="<%= tmpdata.toISOString().substring(0,10) %>"
 			/>
         </div>
 <div id="orariContainer">
+    <% if(orari.length==0) { %> <%= oggiData.getDate() %>-<%= oggiData.getMonth()+1 %>-<%= oggiData.getFullYear() %> CHIUSO <% }else{ %>
     <table id="tabellaOrari">
         <tr>
             <th></th>
@@ -27,19 +30,29 @@
         </tr>
     <% 
     var i=0,primoDisponibile=true;
-    orari.forEach((orario)=>{%>
+    orari.forEach((orario)=>{ %>
         <tr class="<%
             if(orario.numPazienti<4){ %>indicazioneVerde<% } else if(orario.numPazienti<7){ %>indicazioneGialla<% } else { %>indicazioneRossa<% }%>">
-            <td><input
+            <td>
+                <input
                 type="radio"
                 name="prenotazione[ora]"
                 value="<%= orario.ora %>"
                 id="button<%= i %>"
                 <% if(primoDisponibile){ %>
-                checked <% primoDisponibile=false;} %> /></td>
-            <td><label for="button<%= i++ %>"><%= orario.ora%></label></td><td><%= orario.numPazienti %> pazienti</td></tr>
-<% }) %</table></div>
-<input type="submit" value="Conferma indicazione">
+                checked <% primoDisponibile=false;} %> />
+            </td>
+            <td>
+                <label for="button<%= i++ %>"><%= orario.ora%></label>
+            </td>
+            <td>
+                <%= orario.numPazienti %> pazienti
+            </td>
+        </tr>
+    <% }) %>
+    </table>
+</div>
+<input type="submit" value="Conferma indicazione"><% } %>
 </form>
 <script>
     const getOrariAPI_URL='http://'+document.domain+":3000/prenotazioni/getOrariSegreteriaAPI"

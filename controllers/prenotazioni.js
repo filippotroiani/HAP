@@ -129,7 +129,7 @@ module.exports = {
 			undefined,
 			await getPrenotazioniSegreteria()
 		);
-		res.render('../views/prenotazioni/segreteria', { orari });
+		res.render('../views/prenotazioni/segreteria', { title: 'Indicazioni di arrivo - HAP', orari });
 	},
 	async getOrariSegreteriaAPI(req, res, next) {
 		const dataParamentro = req.query.day.split('-');
