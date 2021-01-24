@@ -43,7 +43,7 @@ body {
 }
 #info {
 	position: absolute;
-	top: 18%;
+	top: 30%;
 	left: 30%;
 	font-size: 20px;
 	color: white;
@@ -239,7 +239,7 @@ h1 {
 #dataInput {
 	border-style: ridge;
 	border-radius: 15px;
-	width: 120px;
+	width: 150px;
 }
 #tabellaOrari {
 	border: none;
