@@ -122,13 +122,14 @@ module.exports = {
 			{ servizio: 'Segreteria' },
 			'orari intervallo'
 		);
-		const orari = getOrariSegreteria(
+		console.log(orariSegreteria)
+		const orari = await getOrariSegreteria(
 			orariSegreteria[0].orari,
 			orariSegreteria[0].intervallo,
 			undefined,
 			await getPrenotazioniSegreteria()
 		);
-		res.render('../views/segreteria/prenotazioni.ejs', { orari });
+		res.render('../views/prenotazioni/segreteria', { orari });
 	},
 	async getOrariSegreteriaAPI(req, res, next) {
 		const dataParamentro = req.query.day.split('-');
@@ -150,6 +151,12 @@ module.exports = {
 			orari
 		});
 	},
+
+
+
+
+
+
 	async provaQuery(req, res, next) {
 		// **************** SOLO PER TESTARE QUERY
 		const newPrenotazione = {

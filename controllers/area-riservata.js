@@ -37,7 +37,6 @@ module.exports={
     },
     async getPrenotazioniSegreteria(req,res,next){
         const medici= await Staff.find({ruolo:'Medico'},'_id cognome nome',{sort:{cognome:1,nome:1}});
-        console.log(medici)
         if(typeof req.query.medico=='undefined') var ricercaMedico=medici[0]._id;
         else var ricercaMedico=req.query.medico;
         if(typeof req.query.data=='undefined') {

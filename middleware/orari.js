@@ -10,7 +10,7 @@ module.exports = {
 	getOrariSegreteria:(orariLavoro = '/;/;/;/;/;/;/',
 		intervallo = 15,
 		data = new Date(),
-		prenotazioniCorrenti = [])=>calcolaOrariVisite('Segreteria', orariLavoro, intervallo, data, prenotazioniCorrenti),
+		prenotazioniCorrenti = [])=>calcolaOrariVisite('Segreteria', orariLavoro, intervallo, data, prenotazioniCorrenti)
 };
 
 const calcolaOrariVisite= (
@@ -23,7 +23,8 @@ const calcolaOrariVisite= (
 		var data=new Date(dataP);
 		console.log('giorno '+data.getDay()+' '+ data);
 		var orari = [];
-		const orariGiorno = orariLavoro.split(';')[data.getDay() - 1]; //orariGiorno sarà un vettore con due elementi stringa: orari mattina [0] e orari pomeriggio [1]
+		const giorno=data.getDay()==0?6:(data.getDay()-1)
+		const orariGiorno = orariLavoro.split(';')[giorno]; //orariGiorno sarà un vettore con due elementi stringa: orari mattina [0] e orari pomeriggio [1]
 		if(orariGiorno==='/'){
 			orari.push({ora:'CHIUSO',disponibile:false,numPazienti:0});
 			return orari;

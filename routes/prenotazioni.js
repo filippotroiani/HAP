@@ -38,16 +38,6 @@ router.get('/:id_prenotazione', (req, res, next) => {
 	res.send('SHOW /prenotazioni/:id_prenotazione');
 });
 
-/* GET edit /prenotazioni/:id_prenotazione NON CI SARA' */
-router.get('/:id_prenotazione/edit', (req, res, next) => {
-	res.send('EDIT /prenotazioni/:id_prenotazione/edit');
-});
-
-/* PUT update /prenotazioni/:id_prenotazione NON CI SARA' */
-router.put('/:id_prenotazione', (req, res, next) => {
-	res.send('EDIT /prenotazioni/:id_prenotazione');
-});
-
 /* DELETE destroy /prenotazioni/:id_prenotazione */
 router.delete('/:id_prenotazione', isUserLogged, asyncErrorHandler(deletePrenotazioni));
 
