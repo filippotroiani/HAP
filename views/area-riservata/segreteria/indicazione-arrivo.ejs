@@ -1,3 +1,9 @@
+<% layout('layouts/comunicazioni-index-layout') -%>
+<label id="infoIndicazioni">
+    Per evitare code ed <b>assembramenti</b> indica l'orario in cui preferisci arrivare in segreteria. <br/>
+    Accanto ad ogni orario puoi trovai il numero di pazienti che saranno lì in quell'orario.
+</label>
+
 <form id="newPrenotazione" action="/prenotazioni" method="POST">
 		<div class="error-message"></div>
         <%  const oggiData=new Date(); //data di oggi %>
@@ -7,32 +13,82 @@
 				name="prenotazione[data]"
                 type="date"
                 value="<%= oggiData.toISOString().substring(0,10) %>"
-                <% oggiData.setDate(oggiData.getDate()-15); //imposto data minima a 15 giorni prima %>
-                min="<%= oggiData.toISOString().substring(0,10) %>"
-                <% oggiData.setDate(oggiData.getDate()+15+3); //imposto data massima a 3 giorni dopo %>
-				max="<%= oggiData.toISOString().substring(0,10) %>"
+                <% const tmpdata=new Date(oggiData); %>
+                min="<%= tmpdata.toISOString().substring(0,10) %>"
+                <% tmpdata.setDate(tmpdata.getDate()+3); //imposto data massima a 3 giorni dopo %>
+				max="<%= tmpdata.toISOString().substring(0,10) %>"
 			/>
         </div>
-</form><div id="orariContainer">
-<% orari.forEach((orario)=>{ %>
-    <div><%= orario.ora%>  <%= orario.numPazienti %> pazienti</div>
-<% }) %>
+<div id="orariContainer">
+    <% if(orari.length==0) { %> <%= oggiData.getDate() %>-<%= oggiData.getMonth()+1 %>-<%= oggiData.getFullYear() %> CHIUSO <% }else{ %>
+    <table id="tabellaOrari">
+        <tr>
+            <th>Orario prenotazione</th>
+            <th>Pazienti prenotati</th>
+        </tr>
+    <% 
+    var i=0,primoDisponibile=true;
+    orari.forEach((orario)=>{ %>
+        <tr class="<%
+            if(orario.numPazienti<4){ %>indicazioneVerde<% } else if(orario.numPazienti<7){ %>indicazioneGialla<% } else { %>indicazioneRossa<% }%>">
+            <td>
+                <label for="<%= orario.ora %>"><%= orario.ora%></label>
+            </td>
+            <td>
+                <%= orario.numPazienti %> pazienti
+            </td>
+        </tr>
+    <% }) %>
+    </table>
+<% } %>
 </div>
+<input type="hidden" name="prenotazione[servizio]" value="Segreteria">
+<% if(currentUser.tipo!='Staff'){ %>
+    <input id='submitButton' type="submit" value="Conferma indicazione" <% if(orari.length==0){ %>style="visibility: hidden<% }else{ %>style="visibility: visible<% } %>; margin-bottom:10px; margin-left:10px;">
+<% } %>
+</form>
 <script>
     const getOrariAPI_URL='http://'+document.domain+":3000/prenotazioni/getOrariSegreteriaAPI"
     const dataInput= document.querySelector('#dataInput');
     const orariContainer=document.querySelector('#orariContainer');
+    const submitButton=document.querySelector('#submitButton');
     dataInput.addEventListener('change',()=>{
         const dataRicerca=dataInput.value.split('-');
         const day=`${dataRicerca[2]}-${dataRicerca[1]}-${dataRicerca[0]}`
         fetch(`${getOrariAPI_URL}?day=${day}`).then((response) => response.json())
         .then((risposta) => {
+            console.log(risposta.orari)
             orariContainer.innerHTML='';
-            risposta.orari.forEach(orario => {
-                const div = document.createElement("div");
-                div.textContent=`${orario.ora} -> ${orario.numPazienti} pazienti`;
-                orariContainer.appendChild(div);
-            });
+            if(risposta.orari.length==0) {
+                orariContainer.innerHTML=day+ ' CHIUSO';
+                submitButton.style.visibility = 'hidden';
+            }else{
+                var primoDisponibile=true;
+                var tmpHTML='';
+               tmpHTML='<table id="tabellaOrari"><tr><th>Orario prenotazione</th><th>Pazienti prenotati</th></tr>';
+                risposta.orari.forEach(orario => {
+                   tmpHTML+='<tr class="';
+                    if(orario.numPazienti<4){ 
+                       tmpHTML+='indicazioneVerde';
+                    } else if(
+                        orario.numPazienti<7){ 
+                       tmpHTML+='indicazioneGialla';
+                    } else { 
+                       tmpHTML+='indicazioneRossa';
+                    }
+                   tmpHTML+=`">
+                        <td>
+                            <label for="${orario.ora}">${orario.ora}</label>
+                        </td>
+                        <td>
+                            ${orario.numPazienti} pazienti
+                        </td>
+                        </tr>`;
+                });
+                tmpHTML+='</table>';
+                orariContainer.innerHTML=tmpHTML;
+                submitButton.style.visibility = 'visible';
+            }
         });
     });
 </script>
