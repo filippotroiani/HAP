@@ -58,7 +58,21 @@ module.exports={
 			tmpPrenotazione.ora = `${(tmpPrenotazione.dataPrenotazione.getHours() < 10 ? '0' : '') + tmpPrenotazione.dataPrenotazione.getHours()}:${(tmpPrenotazione.dataPrenotazione.getMinutes() < 10 ? '0' : '') + tmpPrenotazione.dataPrenotazione.getMinutes()}`;
 			return tmpPrenotazione;
         });
-        res.render('area-riservata/segreteria/prenotazioni',{title:'Prenotazioni - HAP', medici, prenotazioni, data});
+        res.render('area-riservata/segreteria/prenotazioni',{title:'Prenotazioni - HAP', medici, prenotazioni, ricercaMedico, data});
     },
+    async newPrenotazioneSegreteria(){
+        
+    },
+    async createPrenotazioneSegreteria(){
+
+    },
+    async getPazientiSegreteria(){
+
+    },
+    async getIndicazioniSegreteria(){
+        res.redirect('/prenotazioni/segreteria');
+    }
+
+
 
 };

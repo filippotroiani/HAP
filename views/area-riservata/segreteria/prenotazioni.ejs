@@ -1,10 +1,9 @@
 <% layout('layouts/comunicazioni-index-layout') -%>
-<!-- funzione for per medici-->
 <div>
     <form action="/area-riservata/segreteria/prenotazioni" method="GET">
         <select id="selezioneMedico" name='medico'>
             <% medici.forEach((medico)=>{ %>
-            <option value="<%= medico._id %>">Dott. <%= medico.cognome %> <%= medico.nome %></option><% }) %>
+            <option value="<%= medico._id %>" <% if(medico._id==ricercaMedico){ %>selected<% } %> >Dott. <%= medico.cognome %> <%= medico.nome %></option><% }) %>
         </select>
         <input
         id="dataInput"

@@ -23,7 +23,8 @@
     <% if(orari.length==0) { %> <%= oggiData.getDate() %>-<%= oggiData.getMonth()+1 %>-<%= oggiData.getFullYear() %> CHIUSO <% }else{ %>
     <table id="tabellaOrari">
         <tr>
-            <th></th>
+            <% if(typeof currentUser != 'undefined' && currentUser.tipo!='Staff'){ %>
+            <th></th><% } %>
             <th>Orario prenotazione</th>
             <th>Pazienti prenotati</th>
         </tr>
@@ -32,15 +33,17 @@
     orari.forEach((orario)=>{ %>
         <tr class="<%
             if(orario.numPazienti<4){ %>indicazioneVerde<% } else if(orario.numPazienti<7){ %>indicazioneGialla<% } else { %>indicazioneRossa<% }%>">
+            <% if(typeof currentUser != 'undefined' && currentUser.tipo!='Staff'){ %>
             <td>
-                <% if(currentUser.tipo!='Staff'){ %><input
+                <input
                 type="radio"
                 name="prenotazione[ora]"
                 value="<%= orario.ora %>"
                 id="<%= orario.ora %>"
                 <% if(primoDisponibile){ %>
-                checked <% primoDisponibile=false;} %> /><% } %>
+                checked <% primoDisponibile=false;} %> />
             </td>
+            <% } %>
             <td>
                 <label for="<%= orario.ora %>"><%= orario.ora%></label>
             </td>
@@ -53,7 +56,7 @@
 <% } %>
 </div>
 <input type="hidden" name="prenotazione[servizio]" value="Segreteria">
-<% if(currentUser.tipo!='Staff'){ %>
+<% if(typeof currentUser != 'undefined' && currentUser.tipo!='Staff'){ %>
     <input id='submitButton' type="submit" value="Conferma indicazione" <% if(orari.length==0){ %>style="visibility: hidden<% }else{ %>style="visibility: visible<% } %>; margin-bottom:10px; margin-left:10px;">
 <% } %>
 </form>
@@ -74,8 +77,8 @@
                 submitButton.style.visibility = 'hidden';
             }else{
                 var primoDisponibile=true;
-                var tmpHTML='';
-               tmpHTML='<table id="tabellaOrari"><tr><th></th><th>Orario prenotazione</th><th>Pazienti prenotati</th></tr>';
+                var tmpHTML=`<table id="tabellaOrari"><tr>
+                    <% if(typeof currentUser != 'undefined' && currentUser.tipo!='Staff'){ %><th></th><% } %><th>Orario prenotazione</th><th>Pazienti prenotati</th></tr>`;
                 risposta.orari.forEach(orario => {
                    tmpHTML+='<tr class="';
                     if(orario.numPazienti<4){ 
@@ -86,7 +89,7 @@
                     } else { 
                        tmpHTML+='indicazioneRossa';
                     }
-                   tmpHTML+=`"><td>
+                    tmpHTML+=`"><% if(typeof currentUser != 'undefined' && currentUser.tipo!='Staff'){ %><td>
                         <input
                         type="radio"
                         name="prenotazione[ora]"
@@ -96,9 +99,8 @@
                        tmpHTML+='checked'; 
                         primoDisponibile=false;
                     } 
-                   tmpHTML+=`/>
-                        </td>
-                        <td>
+                    tmpHTML+=`/>
+                        </td> <% } %><td>
                             <label for="${orario.ora}">${orario.ora}</label>
                         </td>
                         <td>
