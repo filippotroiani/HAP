@@ -4,5 +4,10 @@
         <th>Nome Paziente</th>
         <th>Data di nascita</th>
     </tr>
-
+<% pazienti.forEach((paziente)=>{%>
+    <tr>
+        <td><%= pazienti.cognome %> <%= pazienti.nome %></td>
+        <td><%= pazienti.dataNascita %></td>
+    </tr>
+    <% }) %>
 </table>
