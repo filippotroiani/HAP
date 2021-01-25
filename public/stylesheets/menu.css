@@ -128,7 +128,6 @@ body {
 #pop_up {
 	position: absolute;
 	font-weight: bold;
-	margin-top: 20%;
 	margin-left: 45%;
 }
 #pop_up input[type='password'],
