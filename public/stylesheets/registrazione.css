@@ -54,6 +54,18 @@ p {
 	border-top-left-radius: 10px;
 	border-bottom-left-radius: 10px;
 }
+#area_dati {
+	background: rgba(0, 196, 204);
+	background-repeat: no-repeat;
+	background-size: cover;
+	width: 575px;
+	height: 730px;
+	box-shadow: 0 0 35px rgba(0, 0, 0, 0.8);
+	border-top-right-radius: 10px;
+	border-bottom-right-radius: 10px;
+	border-top-left-radius: 10px;
+	border-bottom-left-radius: 10px;
+}
 #titolo_casella {
 	font-size: 27;
 	text-align: center;
