@@ -64,10 +64,29 @@ module.exports={
         res.render('area-riservata/segreteria/aggiungi-prenotazione', { title:'Nuova Prenotazione - Segreteria - HAP'});
     },
     async createPrenotazioneSegreteria(req,res,next){
-
+        if (typeof req.body=='undefined') {
+			req.session.error = `Inserisci correttamente i dati`;
+			res.redirect('/area-riservata/segreteria/aggiungi-prenotazione');
+		} else {
+			const newPrenotazione = {
+				paziente: req.body.prenotazione.paziente,
+				servizio: 'Medico',
+				medico: req.body.prenotazione.medico,
+				dataPrenotazione: new Date(
+					req.body.prenotazione.data + 'T' + req.body.prenotazione.ora + ':00'
+				),
+				motivazione: req.body.prenotazione.motivazione || ''
+			};
+			await Prenotazione.create(newPrenotazione);
+			req.session.success = 'Prenotazione creata con successo.';
+			res.redirect('/');
+		}
     },
     async getPazientiSegreteria(req,res,next){
-
+        const pazienti =await Paziente.find({
+            medico: req.query.medico,
+        }, 'cognome nome dataNascita', { sort: { cognome: 1, nome: 1 } });
+        res.render('area-riservata/segreteria/lista-pazienti', { title:'Lista pazienti - Segreteria - HAP', pazienti });
     },
     async getIndicazioniSegreteria(req,res,next){
         res.redirect('/prenotazioni/segreteria');
