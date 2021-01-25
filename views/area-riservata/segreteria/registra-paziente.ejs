@@ -1,15 +1,4 @@
-<html>
-	<head>
-		<title>HAP</title>
-		<link rel="icon" href="HapHD.png" type ="image/png"/>
-		<link rel="stylesheet" href="/stylesheets/registrazione.css" />
-		</head>
-	<body>
-	<div class="tetto">
-		<div id="title" class="tetto">
-			HAP
-		</div>
-	</div>	
+	<% layout('layouts/comunicazioni-index-layout') -%>
 		<div class="area">
 		<center>
 				<div id="area_registrazione">
@@ -44,8 +33,7 @@
 						Sesso<br>
 					</div>					
 					<div id="casella_sex">
-						<input type="radio" name="sex" value=0 color="black" checked>M</input>
-						<br>
+						<input type="radio" name="sex" value=0 color="black" checked>M</input> 
 						<input type="radio" name="sex" value=1 color="black">F</input>
 					</div>
 					<div id="titolo_casella">
@@ -54,13 +42,10 @@
 					</div>
 						<br>
 						<br>
-						<input type="submit" id="signin" value="Registrati"/>
-						<a href="/"><button id="annulla">Annulla</button></a>
+						<input type="submit" id="signin" value="Registra"/>
 					</form>
 				
 				</div>
 				</center>
 			</background>
 		</div>
-	</body>
-</html>

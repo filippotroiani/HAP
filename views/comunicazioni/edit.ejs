@@ -1,4 +1,4 @@
-<% layout('layouts/boilerplate') -%>
+<% layout('layouts/comunicazioni-index-layout') -%>
 <h1>Modifica Comunicazione</h1>
 <form
 	id="aggiungiNews"
@@ -7,26 +7,32 @@
 >
 	<div class="error-message"></div>
 	<div>
+		<label id="titolo-comunicazione">Titolo: </label>
 		<input
 			name="comunicazione[titolo]"
 			placeholder="Titolo"
 			value="<%= comunicazione.titolo  %>"
+			id="testo-comunicazione"
 		/>
 	</div>
+	<br>
 	<div>
-		<textarea name="comunicazione[testo]" placeholder="Testo">
-<%= comunicazione.testo %></textarea
-		>
-	</div>
-	<div>
+		<label id="key-title">Parole chiave (Inserisci parole chiave separate da una virgola): </label> 
 		<input
 			name="comunicazione[paroleChiave]"
 			placeholder="Parole chiave"
 			value="<%= comunicazione.paroleChiave %>"
+			id="key-comunicazione"
 		/>
-		Inserisci parole chiave separate da una virgola
 	</div>
-	<a href="/comunicazioni/<%= comunicazione._id %>">indietro</a>
-	<input type="reset" value="Annulla cambiamenti" />
-	<input type="submit" value="Conferma modifiche" />
+	<br>
+	<div>
+		<label id="key-title">Testo: </label>
+		<textarea name="comunicazione[testo]" placeholder="Testo" id="descrizione-comunicazione"><%= comunicazione.testo %></textarea
+		>
+	</div>
+	<br><br>
+	<a href="/comunicazioni/<%= comunicazione._id %>"><button id="back">Indietro</button></a>
+	<input type="reset" value="Annulla cambiamenti" id="annulla"/>
+	<input type="submit" value="Conferma modifiche" id="conferma"/>
 </form>
