@@ -1,5 +1,5 @@
 <% layout('layouts/comunicazioni-index-layout') -%>
-<% if(typeof currentUser == 'undefined' || currentUser.tipo!='Paziente'){ %>
+<% if(typeof currentUser == 'undefined' || currentUser.tipo=='Paziente'){ %>
     <label id="infoIndicazioni">
         Per evitare code ed <b>assembramenti</b> cerca l'orario in cui preferisci arrivare in segreteria. <br/>
         Accanto ad ogni orario puoi trovai il numero di pazienti che saranno lì in quell'orario.
