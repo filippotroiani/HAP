@@ -13,10 +13,9 @@
 				name="prenotazione[data]"
                 type="date"
                 value="<%= oggiData.toISOString().substring(0,10) %>"
-                <% const tmpdata=new Date(oggiData);
-                tmpdata.setDate(tmpdata.getDate()-15); //imposto data minima a 15 giorni prima %>
+                <% const tmpdata=new Date(oggiData); %>
                 min="<%= tmpdata.toISOString().substring(0,10) %>"
-                <% tmpdata.setDate(tmpdata.getDate()+15+3); //imposto data massima a 3 giorni dopo %>
+                <% tmpdata.setDate(tmpdata.getDate()+3); //imposto data massima a 3 giorni dopo %>
 				max="<%= tmpdata.toISOString().substring(0,10) %>"
 			/>
         </div>
@@ -38,12 +37,12 @@
                 type="radio"
                 name="prenotazione[ora]"
                 value="<%= orario.ora %>"
-                id="button<%= i %>"
+                id="<%= orario.ora %>"
                 <% if(primoDisponibile){ %>
                 checked <% primoDisponibile=false;} %> />
             </td>
             <td>
-                <label for="button<%= i++ %>"><%= orario.ora%></label>
+                <label for="<%= orario.ora %>"><%= orario.ora%></label>
             </td>
             <td>
                 <%= orario.numPazienti %> pazienti
@@ -51,24 +50,64 @@
         </tr>
     <% }) %>
     </table>
+<% } %>
 </div>
-<input type="submit" value="Conferma indicazione"><% } %>
+<input type="hidden" name="prenotazione[servizio]" value="Segreteria">
+<input id='submitButton' type="submit" value="Conferma indicazione" style="visibility: <% if(orari.length==0){ %>hidden<% }else{ %>visible<% } %>; margin-bottom:10px; margin-left:10px;">
 </form>
 <script>
     const getOrariAPI_URL='http://'+document.domain+":3000/prenotazioni/getOrariSegreteriaAPI"
     const dataInput= document.querySelector('#dataInput');
     const orariContainer=document.querySelector('#orariContainer');
+    const submitButton=document.querySelector('#submitButton');
     dataInput.addEventListener('change',()=>{
         const dataRicerca=dataInput.value.split('-');
         const day=`${dataRicerca[2]}-${dataRicerca[1]}-${dataRicerca[0]}`
         fetch(`${getOrariAPI_URL}?day=${day}`).then((response) => response.json())
         .then((risposta) => {
+            console.log(risposta.orari)
             orariContainer.innerHTML='';
-            risposta.orari.forEach(orario => {
-                const div = document.createElement("div");
-                div.textContent=`${orario.ora} -> ${orario.numPazienti} pazienti`;
-                orariContainer.appendChild(div);
-            });
+            if(risposta.orari.length==0) {
+                orariContainer.innerHTML=day+ ' CHIUSO';
+                submitButton.style.visibility = 'hidden';
+            }else{
+                var primoDisponibile=true;
+                var tmpHTML='';
+               tmpHTML='<table id="tabellaOrari"><tr><th></th><th>Orario prenotazione</th><th>Pazienti prenotati</th></tr>';
+                risposta.orari.forEach(orario => {
+                   tmpHTML+='<tr class="';
+                    if(orario.numPazienti<4){ 
+                       tmpHTML+='indicazioneVerde';
+                    } else if(
+                        orario.numPazienti<7){ 
+                       tmpHTML+='indicazioneGialla';
+                    } else { 
+                       tmpHTML+='indicazioneRossa';
+                    }
+                   tmpHTML+=`"><td>
+                        <input
+                        type="radio"
+                        name="prenotazione[ora]"
+                        value="${orario.ora}"
+                        id="${orario.ora}"`;
+                    if(primoDisponibile){
+                       tmpHTML+='checked'; 
+                        primoDisponibile=false;
+                    } 
+                   tmpHTML+=`/>
+                        </td>
+                        <td>
+                            <label for="${orario.ora}">${orario.ora}</label>
+                        </td>
+                        <td>
+                            ${orario.numPazienti} pazienti
+                        </td>
+                        </tr>`;
+                });
+                tmpHTML+='</table>';
+                orariContainer.innerHTML=tmpHTML;
+                submitButton.style.visibility = 'visible';
+            }
         });
     });
 </script>

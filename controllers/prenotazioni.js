@@ -100,7 +100,7 @@ module.exports = {
 			};
 			const prenotazione = await Prenotazione.create(newPrenotazione);
 			req.session.success = 'Prenotazione creata con successo.';
-			res.redirect('/prenotazioni/new');
+			res.redirect('/');
 		}
 	},
 	async showPrenotazione(req, res, next) {
