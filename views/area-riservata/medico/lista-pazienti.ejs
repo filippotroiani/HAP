@@ -4,10 +4,11 @@
         <th>Nome Paziente</th>
         <th>Data di nascita</th>
     </tr>
-<% pazienti.forEach((paziente)=>{%>
+<% pazienti.forEach((paziente)=>{
+    var dataNascita=paziente.dataNascita.toISOString().substring(0,10).split('-') %>
     <tr>
-        <td><%= pazienti.cognome %> <%= pazienti.nome %></td>
-        <td><%= pazienti.dataNascita %></td>
+        <td><%= paziente.cognome %> <%= paziente.nome %></td>
+        <td><%= `${dataNascita[2]}-${dataNascita[1]}-${dataNascita[0]}` %></td>
     </tr>
     <% }) %>
 </table>

@@ -32,8 +32,8 @@ module.exports={
     async getPazientiMedico(req,res,next){
         const pazienti =await Paziente.find({
             medico: req.user.idRef._id,
-        });
-        res.render('area-riservata/medico/lista-pazienti',{title:'Lista pazienti - HAP', pazienti});
+        },null,{ sort: { cognome: 1, nome: 1 } });
+        res.render('area-riservata/medico/lista-pazienti',{title:'Lista pazienti - Medico - HAP', pazienti});
     },
     async getPrenotazioniSegreteria(req,res,next){
         const medici= await Staff.find({ruolo:'Medico'},'_id cognome nome',{sort:{cognome:1,nome:1}});
@@ -60,16 +60,16 @@ module.exports={
         });
         res.render('area-riservata/segreteria/prenotazioni',{title:'Prenotazioni - HAP', medici, prenotazioni, ricercaMedico, data});
     },
-    async newPrenotazioneSegreteria(){
-        
+    async newPrenotazioneSegreteria(req,res,next){
+        res.render('area-riservata/segreteria/aggiungi-prenotazione', { title:'Nuova Prenotazione - Segreteria - HAP'});
     },
-    async createPrenotazioneSegreteria(){
+    async createPrenotazioneSegreteria(req,res,next){
 
     },
-    async getPazientiSegreteria(){
+    async getPazientiSegreteria(req,res,next){
 
     },
-    async getIndicazioniSegreteria(){
+    async getIndicazioniSegreteria(req,res,next){
         res.redirect('/prenotazioni/segreteria');
     }
 
