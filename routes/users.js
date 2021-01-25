@@ -10,7 +10,8 @@ const {
 	postRegister,
 	postRegisterStaff,
 	getRegisterStaff,
-	getProfile
+	getProfile,
+	getResetPassword
 } = require('../controllers/users'); // /index è sottinteso
 const { asyncErrorHandler, isStaffMember, isAdmin, isUserLogged } = require('../middleware'); // /index è sottinteso
 
@@ -45,18 +46,18 @@ router.put('/forgot', (req, res, next) => {
 }); //non c'è bisogno di passare una mail come parametro perché la prenderemo dal request.body con il body parser
 
 /* GET /users/reset/:token */
-router.get('/reset/:token', );
+router.get('/reset/:token', getResetPassword);
 
 /* PUT /users/reset/:token */
 router.put('/reset/:token', (req, res, next) => {
 	res.send('RESET /reset/:token');
 });
 
-/* GET /users/profile */
-router.get('/profile', isUserLogged, getProfile);
+/* GET /users/profilo */
+router.get('/profilo', isUserLogged, getProfile);
 
-/* PUT /users/profile/:user_id */
-router.put('/profile/:user_id', (req, res, next) => {
+/* PUT /users/profilo/:user_id */
+router.put('/profilo/:user_id', (req, res, next) => {
 	res.send('UPDATE /profile/:user_id');
 });
 

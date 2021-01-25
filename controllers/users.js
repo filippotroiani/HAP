@@ -105,10 +105,10 @@ module.exports = {
 		res.redirect('/');
 	},
 	getProfile(req,res,next){
-		res.render('users/profilo');
+		res.render('users/profilo', { token: 'TOKEN!'});
 	},
 	getResetPassword(req,res,next){
 		console.log(req.params.token);
-		res.render('users/password-dimenticata');
+		res.render('users/password-dimenticata', { token: 'TOKEN!'});
 	},
 };
