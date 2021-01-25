@@ -103,5 +103,12 @@ module.exports = {
 
 		await User.register(newUser, 'staffpassword');
 		res.redirect('/');
-	}
+	},
+	getProfile(req,res,next){
+		res.render('users/profilo');
+	},
+	getResetPassword(req,res,next){
+		console.log(req.params.token);
+		res.render('users/password-dimenticata');
+	},
 };

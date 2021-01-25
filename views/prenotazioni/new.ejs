@@ -3,7 +3,9 @@
 <div id="pop_up">
 	<form id="newPrenotazione" action="/prenotazioni" method="POST">
 		<div class="error-message"></div>
-		<% const oggiHTML= new Date().toISOString().substring(0,10); %>
+		<%
+		const data= new Date();
+		const oggiHTML= data.toISOString().substring(0,10); %>
 		<div>
 			<input
 				id="dataInput"
@@ -11,6 +13,9 @@
 				type="date"
 				min="<%= oggiHTML %>"
 				value="<%= oggiHTML %>"
+				<% data.setDate(data.getDate()+15); %>
+				max="data.toISOString().substring(0,10);"
+				
 			/>
 		</div>
 		<div id="orariContainer">

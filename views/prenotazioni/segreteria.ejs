@@ -33,13 +33,13 @@
         <tr class="<%
             if(orario.numPazienti<4){ %>indicazioneVerde<% } else if(orario.numPazienti<7){ %>indicazioneGialla<% } else { %>indicazioneRossa<% }%>">
             <td>
-                <input
+                <% if(currentUser.tipo!='Staff'){ %><input
                 type="radio"
                 name="prenotazione[ora]"
                 value="<%= orario.ora %>"
                 id="<%= orario.ora %>"
                 <% if(primoDisponibile){ %>
-                checked <% primoDisponibile=false;} %> />
+                checked <% primoDisponibile=false;} %> /><% } %>
             </td>
             <td>
                 <label for="<%= orario.ora %>"><%= orario.ora%></label>
@@ -53,7 +53,9 @@
 <% } %>
 </div>
 <input type="hidden" name="prenotazione[servizio]" value="Segreteria">
-<input id='submitButton' type="submit" value="Conferma indicazione" style="visibility: <% if(orari.length==0){ %>hidden<% }else{ %>visible<% } %>; margin-bottom:10px; margin-left:10px;">
+<% if(currentUser.tipo!='Staff'){ %>
+    <input id='submitButton' type="submit" value="Conferma indicazione" <% if(orari.length==0){ %>style="visibility: hidden<% }else{ %>style="visibility: visible<% } %>; margin-bottom:10px; margin-left:10px;">
+<% } %>
 </form>
 <script>
     const getOrariAPI_URL='http://'+document.domain+":3000/prenotazioni/getOrariSegreteriaAPI"
