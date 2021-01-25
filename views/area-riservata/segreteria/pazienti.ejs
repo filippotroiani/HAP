@@ -1,14 +1,20 @@
-<% layout('layouts/layout-segreteria') -%>
-
-<input type="text" id="medico">
-       Filippo Troiani <!--Nome del medico-->
-    </div>
+<% layout('layouts/comunicazioni-index-layout') -%>
+<form action="/area-riservata/segreteria/prenotazioni" method="GET">
+        <select id="selezioneMedico" name='medico'>
+            <% medici.forEach((medico)=>{ %>
+            <option value="<%= medico._id %>">Dott. <%= medico.cognome %> <%= medico.nome %></option><% }) %>
+        </select>
+        <input type="submit" value="Mostra">
+    </form>
     <table id="lista">
         <tr>
             <th>Nome paziente</th>
+            <th>Data nascita</th>
         </tr>
-        <!-- funzione for per pazienti-->
-        <tr>
-            <td><%=prenotazione.paziente.nome%> <%=prenotazione.paziente.nome%></td>
-        </tr>
+        <% pazienti.forEach((paziente)=>{%>
+    <tr>
+        <td><%= pazienti.cognome %> <%= pazienti.nome %></td>
+        <td><%= pazienti.dataNascita %></td>
+    </tr>
+    <% }) %>
     </table>

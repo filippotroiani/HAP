@@ -1,14 +1,13 @@
-<% layout('layouts/layout-medico') -%>
+<% layout('layouts/comunicazioni-index-layout') -%>
 <table id="lista">
     <tr>
         <th>Nome Paziente</th>
         <th>Data di nascita</th>
     </tr>
-    <!--for pazienti-->
-    <!--<tr>
-        <td>Rossi Giuseppe</td>
-    </tr>
+<% pazienti.forEach((paziente)=>{%>
     <tr>
-        <td>Bianchi Michele</td>
-    </tr>-->
+        <td><%= pazienti.cognome %> <%= pazienti.nome %></td>
+        <td><%= pazienti.dataNascita %></td>
+    </tr>
+    <% }) %>
 </table>
