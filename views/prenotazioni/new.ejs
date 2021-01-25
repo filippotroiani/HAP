@@ -6,6 +6,7 @@
 		<%
 		const data= new Date();
 		const oggiHTML= data.toISOString().substring(0,10); %>
+		<center>
 		<div>
 			<input
 				id="dataInput"
@@ -38,11 +39,12 @@
 					<label><%= orario.ora %></label>
 				</div><% } }) %>
 		</div>
+		</center>
 		<br />
-		Motivazione:
-		<input type="text" class="motivazione" name="prenotazione[motivazione]" /><br />
+		Motivazione:<br>
+		<input type="text"  name="prenotazione[motivazione]" id="motivazione-visita"/><br /><br>
 		<input type="hidden" name="prenotazione[servizio]" value="Medico">
-		<input type="submit" />
+		<input type="submit" value="Prenota" id="prenota-visita"/>
 	</form>
 </div>
 <style>
