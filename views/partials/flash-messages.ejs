@@ -1,8 +1,10 @@
-
-<script>
 <% if(success && success.length) {%>
-alert('<%= success %>');
-<% };%> <% if(error && error.length) {%>
-alert('Errore: <%= error %>');
-<% };%>  
-</script>
+    <script>
+        alert('<%= success %>')
+    </script>
+<% };%>
+<% if(error && error.length) {%>
+    <script>
+        alert('<%= error %>')
+    </script>
+<% };%>
