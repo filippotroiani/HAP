@@ -66,7 +66,7 @@ function listAllNews(reset = true) {
 					date.textContent = comunicazione.data;
 
 					const link = document.createElement('p');
-					link.innerHTML = `<a href="/comunicazioni/${comunicazione._id}">view more</a>`;
+					link.innerHTML = `<a href="/comunicazioni/${comunicazione._id}">mostra</a>`;
 
 					div.appendChild(header);
 					div.appendChild(contents);
@@ -84,12 +84,3 @@ function listAllNews(reset = true) {
 				}
 			});
 }
-
-/* function convertDate(d) {
-	const data = new Date(d);
-	return `${(data.getDate() < 10 ? '0' : '') + data.getDate()}-${
-		(data.getMonth() < 10 ? '0' : '') + (data.getMonth() + 1)
-	}-${data.getFullYear()} ${
-		(data.getHours() < 10 ? '0' : '') + data.getHours()
-	}:${(data.getMinutes() < 10 ? '0' : '') + data.getMinutes()}`;
-} */

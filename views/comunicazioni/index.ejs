@@ -12,9 +12,13 @@
       />
       <div id="cercaButton"><button>Cerca</button></div>
     </form>
-    <div>
-    <a href="/comunicazioni/new"><button id="bottone-comunicazione">Nuova Comunicazione</button></a></div>
+    <% if(typeof currentUser!='undefined' && currentUser.tipo=='Segreteria'){ %>
+      <div>
+        <a href="/comunicazioni/new"><button id="bottone-comunicazione">Nuova Comunicazione</button></a>
+      </div>
+    <% } %>
   </div>
+  
 </header>
 <div class="error-message"></div>
 <main>
