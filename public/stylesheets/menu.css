@@ -368,7 +368,8 @@ h1 {
 #modifica button,
 #signin,
 #prenota-visita,
-#submitButton {
+#submitButton,
+#mostra {
 	border-radius: 15px;
 	background-color: rgba(0, 196, 204);
 	color: white;

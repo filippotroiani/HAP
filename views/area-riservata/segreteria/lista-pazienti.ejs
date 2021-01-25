@@ -4,7 +4,7 @@
             <% medici.forEach((medico)=>{ %>
             <option value="<%= medico._id %>">Dott. <%= medico.cognome %> <%= medico.nome %></option><% }) %>
         </select>
-        <input type="submit" value="Mostra">
+        <input type="submit" value="Mostra" id="mostra">
     </form>
     <table id="lista">
         <tr>

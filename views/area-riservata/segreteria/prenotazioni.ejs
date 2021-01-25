@@ -17,7 +17,7 @@
         <% data.setDate(data.getDate()+15+15); //imposto data massima a 15 giorni dopo %>
         max="<%= data.toISOString().substring(0,10) %>"
     />
-        <input type="submit" value="Mostra">
+        <input type="submit" value="Mostra" id="mostra">
     </form>
 </div> 
    <% if(prenotazioni.length==0){ %>
