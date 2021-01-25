@@ -22,10 +22,10 @@ router.get('/new', isUserLogged, asyncErrorHandler(newPrenotazioni));
 router.get('/provaquery', isUserLogged, asyncErrorHandler(provaQuery));
 
 /* GET new /prenotazioni/segreteria */
-router.get('/segreteria', isUserLogged, indexSegreteria);
+router.get('/segreteria', indexSegreteria);
 
 /* GET new /prenotazioni/getOrariSegreteriaAPI */
-router.get('/getOrariSegreteriaAPI', isUserLogged, asyncErrorHandler(getOrariSegreteriaAPI));
+router.get('/getOrariSegreteriaAPI', asyncErrorHandler(getOrariSegreteriaAPI));
 
 /* GET new /prenotazioni/getOrariMedicoAPI */
 router.get('/getOrariMedicoAPI', isUserLogged, asyncErrorHandler(getOrariMedicoAPI));

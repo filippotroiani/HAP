@@ -2,7 +2,6 @@ const Prenotazione = require('../models/prenotazione');
 const Orario = require('../models/orario');
 const Paziente = require('../models/paziente');
 const { getOrariSegreteria, getOrariMedico } = require('../middleware/orari');
-const prenotazione = require('../models/prenotazione');
 async function getPrenotazioniSegreteria(dataP= new Date()){
 	const data=new Date(dataP);
 	data.setHours(0);
@@ -47,6 +46,7 @@ module.exports = {
 		oggi.setHours(3, 0, 0);
 		const prenotazioni = await Prenotazione.find({
 			paziente: req.user.idRef._id,
+			servizio:'Medico',
 			dataPrenotazione: { $gte: oggi }
 		});
 		const orariMedico = await Orario.findOne(
@@ -84,21 +84,22 @@ module.exports = {
 		});
 	},
 	async createPrenotazioni(req, res, next) {
-		if (!req.body) {
+		if (typeof req.body=='undefined') {
 			req.session.error = `Seleziona la data e l'orario che preferisci`;
 			res.redirect('/prenotazioni');
 		} else {
+			console.log(req.body.prenotazione.servizio)
 			//const paziente = await Paziente.findById(req.user.idRef._id);
 			const newPrenotazione = {
 				paziente: req.user.idRef._id,
 				servizio: req.body.prenotazione.servizio,
-				medico: req.user.idRef.medico, //paziente.medico,
+				medico: (typeof req.body.prenotazione.servizio!='undefined'&&req.body.prenotazione.servizio=='Medico')?req.user.idRef.medico:null,
 				dataPrenotazione: new Date(
 					req.body.prenotazione.data + 'T' + req.body.prenotazione.ora + ':00'
 				),
 				motivazione: req.body.prenotazione.motivazione || ''
 			};
-			const prenotazione = await Prenotazione.create(newPrenotazione);
+			await Prenotazione.create(newPrenotazione);
 			req.session.success = 'Prenotazione creata con successo.';
 			res.redirect('/');
 		}
@@ -113,9 +114,18 @@ module.exports = {
 		});
 	},
 	async deletePrenotazioni(req, res, next) {
-		await Prenotazione.findByIdAndDelete(req.params.id_prenotazione);
-		req.session.success = 'Prenotazione eliminata con successo.';
-		res.redirect('/prenotazioni');
+		if(req.user.tipo=='Staff'){ 
+			const prenotazioneEliminata = await Prenotazione.findByIdAndDelete(req.params.id_prenotazione);
+		} else {
+			const prenotazioneEliminata = await Prenotazione.findOneAndDelete({ _id: req.params.id_prenotazione, paziente: req.user.idRef._id });
+		}
+		if(typeof prenotazioneEliminata == 'undefined'){
+			req.session.error = 'Prenotazione non eliminata con successo.';
+			res.redirect('/prenotazioni');
+		} else {
+			req.session.success = 'Prenotazione eliminata con successo.';
+			res.redirect('/prenotazioni');
+		}
 	},
 	async indexSegreteria(req, res, next) {
 		const orariSegreteria = await Orario.find(
