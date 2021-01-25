@@ -6,16 +6,10 @@
         <title><%= title %></title>
         <link rel="icon" type="image/png" href="/images/favicon.ico" />
         <link rel="stylesheet" href="/stylesheets/comunicazionipage.css" />
-        <link rel="stylesheet" href="/stylesheets/menu.css" />
-        
+        <link rel="stylesheet" href="/stylesheets/menu.css" />      
     </head>
     <body>
         <% include ../partials/navbar %> <% include ../partials/flash-messages %>
-        <div class="area_notifiche">
-            <div id="bacheca">
-                <%- body -%>
-            </div>
-        </div>
         <% if(typeof currentUser=='undefined'||currentUser.tipo==='Paziente'){ %>
             <% include ../partials/menu-paziente %>
         <%} else if(currentUser.tipo==='Staff'&&currentUser.idRef.ruolo==='Segreteria'){ %>
@@ -23,5 +17,11 @@
         <% } else if(currentUser.tipo==='Staff'&&currentUser.idRef.ruolo==='Medico'){ %>
             <% include ../partials/menu-medico %>
         <% } %>
+        <div class="area_notifiche">
+            <div id="bacheca">
+                <%- body -%>
+            </div>
+        </div>
+        
     </body>
 </html>
