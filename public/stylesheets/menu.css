@@ -367,7 +367,8 @@ h1 {
 #conferma,
 #modifica button,
 #signin,
-#prenota-visita {
+#prenota-visita,
+#submitButton {
 	border-radius: 15px;
 	background-color: rgba(0, 196, 204);
 	color: white;
@@ -379,7 +380,7 @@ h1 {
 }
 @media only screen and (max-width: 730px) {
 	#bottone button {
-		font-size: 15px;
+		font-size: 20px;
 	}
 	#title {
 		right: 3%;
@@ -398,9 +399,6 @@ h1 {
 	#title {
 		font-size: 40px;
 	}
-	#pop_up {
-		margin-left: 25%;
-	}
 	#cercaInput {
 		width: 40%;
 	}
@@ -410,5 +408,18 @@ h1 {
 	}
 	#infoIndicazioni {
 		font-size: 18px;
+	}
+	#utente {
+		font-size: 12px;
+	}
+	#dato {
+		font-size: 13px;
+	}
+	#dato {
+		margin-left: 90px;
+	}
+	#immagine-profilo {
+		width: 120px;
+		height: 120px;
 	}
 }
