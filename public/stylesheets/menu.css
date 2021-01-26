@@ -77,6 +77,7 @@ body {
 	font-weight: bold;
 	text-align: center;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 1);
+	cursor: pointer;
 }
 #opzioni {
 	position: absolute;
@@ -98,10 +99,12 @@ body {
 	font-weight: bold;
 	text-align: center;
 	width: 90%;
+	cursor: pointer;
 }
 #bottone button {
 	border-style: none;
 	background: transparent;
+	cursor: pointer;
 }
 
 #bottone button {
@@ -203,6 +206,7 @@ h1 {
 	border-radius: 5px;
 	border-style: ridge;
 	background: none;
+	cursor: pointer;
 }
 #dataora {
 	text-align: center;
@@ -322,6 +326,7 @@ h1 {
 	left: 750px;
 	top: 10px;
 	height: 36px;
+	cursor: pointer;
 }
 #testo-comunicazione {
 	border: none;
@@ -382,6 +387,7 @@ h1 {
 	box-shadow: 0 0 1px rgb(160, 160, 160);
 	font-size: 22px;
 	font-weight: bold;
+	cursor: pointer;
 }
 @media only screen and (max-width: 730px) {
 	#bottone button {
