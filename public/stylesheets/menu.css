@@ -77,6 +77,7 @@ body {
 	font-weight: bold;
 	text-align: center;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 1);
+	cursor: pointer;
 }
 #bottone_scrivi button.checked {
 	background-color: rgb(50, 50, 255);
@@ -102,6 +103,7 @@ body {
 	font-weight: bold;
 	text-align: center;
 	width: 90%;
+	cursor: pointer;
 }
 #opzioni button.checked {
 	background-color: rgb(50, 50, 255);
@@ -110,6 +112,7 @@ body {
 #bottone button {
 	border-style: none;
 	background: transparent;
+	cursor: pointer;
 }
 
 #bottone button {
@@ -145,12 +148,7 @@ body {
 	width: 95%;
 	position: absolute;
 	font-weight: bold;
-	/* margin-left: 45%;*/
 }
-/* #pop_up input[type='password'],
-[type='submit'] {
-	border-radius: 5px;
-} */
 #rubrica {
 	position: absolute;
 	top: 10px;
@@ -170,10 +168,6 @@ body {
 	width: 20px;
 	height: 20px;
 }
-/* .motivazione {
-	width: 60%;
-	height: 50%;
-} */
 #scorrimento {
 	height: 50px;
 	overflow-x: scroll;
@@ -220,6 +214,7 @@ h1 {
 	border-radius: 5px;
 	border-style: ridge;
 	background: none;
+	cursor: pointer;
 }
 #dataora {
 	text-align: center;
@@ -241,6 +236,7 @@ h1 {
 	border-style: ridge;
 	border-radius: 15px;
 	width: 150px;
+	margin-left: 10px;
 }
 #tabellaOrari {
 	border: none;
@@ -336,28 +332,29 @@ h1 {
 	font-weight: bold;
 	position: absolute;
 	left: 750px;
-	top: 0;
+	top: 10px;
 	height: 36px;
+	cursor: pointer;
 }
 #testo-comunicazione {
 	border: none;
 	border-bottom: 3px solid rgba(192, 192, 192);
 	font-size: 22px;
 	font-weight: bold;
-	width: 100%;
+	width: 99%;
 }
 #key-comunicazione {
 	border: none;
 	border-bottom: 3px solid rgba(192, 192, 192);
 	font-size: 18px;
 	font-weight: bold;
-	width: 100%;
+	width: 99%;
 }
 #descrizione-comunicazione {
 	border: 3px solid rgba(192, 192, 192);
 	border-top: none;
 	font-size: 22px;
-	width: 100%;
+	width: 99%;
 	height: 200px;
 }
 #titolo-comunicazione,
@@ -398,6 +395,7 @@ h1 {
 	box-shadow: 0 0 1px rgb(160, 160, 160);
 	font-size: 22px;
 	font-weight: bold;
+	cursor: pointer;
 }
 @media only screen and (max-width: 730px) {
 	#bottone button {
@@ -432,12 +430,14 @@ h1 {
 	}
 	#utente {
 		font-size: 12px;
+		font-weight: normal;
 	}
 	#dato {
 		font-size: 13px;
+		font-weight: normal;
 	}
 	#dato {
-		margin-left: 90px;
+		margin-left: 95px;
 	}
 	#immagine-profilo {
 		width: 120px;

@@ -1,22 +1,23 @@
 <div id="bottone_scrivi">
-    <a href="/prenotazioni/new"><button>Prenota Visita</button></a>
+    <a href="/prenotazioni/new"><button<% if(pagina=='nuova-prenotazione'){​​​​ %>class="checked"<% }​​​​ %>>Prenota Visita</button></a>
 </div>
 
 <div id="opzioni">
     <center>
         <br /><br /><br />
-        <a href="/comunicazioni"><button>Home</button></a><br /><br /><br />
-        <a href="/prenotazioni/segreteria"><button>Segreteria</button></a><br /><br /><br />
-        <a href=""></a><button onclick="myFunction()">Chat</button><br /><br /><br />
-        <a href="/link-utili"><button>Link Utili</button></a><br /><br /><br />
+        <a href="/comunicazioni"><button <% if(pagina=='comunicazioni'){​​​​ %>class="checked"<% }​​​​ %>>Home</button></a><br /><br /><br />
+        <a href="/prenotazioni/segreteria"><button <% if(pagina=='indicazioni'){​​​​ %>class="checked"<% }​​​​ %>>Segreteria</button></a><br /><br /><br />
+        <a href=""></a><button onclick="myFunction()" <% if(pagina=='chat'){​​​​ %>class="checked"<% }​​​​ %>>Chat</button><br /><br /><br />
+        <a href="/link-utili"><button <% if(pagina=='link-utili'){​​​​ %>class="checked"<% }​​​​ %>>Link Utili</button></a><br /><br /><br />
     </center>
+</div>
+
+<div id="bottone">
+    <center>
+        <a href="/users/logout"><button>Esci</button></a> </center>
 </div>
 <script>
     function myFunction(){
         alert('Funzione non ancora implementata, ci scusiamo per il disagio causato');
     }
 </script>
-<div id="bottone">
-    <center>
-        <a href="/users/logout"><button>Esci</button></a> </center>
-</div>
