@@ -8,7 +8,7 @@ module.exports = {
 			parolaChiave === '' || !parolaChiave
 				? 'Comunicazioni - HAP'
 				: `${parolaChiave} - Comunicazioni - HAP`;
-		res.render('comunicazioni/index', { title, parolaChiave });
+		res.render('comunicazioni/index', { title, pagina:'comunicazioni', parolaChiave });
 	},
 	async loadComunicazione(req, res, next) {
 		let { search = '', skip = 0, limit = 5, sort = 'desc' } = req.query; //acquisisto i valori passati come parametri tramite res.query
@@ -53,7 +53,7 @@ module.exports = {
 		});
 	},
 	newComunicazione(req, res, next) {
-		res.render('comunicazioni/new', { title: 'Nuova comunicazione - HAP' });
+		res.render('comunicazioni/new', { title: 'Nuova comunicazione - HAP', pagina:'comunicazioni' });
 	},
 	async createComunicazione(req, res, next) {
 		//crea una nuova comunicazione e la inserisce nel database
@@ -68,6 +68,7 @@ module.exports = {
 		comunicazione.data = convertDate(comunicazione.dataCreazione);
 		res.render('comunicazioni/show', {
 			title: `${comunicazione.titolo} - HAP`,
+			pagina:'comunicazioni',
 			comunicazione
 		});
 	},
@@ -77,6 +78,7 @@ module.exports = {
 		);
 		res.render('comunicazioni/edit', {
 			title: 'Modifica comunicazione',
+			pagina:'comunicazioni',
 			comunicazione
 		});
 	},

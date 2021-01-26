@@ -1,6 +1,7 @@
 const Prenotazione = require('../models/prenotazione');
 const Paziente = require('../models/paziente');
 const Staff = require('../models/staff');
+const { getOrariSegreteria, getOrariMedico } = require('../middleware/orari');
 module.exports={
     indexAreaRiservata(req,res,next){
         if(req.user.idRef.ruolo==='Medico') res.redirect('/area-riservata/medico/prenotazioni');
@@ -28,13 +29,13 @@ module.exports={
 			tmpPrenotazione.ora = `${(tmpPrenotazione.dataPrenotazione.getHours() < 10 ? '0' : '') + tmpPrenotazione.dataPrenotazione.getHours()}:${(tmpPrenotazione.dataPrenotazione.getMinutes() < 10 ? '0' : '') + tmpPrenotazione.dataPrenotazione.getMinutes()}`;
 			return tmpPrenotazione;
         });
-        res.render('area-riservata/medico/prenotazioni',{title:'Prenotazioni - HAP', prenotazioni,data});
+        res.render('area-riservata/medico/prenotazioni',{title:'Prenotazioni - HAP', pagina:'appuntamenti',prenotazioni,data});
     },
     async getPazientiMedico(req,res,next){
         const pazienti =await Paziente.find({
             medico: req.user.idRef._id,
         },null,{ sort: { cognome: 1, nome: 1 } });
-        res.render('area-riservata/medico/lista-pazienti',{title:'Lista pazienti - Medico - HAP', pazienti});
+        res.render('area-riservata/medico/lista-pazienti',{title:'Lista pazienti - Medico - HAP', pagina:'lista-pazienti' , pazienti});
     },
     async getPrenotazioniSegreteria(req,res,next){
         const medici= await Staff.find({ruolo:'Medico'},'_id cognome nome',{sort:{cognome:1,nome:1}});
@@ -60,10 +61,31 @@ module.exports={
 			tmpPrenotazione.ora = `${(tmpPrenotazione.dataPrenotazione.getHours() < 10 ? '0' : '') + tmpPrenotazione.dataPrenotazione.getHours()}:${(tmpPrenotazione.dataPrenotazione.getMinutes() < 10 ? '0' : '') + tmpPrenotazione.dataPrenotazione.getMinutes()}`;
 			return tmpPrenotazione;
         });
-        res.render('area-riservata/segreteria/prenotazioni',{title:'Prenotazioni - HAP', medici, prenotazioni, ricercaMedico, data});
+        res.render('area-riservata/segreteria/prenotazioni',{title:'Prenotazioni - HAP', pagina:'appuntamenti', medici, prenotazioni, ricercaMedico, data});
     },
     async newPrenotazioneSegreteria(req,res,next){
-        res.render('area-riservata/segreteria/aggiungi-prenotazione', { title:'Nuova Prenotazione - Segreteria - HAP'});
+        const oggi = new Date();
+		oggi.setHours(3, 0, 0);
+		const prenotazioni = await Prenotazione.find({
+			paziente: req.user.idRef._id,
+			servizio:'Medico',
+			dataPrenotazione: { $gte: oggi }
+		});
+		const orariMedico = await Orario.findOne(
+			{ medico: req.user.idRef.medico },
+			'orari intervallo'
+		);
+		const orari = getOrariMedico(
+			orariMedico.orari,
+			orariMedico.intervallo
+		);
+		res.render('area-riservata/segreteria/aggiungi-prenotazione', {
+            title: 'Nuova Prenotazione - Segreteria - HAP',
+            pagina:'prenotazioni',
+            medico,
+			prenotazioni,
+			orari
+		});
     },
     async createPrenotazioneSegreteria(req,res,next){
         if (typeof req.body=='undefined') {
@@ -91,7 +113,7 @@ module.exports={
         const pazienti =await Paziente.find({
             medico: ricercaMedico,
         }, 'cognome nome dataNascita', { sort: { cognome: 1, nome: 1 } });
-        res.render('area-riservata/segreteria/lista-pazienti', { title:'Lista pazienti - Segreteria - HAP', medici, pazienti });
+        res.render('area-riservata/segreteria/lista-pazienti', { title:'Lista pazienti - Segreteria - HAP', pagina:'lista-pazienti', medici, pazienti });
     },
     async getIndicazioniSegreteria(req,res,next){
         res.redirect('/prenotazioni/segreteria');

@@ -44,6 +44,7 @@ router.get('/prova', (req, res, next) => {
 	];
 	res.render('area-riservata/segreteria/aggiungi-prenotazione', {
 		title: 'Prova - HAP',
+		pagina:'nuova-prenotazione',
 		orari,
 	});
 });

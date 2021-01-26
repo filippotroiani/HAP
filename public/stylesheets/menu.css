@@ -78,6 +78,10 @@ body {
 	text-align: center;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 1);
 }
+#bottone_scrivi button.checked {
+	background-color: rgb(50, 50, 255);
+	color: white;
+}
 #opzioni {
 	position: absolute;
 	top: 30%;
@@ -98,6 +102,10 @@ body {
 	font-weight: bold;
 	text-align: center;
 	width: 90%;
+}
+#opzioni button.checked {
+	background-color: rgb(50, 50, 255);
+	color: white;
 }
 #bottone button {
 	border-style: none;

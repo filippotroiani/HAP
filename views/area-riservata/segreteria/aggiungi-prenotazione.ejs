@@ -1,7 +1,11 @@
 <% layout('layouts/comunicazioni-index-layout') -%>
 <div id="pop_up">
     <form id="newPrenotazione" action="/prenotazioni" method="POST">
-        <div class="error-message"></div>
+        <select id="selezioneMedico" name='medico'>
+            <% medici.forEach((medico)=>{ %>
+            <option value="<%= medico._id %>" <% if(medico._id==ricercaMedico){ %>selected<% } %> >Dott. <%= medico.cognome %> <%= medico.nome %></option><% }) %>
+        </select>
+        <input type="search" name="" id="">
         <% const oggiHTML= new Date().toISOString().substring(0,10); %>
         <div>
             <input
@@ -55,6 +59,7 @@
         'http://' + document.domain + ':3000/prenotazioni/getOrariMedicoAPI';
     const dataInput = document.querySelector('#dataInput');
     const orariContainer = document.querySelector('#orariContainer');
+    dataInput.addEventListener('change', () => {});
     dataInput.addEventListener('change', () => {
         const dataRicerca = dataInput.value.split('-');
         const day = `${dataRicerca[2]}-${dataRicerca[1]}-${dataRicerca[0]}`;

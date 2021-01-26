@@ -11,7 +11,7 @@ module.exports = {
 	},
 	// GET /users/login
 	getLogin(req, res, next) {
-		res.render('users/login', { title: 'Login - HAP' });
+		res.render('users/login', { title: 'Login - HAP', pagina:'login' });
 	},
 	// POST /users/login
 	async postLogin(req, res, next) {
@@ -53,7 +53,7 @@ module.exports = {
 	async getRegister(req, res, next) {
 		const medici= await Staff.find({ruolo:'Medico'},'_id cognome nome',{sort:{cognome:1,nome:1}});
 		res.render('area-riservata/segreteria/registra-paziente', {
-			title: 'Registra nuovo paziente - HAP', medici
+			title: 'Registra nuovo paziente - HAP', pagina:'nuovo-paziente', medici
 		});
 	},
 	// POST /users/register
@@ -108,6 +108,7 @@ module.exports = {
 	getProfile(req, res, next) {
 		res.render('users/profilo', {
 			title: 'Profilo - HAP',
+			pagina:'profilo',
 			token: 'TOKEN!',
 		});
 	},
@@ -115,6 +116,7 @@ module.exports = {
 		console.log(req.params.token);
 		res.render('users/password-dimenticata', {
 			title: 'Reset password - HAP',
+			pagina:'password-dimenticata',
 			token: 'TOKEN!',
 		});
 	},

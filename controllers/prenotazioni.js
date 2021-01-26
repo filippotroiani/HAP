@@ -59,6 +59,7 @@ module.exports = {
 		);
 		res.render('prenotazioni/new', {
 			title: 'Nuova prenotazione - HAP',
+			pagina:'nuova-prenotazione',
 			prenotazioni,
 			orari
 		});
@@ -117,6 +118,7 @@ module.exports = {
 		prenotazione.dataPrenotazione = convertDate(prenotazione.dataPrenotazione);
 		res.render('prenotazioni/show', {
 			title: `Prenotazione ${prenotazione.dataPrenotazione} - HAP`,
+			pagina:'nuova-prenotazione',
 			prenotazione
 		});
 	},
@@ -146,7 +148,7 @@ module.exports = {
 			undefined,
 			await getPrenotazioniSegreteria()
 		);
-		res.render('prenotazioni/segreteria', { title: 'Indicazioni di arrivo - HAP', orari });
+		res.render('prenotazioni/segreteria', { title: 'Indicazioni di arrivo - HAP', pagina:'indicazioni', orari });
 	},
 	async getOrariSegreteriaAPI(req, res, next) {
 		const dataParamentro = req.query.day.split('-');

@@ -5,7 +5,7 @@ module.exports = {
     },
     async getLink(req, res, next) {
         const elencoLink = await linkUtili.find({});
-        res.render('linkUtili', { title: 'Link utili - HAP', elencoLink });
+        res.render('linkUtili', { title: 'Link utili - HAP', pagina:'link-utili',elencoLink });
     },
     async postLink(req, res, next) {
         await linkUtili.create(req.body.link);
