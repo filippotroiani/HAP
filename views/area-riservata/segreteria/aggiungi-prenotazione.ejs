@@ -1,13 +1,15 @@
 <% layout('layouts/comunicazioni-index-layout') -%>
 <div id="pop_up">
-    <form id="newPrenotazione" action="/prenotazioni" method="POST">
-        <select id="selezioneMedico" name='prenotazione[medico]'>
+    <form id="newPrenotazione" action="/area-riservata/segreteria/nuova-prenotazione" method="POST" style="padding-left: 10px;" ><br>
+        Medico: <br>
+        <select class="selezioneMedico" id="casella2" name='prenotazione[medico]'>
             <% medici.forEach((medico)=>{ %>
             <option value="<%= medico._id %>" <% if(medico._id==ricercaMedico){ %>selected<% } %> >Dott. <%= medico.cognome %> <%= medico.nome %></option><% }) %>
-        </select>
-        <input type="search" name="prenotazine[paziente]" id="">
+        </select><br><br>
+        Codice Fiscale del paziente: <br>
+        <input id="motivazione-visita" type="text" name="CF" ><br/><br>
         <% const oggiHTML= new Date().toISOString().substring(0,10); %>
-        <div>
+        <div>Data e ora: <br>
             <input
                 id="dataInput"
                 name="prenotazione[data]"
@@ -40,13 +42,14 @@
             <% } }) %>
         </div>
         <br />
-        Motivazione:
+        Motivazione: <br>
         <input
             type="text"
             class="motivazione"
             name="prenotazione[motivazione]"
-        /><br />
-        <input type="submit" />
+            id="motivazione-visita"
+        /><br /><br>
+        <input type="submit" id="conferma" value="Invia prenotazione"/>
     </form>
 </div>
 <style>
@@ -58,12 +61,19 @@
     const getOrariAPI_URL =
         'http://' + document.domain + ':3000/prenotazioni/getOrariMedicoAPI';
     const dataInput = document.querySelector('#dataInput');
+    const selezioneMedico = document.querySelector('.selezioneMedico');
     const orariContainer = document.querySelector('#orariContainer');
-    dataInput.addEventListener('change', () => {});
-    dataInput.addEventListener('change', () => {
+
+    selezioneMedico.addEventListener('change', onChange);
+
+    dataInput.addEventListener('change', onChange);
+
+    function onChange(){
+        const medico = selezioneMedico.value;
         const dataRicerca = dataInput.value.split('-');
         const day = `${dataRicerca[2]}-${dataRicerca[1]}-${dataRicerca[0]}`;
-        fetch(`${getOrariAPI_URL}?day=${day}`)
+        console.log(day+' '+medico)
+        fetch(`${getOrariAPI_URL}?day=${day}&medico=${medico}`)
             .then((response) => response.json())
             .then((risposta) => {
                 orariContainer.innerHTML = '';
@@ -87,5 +97,5 @@
                     orariContainer.appendChild(div);
                 });
             });
-    });
+    }
 </script>

@@ -1,7 +1,44 @@
 const Prenotazione = require('../models/prenotazione');
 const Paziente = require('../models/paziente');
 const Staff = require('../models/staff');
+const Orario = require('../models/orario');
 const { getOrariSegreteria, getOrariMedico } = require('../middleware/orari');
+async function getOrariPrenotati(dataP= new Date(),servizio='Segreteria',medico){
+	const data=new Date(dataP);
+	data.setHours(0);
+	var data2=new Date(data);
+	data2.setDate(data2.getDate()+1);
+	var orari=await Prenotazione.aggregate(
+				[
+				{$match: {
+						servizio,
+						medico,
+						dataPrenotazione:{
+							$gte:data,
+							$lt:data2
+						}
+					}
+				}, 
+				{$group: {
+						_id:{$dateToString: { format: "%H:%M", date: "$dataPrenotazione", timezone:"+01:00" }},
+						numPazienti: {
+							$sum: 1
+						}
+					}
+				},
+				{$project: {
+						_id:0,
+						'ora':"$_id",
+						numPazienti:1
+					}
+				},
+				{$sort: {
+						ora:1
+					}
+				}
+				]);
+				return orari;
+};
 module.exports={
     indexAreaRiservata(req,res,next){
         if(req.user.idRef.ruolo==='Medico') res.redirect('/area-riservata/medico/prenotazioni');
@@ -11,8 +48,7 @@ module.exports={
     async getPrenotazioniMedico(req,res,next){
         if(typeof req.query.data=='undefined') {
             var data=new Date();
-            data.setHours(3);
-            data.setMinutes(0);
+            data.setHours(3,0,0);
         }else{
             //var dataRicevuta=req.query.data.split('-'); 
             var data=new Date(`${req.query.data}T03:00:00`)//`${dataRicevuta[2]}-${dataRicevuta[1]}-${dataRicevuta[0]}T03:00:00`);
@@ -43,8 +79,7 @@ module.exports={
         else var ricercaMedico=req.query.medico;
         if(typeof req.query.data=='undefined') {
             var data=new Date();
-            data.setHours(3);
-            data.setMinutes(0);
+            data.setHours(3,0,0);
         }else{
             //var dataRicevuta=req.query.data.split('-'); 
             var data=new Date(`${req.query.data}T03:00:00`)//`${dataRicevuta[2]}-${dataRicevuta[1]}-${dataRicevuta[0]}T03:00:00`);
@@ -64,12 +99,44 @@ module.exports={
         res.render('area-riservata/segreteria/prenotazioni',{title:'Prenotazioni - HAP', pagina:'appuntamenti', medici, prenotazioni, ricercaMedico, data});
     },
     async newPrenotazioneSegreteria(req,res,next){
+        const medici= await Staff.find({ruolo:'Medico'},'_id cognome nome',{sort:{cognome:1,nome:1}});
+        if(typeof req.query.medico=='undefined') var ricercaMedico=medici[0]._id;
+        else var ricercaMedico=req.query.medico;
+        
         const oggi = new Date();
 		oggi.setHours(3, 0, 0);
+		const orariMedico = await Orario.findOne(
+			{ medico: ricercaMedico },
+			'orari intervallo'
+        );
+		const orari = getOrariMedico(
+			orariMedico.orari,
+            orariMedico.intervallo,
+            oggi,
+            await getOrariPrenotati(oggi,'Medico',ricercaMedico)
+		);
+		res.render('area-riservata/segreteria/aggiungi-prenotazione', {
+            title: 'Nuova Prenotazione - Segreteria - HAP',
+            pagina:'nuova-prenotazione',
+            ricercaMedico,
+            medici,
+            ricercaMedico,
+			orari
+		});
+    },
+    async newPrenotazioneSegreteriaOrariAPI(req,res,next){
+        const data = new Date();
+		data.setHours(3, 0, 0);
+		var data2=new Date(data);
+		data2.setDate(data2.getDate()+1);
+		
 		const prenotazioni = await Prenotazione.find({
-			paziente: req.user.idRef._id,
 			servizio:'Medico',
-			dataPrenotazione: { $gte: oggi }
+			medico:req.user.idRef.medico,
+			dataPrenotazione:{
+				$gte:data,
+				$lt:data2
+			}		
 		});
 		const orariMedico = await Orario.findOne(
 			{ medico: req.user.idRef.medico },
@@ -77,7 +144,9 @@ module.exports={
 		);
 		const orari = getOrariMedico(
 			orariMedico.orari,
-			orariMedico.intervallo
+            orariMedico.intervallo,
+            data,
+            prenotazioni
 		);
 		res.render('area-riservata/segreteria/aggiungi-prenotazione', {
             title: 'Nuova Prenotazione - Segreteria - HAP',
@@ -88,12 +157,17 @@ module.exports={
 		});
     },
     async createPrenotazioneSegreteria(req,res,next){
+        console.log(req.body.prenotazione+' '+req.body.CF)
         if (typeof req.body=='undefined') {
 			req.session.error = `Inserisci correttamente i dati`;
 			res.redirect('/area-riservata/segreteria/aggiungi-prenotazione');
-		} else {
+		} else if (typeof req.body.CF=='undefined') {
+			req.session.error = `Inserisci correttamente i dati`;
+			res.redirect('/area-riservata/segreteria/aggiungi-prenotazione');
+        } else {
+            const pazienteQuery = await Paziente.findOne({CF: req.body.CF},'_id CF');
 			const newPrenotazione = {
-				paziente: req.body.prenotazione.paziente,
+				paziente: pazienteQuery._id,
 				servizio: 'Medico',
 				medico: req.body.prenotazione.medico,
 				dataPrenotazione: new Date(

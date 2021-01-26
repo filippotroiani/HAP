@@ -1,16 +1,23 @@
 const Prenotazione = require('../models/prenotazione');
 const Orario = require('../models/orario');
 const Paziente = require('../models/paziente');
+const Staff = require('../models/staff');
 const { getOrariSegreteria, getOrariMedico } = require('../middleware/orari');
-async function getPrenotazioniSegreteria(dataP= new Date()){
+async function getPrenotazioniSegreteria(dataP='',servizio='Segreteria',medico){
 	const data=new Date(dataP);
-	data.setHours(0);
+	data.setHours(3,0,0);
 	var data2=new Date(data);
 	data2.setDate(data2.getDate()+1);
+	console.log(data+' '+data2)
+	if(medico!=null)
+	var medicoQuery = await Staff.findById(medico)
+	else var medicoQuery={_id:null};
+	console.log(medicoQuery._id)
 	var orari=await Prenotazione.aggregate(
 				[
 				{$match: {
-						servizio:'Segreteria',
+						servizio,
+						medico:medicoQuery._id,
 						dataPrenotazione:{
 							$gte:data,
 							$lt:data2
@@ -35,6 +42,7 @@ async function getPrenotazioniSegreteria(dataP= new Date()){
 					}
 				}
 				]);
+				console.log(orari)
 				return orari;
 };
 module.exports = {
@@ -42,44 +50,58 @@ module.exports = {
 		res.redirect('prenotazioni/new');
 	},
 	async newPrenotazioni(req, res, next) {
-		const oggi = new Date();
-		oggi.setHours(3, 0, 0);
+		const data = new Date();
+		data.setHours(3, 0, 0);
+		var data2=new Date(data);
+		data2.setDate(data2.getDate()+1);
+		
 		const prenotazioni = await Prenotazione.find({
-			paziente: req.user.idRef._id,
 			servizio:'Medico',
-			dataPrenotazione: { $gte: oggi }
-		});
+			medico:req.user.idRef.medico,
+			dataPrenotazione:{
+				$gte:data,
+				$lt:data2
+			}		
+		},null,);
 		const orariMedico = await Orario.findOne(
 			{ medico: req.user.idRef.medico },
 			'orari intervallo'
 		);
+		console.log('orari: '+orariMedico.orari);
 		const orari = getOrariMedico(
 			orariMedico.orari,
-			orariMedico.intervallo
+			orariMedico.intervallo,
+			data,
+			await getPrenotazioniSegreteria(data,'Medico',req.user.idRef.medico)
 		);
 		res.render('prenotazioni/new', {
 			title: 'Nuova prenotazione - HAP',
 			pagina:'nuova-prenotazione',
-			prenotazioni,
 			orari
 		});
 	},
 	async getOrariMedicoAPI(req, res, next) {
+		var ricercaMedico;
+		if(typeof req.query.medico!='undefined'){
+			ricercaMedico = req.query.medico;
+			console.log('medico: '+ricercaMedico);
+		} else {
+			ricercaMedico = req.user.idRef.medico;
+			console.log('medico undefined: '+ricercaMedico);
+		}
 		const dataParamentro = req.query.day.split('-');
 		const dataRicerca =`${dataParamentro[2]}-${dataParamentro[1]}-${dataParamentro[0]}T00:00:00`;
+		console.log('data '+ dataRicerca)
 		const orariMedico = await Orario.findOne(
-			{ medico: req.user.idRef.medico },
+			{ medico: ricercaMedico },
 			'orari intervallo'
 		);
 		const orari = getOrariMedico(
 			orariMedico.orari,
 			orariMedico.intervallo,
 			dataRicerca,
-			await getPrenotazioniSegreteria(dataRicerca)
+			await getPrenotazioniSegreteria(dataRicerca,'Medico',ricercaMedico)
 		);
-		/* orari.forEach((orario) => {
-			orario.numPazienti = 3;
-		}); */
 		res.json({
 			orari
 		});
@@ -146,7 +168,7 @@ module.exports = {
 			orariSegreteria[0].orari,
 			orariSegreteria[0].intervallo,
 			undefined,
-			await getPrenotazioniSegreteria()
+			await getPrenotazioniSegreteria(new Date(),'Segreteria',null)
 		);
 		res.render('prenotazioni/segreteria', { title: 'Indicazioni di arrivo - HAP', pagina:'indicazioni', orari });
 	},
@@ -161,7 +183,7 @@ module.exports = {
 			orariSegreteria[0].orari,
 			orariSegreteria[0].intervallo,
 			dataRicerca,
-			await getPrenotazioniSegreteria(dataRicerca)
+			await getPrenotazioniSegreteria(dataRicerca,'Segreteria',null)
 		);
 		/* orari.forEach((orario) => {
 			orario.numPazienti = 3;

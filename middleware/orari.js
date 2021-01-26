@@ -46,8 +46,10 @@ const calcolaOrariVisite= (
 							dateInizio.getMinutes()
 						}`
 					}
+					console.log('ora: '+ob.ora);
 					if(servizio==='Medico')
-						{if(typeof prenotazioniCorrenti[0]!='undefined'&&ob.ora===prenotazioniCorrenti[0].ora) {
+						{	console.log(prenotazioniCorrenti)
+							if(typeof prenotazioniCorrenti[0]!='undefined'&&ob.ora===prenotazioniCorrenti[0].ora) {
 							ob.disponibile=false;
 							prenotazioniCorrenti.shift();
 						}
