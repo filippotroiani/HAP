@@ -132,6 +132,7 @@ body {
 	left: 0;
 	bottom: 0;
 	width: 100%;
+	padding: 10px;
 }
 #pop_up {
 	width: 95%;
@@ -305,7 +306,7 @@ h1 {
 #utente {
 	text-shadow: 0 0 1px black;
 	text-decoration: black;
-	font-weight: bold;
+	/* font-weight: bold; */
 	color: rgba(0, 196, 204);
 	font-size: 20px;
 	width: 100px;
@@ -313,7 +314,7 @@ h1 {
 #dato {
 	text-shadow: 0 0 1px black;
 	text-decoration: black;
-	font-weight: bold;
+	/* font-weight: bold */
 	font-size: 20px;
 	margin-left: 110px;
 }
@@ -328,7 +329,7 @@ h1 {
 	font-weight: bold;
 	position: absolute;
 	left: 750px;
-	top: 0;
+	top: 10px;
 	height: 36px;
 }
 #testo-comunicazione {

@@ -2,13 +2,15 @@
 <h1>Nuova Comunicazione</h1>
 <form id="aggiungiNews" action="/comunicazioni" method="POST">
   <div class="error-message"></div>
-  <div><input name="comunicazione[titolo]" placeholder="Titolo" id="titolo"/></div>
+  <div><input name="comunicazione[titolo]" placeholder="Titolo" id="testo-comunicazione"/></div><br>
   <div>
-    <textarea name="comunicazione[testo]" placeholder="Testo" id="text"></textarea>
-  </div>
-  <div>
-    <input name="comunicazione[paroleChiave]" placeholder="Parole chiave" id="key"/>
+    <input name="comunicazione[paroleChiave]" placeholder="Parole chiave" id="key-comunicazione"/>
     Inserisci parole chiave separate da una virgola
+  </div>
+  <br>
+  <br>
+  <div>
+    <textarea name="comunicazione[testo]" placeholder="Testo" id="descrizione-comunicazione"></textarea>
   </div>
   <input type="submit" value="Pubblica" id="conferma"/>
 </form>
