@@ -1,13 +1,13 @@
 <div id="bottone_scrivi">
-    <a href=""><button onclick="myFunction()">Messaggi</button></a>
+    <a href=""><button onclick="myFunction()" <% if(pagina=='chat'){​​​​ %>class="checked"<% }​​​​ %>>Messaggi</button></a>
 </div>
 
 <div id="opzioni">
     <center>
         <br /><br /><br />
-        <a href="/area-riservata/medico/prenotazioni"><button>Appuntamenti</button></a><br /><br /><br />
-        <a href="/area-riservata/medico/lista-pazienti"><button>Lista pazienti</button></a><br /><br /><br />
-        <a href="/comunicazioni"><button>Comunicazioni</button></a><br /><br /><br />
+        <a href="/area-riservata/medico/prenotazioni"><button <% if(pagina=='appuntamenti'){​​​​ %>class="checked"<% }​​​​ %>>Appuntamenti</button></a><br /><br /><br />
+        <a href="/area-riservata/medico/lista-pazienti"><button <% if(pagina=='lista-pazienti'){​​​​ %>class="checked"<% }​​​​ %>>Lista pazienti</button></a><br /><br /><br />
+        <a href="/comunicazioni"><button <% if(pagina=='comunicazioni'){​​​​ %>class="checked"<% }​​​​ %>>Comunicazioni</button></a><br /><br /><br />
     </center>
 </div>
 
