@@ -99,10 +99,17 @@ module.exports = {
 				),
 				motivazione: req.body.prenotazione.motivazione || ''
 			};
-			await Prenotazione.create(newPrenotazione);
-			req.session.success = 'Prenotazione creata con successo.';
-			res.redirect('/');
+			const prenotazione = await Prenotazione.create(newPrenotazione);
+			console.log(prenotazione)
+			if(typeof prenotazione!='undefined'){
+				req.session.success = 'Prenotazione creata con successo.';
+				res.redirect('/');
+			} else {
+				req.session.error = 'Prenotazione non creata con successo.';
+				res.redirect('/prenotazioni/new');
+			}
 		}
+			
 	},
 	async showPrenotazione(req, res, next) {
 		var prenotazione = await Prenotazione.findById(req.params.id_prenotazione);

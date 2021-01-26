@@ -20,7 +20,8 @@ module.exports={
         data2.setDate(data2.getDate()+1);
         const prenotazioniRisultati =await Prenotazione.find({
             medico: req.user.idRef._id,
-            dataPrenotazione:{$gte:data,$lt:data2}
+            dataPrenotazione:{$gte:data,$lt:data2},
+            servizio:'Medico'
         },null,{sort:{ dataPrenotazione: 1 }}).populate('paziente');
         var prenotazioni = prenotazioniRisultati.map((prenotazione) => {
 			var tmpPrenotazione = prenotazione.toObject();

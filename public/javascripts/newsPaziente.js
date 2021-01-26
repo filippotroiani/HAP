@@ -7,7 +7,7 @@ const getNewsAPI_URL =
 	'http://' + document.domain + ':3000/comunicazioni/loadComunicazioni';
 
 let skip = 0;
-let limit = 5;
+let limit = 20;
 let loading = false;
 let finished = false;
 let search = '';
