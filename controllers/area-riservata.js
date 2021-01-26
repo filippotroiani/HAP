@@ -81,7 +81,7 @@ module.exports={
 		);
 		res.render('area-riservata/segreteria/aggiungi-prenotazione', {
             title: 'Nuova Prenotazione - Segreteria - HAP',
-            pagina:'prenotazioni',
+            pagina:'nuova-prenotazione',
             medico,
 			prenotazioni,
 			orari

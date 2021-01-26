@@ -12,9 +12,9 @@
         <% include ../partials/navbar %> <% include ../partials/flash-messages %>
         <% if(typeof currentUser=='undefined'){ %>
             <% include ../partials/menu-non-loggato %>
-        <%} else if(currentUser.tipo==='Paziente'){ %>
+        <% } else if(currentUser.tipo==='Paziente'){ %>
             <% include ../partials/menu-paziente %>
-        <%} else if(currentUser.tipo==='Staff'&&currentUser.idRef.ruolo==='Segreteria'){ %>
+        <% } else if(currentUser.tipo==='Staff'&&currentUser.idRef.ruolo==='Segreteria'){ %>
             <% include ../partials/menu-segreteria %>
         <% } else if(currentUser.tipo==='Staff'&&currentUser.idRef.ruolo==='Medico'){ %>
             <% include ../partials/menu-medico %>
