@@ -22,7 +22,7 @@ router.get('/segreteria/nuova-prenotazione', isUserLogged, isStaffMember, asyncE
 router.post('/segreteria/nuova-prenotazione', isUserLogged, isStaffMember, asyncErrorHandler(createPrenotazioneSegreteria));
 
 /* GET  /area-riservata/segreteria/pazienti */
-router.get('/segreteria/pazienti', isUserLogged, isStaffMember, asyncErrorHandler(getPazientiSegreteria));
+router.get('/segreteria/lista-pazienti', isUserLogged, isStaffMember, asyncErrorHandler(getPazientiSegreteria));
 
 /* GET  /area-riservata/segreteria/indicazioni-arrivo */
 router.get('/segreteria/indicazioni-arrivo', isUserLogged, isStaffMember, asyncErrorHandler(getIndicazioniSegreteria));
@@ -42,7 +42,7 @@ router.get('/prova', (req, res, next) => {
 		{ ora: '10:15', disponibile: true },
 		{ ora: '10:30', disponibile: false },
 	];
-	res.render('../views/area-riservata/segreteria/aggiungi-prenotazione', {
+	res.render('area-riservata/segreteria/aggiungi-prenotazione', {
 		title: 'Prova - HAP',
 		orari,
 	});

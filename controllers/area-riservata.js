@@ -52,6 +52,7 @@ module.exports={
         data2.setDate(data2.getDate()+1);
         const prenotazioniRisultati =await Prenotazione.find({
             medico: ricercaMedico,
+            servizio:'Medico',
             dataPrenotazione:{$gte:data,$lt:data2}
         },null,{sort:{ dataPrenotazione: 1 }}).populate('paziente');
         var prenotazioni = prenotazioniRisultati.map((prenotazione) => {
@@ -84,10 +85,13 @@ module.exports={
 		}
     },
     async getPazientiSegreteria(req,res,next){
+        const medici= await Staff.find({ruolo:'Medico'},'_id cognome nome',{sort:{cognome:1,nome:1}});
+        if(typeof req.query.medico=='undefined') var ricercaMedico=medici[0]._id;
+        else var ricercaMedico=req.query.medico;
         const pazienti =await Paziente.find({
-            medico: req.query.medico,
+            medico: ricercaMedico,
         }, 'cognome nome dataNascita', { sort: { cognome: 1, nome: 1 } });
-        res.render('area-riservata/segreteria/lista-pazienti', { title:'Lista pazienti - Segreteria - HAP', pazienti });
+        res.render('area-riservata/segreteria/lista-pazienti', { title:'Lista pazienti - Segreteria - HAP', medici, pazienti });
     },
     async getIndicazioniSegreteria(req,res,next){
         res.redirect('/prenotazioni/segreteria');

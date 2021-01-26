@@ -1,5 +1,5 @@
 <% layout('layouts/comunicazioni-index-layout') -%>
-<form action="/area-riservata/segreteria/prenotazioni" method="GET">
+<form action="/area-riservata/segreteria/lista-pazienti" method="GET">
         <select id="selezioneMedico" name='medico'>
             <% medici.forEach((medico)=>{ %>
             <option value="<%= medico._id %>">Dott. <%= medico.cognome %> <%= medico.nome %></option><% }) %>
@@ -11,10 +11,11 @@
             <th>Nome paziente</th>
             <th>Data nascita</th>
         </tr>
-        <% pazienti.forEach((paziente)=>{%>
+       <% pazienti.forEach((paziente)=>{
+    var dataNascita=paziente.dataNascita.toISOString().substring(0,10).split('-') %>
     <tr>
-        <td><%= pazienti.cognome %> <%= pazienti.nome %></td>
-        <td><%= pazienti.dataNascita %></td>
+        <td><%= paziente.cognome %> <%= paziente.nome %></td>
+        <td><%= `${dataNascita[2]}-${dataNascita[1]}-${dataNascita[0]}` %></td>
     </tr>
     <% }) %>
     </table>

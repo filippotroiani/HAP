@@ -50,9 +50,10 @@ module.exports = {
 		res.redirect('/');
 	},
 	// GET /users/register
-	getRegister(req, res, next) {
+	async getRegister(req, res, next) {
+		const medici= await Staff.find({ruolo:'Medico'},'_id cognome nome',{sort:{cognome:1,nome:1}});
 		res.render('area-riservata/segreteria/registra-paziente', {
-			title: 'Registra nuovo paziente - HAP',
+			title: 'Registra nuovo paziente - HAP', medici
 		});
 	},
 	// POST /users/register
@@ -79,7 +80,7 @@ module.exports = {
 	},
 	// GET /users/register
 	getRegisterStaff(req, res, next) {
-		res.render('/users/registerStaff', {
+		res.render('users/registerStaff', {
 			title: 'Registra nuovo membro dello staff - HAP',
 		});
 	},

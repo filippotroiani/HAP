@@ -3,7 +3,17 @@
 		<center>
 				<div id="area_registrazione">
 				<br>
-					<form>
+					<form action="/users/registra-paziente" method="POST" >
+						<div id="titolo_casella">
+						Medico<br>
+						<select id="casella2" name='medico'>
+							<% 
+							var primo=true;
+							medici.forEach((medico)=>{ %>
+								<option value="<%= medico._id %>" <% if(primo){ %>selected<% primo=false; } %> >Dott. <%= medico.cognome %> <%= medico.nome %></option>
+							<% }) %>
+        				</select>
+						</div>
 					<div id="titolo_casella">
 						Nome<br>
 						<input placeholder="Nome" name="nome" type="text" id="casella"/>

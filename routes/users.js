@@ -27,10 +27,10 @@ router.post(
 );
 
 /* GET /users/register */
-router.get('/register', isStaffMember, getRegister);
+router.get('/registra-paziente', isUserLogged, isStaffMember, asyncErrorHandler(getRegister));
 
 /* POST /users/register */
-router.post('/register', isStaffMember, asyncErrorHandler(postRegister));
+router.post('/registra-paziente', isUserLogged, isStaffMember, asyncErrorHandler(postRegister));
 
 /* GET /users/logout */
 router.get('/logout', getLogout);
