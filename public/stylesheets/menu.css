@@ -132,18 +132,12 @@ body {
 	left: 0;
 	bottom: 0;
 	width: 100%;
-	padding: 10px;
 }
 #pop_up {
 	width: 95%;
 	position: absolute;
 	font-weight: bold;
-	/* margin-left: 45%;*/
 }
-/* #pop_up input[type='password'],
-[type='submit'] {
-	border-radius: 5px;
-} */
 #rubrica {
 	position: absolute;
 	top: 10px;
@@ -163,10 +157,6 @@ body {
 	width: 20px;
 	height: 20px;
 }
-/* .motivazione {
-	width: 60%;
-	height: 50%;
-} */
 #scorrimento {
 	height: 50px;
 	overflow-x: scroll;
@@ -234,6 +224,7 @@ h1 {
 	border-style: ridge;
 	border-radius: 15px;
 	width: 150px;
+	margin-left: 10px;
 }
 #tabellaOrari {
 	border: none;
@@ -306,7 +297,7 @@ h1 {
 #utente {
 	text-shadow: 0 0 1px black;
 	text-decoration: black;
-	/* font-weight: bold; */
+	font-weight: bold;
 	color: rgba(0, 196, 204);
 	font-size: 20px;
 	width: 100px;
@@ -314,7 +305,7 @@ h1 {
 #dato {
 	text-shadow: 0 0 1px black;
 	text-decoration: black;
-	/* font-weight: bold */
+	font-weight: bold;
 	font-size: 20px;
 	margin-left: 110px;
 }
@@ -425,12 +416,14 @@ h1 {
 	}
 	#utente {
 		font-size: 12px;
+		font-weight: normal;
 	}
 	#dato {
 		font-size: 13px;
+		font-weight: normal;
 	}
 	#dato {
-		margin-left: 90px;
+		margin-left: 95px;
 	}
 	#immagine-profilo {
 		width: 120px;
