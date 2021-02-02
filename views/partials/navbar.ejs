@@ -5,7 +5,7 @@
     <div class="profilo">
       <img src="/images/avatar.png" />
       <div id="info">
-    <% if(typeof currentUser!='undefined'){ %><%= currentUser.idRef.cognome %> <%= currentUser.idRef.nome %><% } %>
+    <% if(typeof currentUser!='undefined'){ %><% if(currentUser.tipo=='Staff'&&currentUser.idRef.ruolo=='Medico'){ %>Dott. <% } %><%= currentUser.idRef.cognome %> <%= currentUser.idRef.nome %><% } %>
     </div></div>
   </a>
   

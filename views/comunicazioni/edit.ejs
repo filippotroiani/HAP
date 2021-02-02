@@ -32,7 +32,7 @@
 		>
 	</div>
 	<br><br>
-	<a href="/comunicazioni/<%= comunicazione._id %>"><button id="back">Indietro</button></a>
-	<input type="reset" value="Annulla cambiamenti" id="annulla"/>
+	
+	<input type="reset" onclick="window.location.href = '/comunicazioni/<%= comunicazione._id %>'";" value="Annulla cambiamenti" id="annulla"/>
 	<input type="submit" value="Conferma modifiche" id="conferma"/>
 </form>
