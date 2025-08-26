@@ -23,14 +23,10 @@ const prenotazioniRouter = require('./routes/prenotazioni');
 const app = express();
 
 // database connection
-mongoose.connect(
-	process.env.DB_URL ||
-		'mongodb+srv://team23:a0Pd0VL4INqgdVI8@cluster0.kpdoojl.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0',
-	{
-		useNewUrlParser: true,
-		useUnifiedTopology: true
-	}
-);
+mongoose.connect(process.env.DB_URL, {
+	useNewUrlParser: true,
+	useUnifiedTopology: true
+});
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', () => {
@@ -53,7 +49,7 @@ app.use(methodOverride('_method'));
 // express session configuration
 app.use(
 	session({
-		secret: process.env.SESSION_SECRET || 'team23 secret',
+		secret: process.env.SESSION_SECRET,
 		resave: false,
 		saveUninitialized: true //,cookie: { secure: true }
 	})
