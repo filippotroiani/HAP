@@ -11,7 +11,6 @@ const session = require('express-session');
 // const passportLocalMongoose = require('passport-local-mongoose');
 const methodOverride = require('method-override');
 const mongoose = require('mongoose');
-mongoose.set('useCreateIndex', true);
 const User = require('./models/user');
 
 const indexRouter = require('./routes/index');
@@ -26,10 +25,10 @@ const app = express();
 // database connection
 mongoose.connect(
 	process.env.DB_URL ||
-		'mongodb+srv://admin:admin@cluster0.k1jgs.mongodb.net/HAP?retryWrites=true&w=majority',
+		'mongodb+srv://team23:a0Pd0VL4INqgdVI8@cluster0.kpdoojl.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0',
 	{
 		useNewUrlParser: true,
-		useUnifiedTopology: true,
+		useUnifiedTopology: true
 	}
 );
 const db = mongoose.connection;
@@ -56,7 +55,7 @@ app.use(
 	session({
 		secret: process.env.SESSION_SECRET || 'team23 secret',
 		resave: false,
-		saveUninitialized: true, //,cookie: { secure: true }
+		saveUninitialized: true //,cookie: { secure: true }
 	})
 );
 
@@ -88,7 +87,7 @@ app.use(function (req, res, next) {
 	/* // default page title
 	res.locals.title = 'HAP'; */
 	res.locals.currentUser = req.user;
-	
+
 	// set success flash message
 	res.locals.success = req.session.success || '';
 	delete req.session.success;
