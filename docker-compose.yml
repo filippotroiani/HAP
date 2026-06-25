@@ -1,0 +1,36 @@
+services:
+  db:
+    image: postgres:17
+    container_name: hap-db
+    restart: unless-stopped
+    environment:
+      - POSTGRES_USER=hap
+      - POSTGRES_PASSWORD="${DB_PASSWORD:-changeme}"
+      - POSTGRES_DB=hapdb
+    ports:
+      - "5432:5432"
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U hap -d hapdb"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build:
+      context: ./apps/backend
+      dockerfile: Dockerfile
+    container_name: hap-backend
+    restart: unless-stopped
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__Default="Host=db;Port=5432;Database=hapdb;Username=hap;Password=${DB_PASSWORD:-changeme}"
+    ports:
+      - "8080:8080"
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  db-data:

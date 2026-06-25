@@ -1,5 +1,5 @@
 <div align="center">
-<img src="public/images/logo.png" alt="HAP logo" width="30%"> </div>
+<img src="static-assets/logo.png" alt="HAP logo" width="30%"> </div>
 
 ### HAP
 
